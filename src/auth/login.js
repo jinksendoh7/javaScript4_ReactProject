@@ -18,3 +18,6 @@ export const login = async(email, password) =>{
         console.log(error);
     }
   }
+export const loginWithGoogle = async()=>{
+    console.log('Logging out...')
+}

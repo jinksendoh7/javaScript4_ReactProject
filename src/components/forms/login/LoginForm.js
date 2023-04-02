@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './LoginForm.scss';
 
-import * as auth from '../../../auth/index';
+import * as auth from '../../../auth';
 import { useDispatch, useSelector} from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
 
@@ -48,7 +48,7 @@ const LoginForm = () => {
     return (
       <>
       {isLoggedIn &&
-        <div>Logged in</div>
+        <div>Logged in {userInfo.email}</div>
       
       } 
       {
