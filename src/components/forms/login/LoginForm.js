@@ -33,7 +33,7 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Handle login logic here
-
+    console.log('in');
     try {
       const userAuth = await auth.login(email, password)
       if (userAuth) {
@@ -63,7 +63,6 @@ const LoginForm = () => {
       {
         !isLoggedIn &&
         <Container component="main" maxWidth="sm">
-          <form className="login-form" onSubmit={handleSubmit}>
           <Box
             sx={{
               boxShadow: 3,
@@ -79,7 +78,7 @@ const LoginForm = () => {
             <Typography component="h1" variant='h5'>
               Sign in
             </Typography>
-            <Box component="form" onsubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -125,7 +124,6 @@ const LoginForm = () => {
               </Grid>
             </Box>
           </Box>
-          </form>
         </Container>
       }
     </>
