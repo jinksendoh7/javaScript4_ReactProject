@@ -63,6 +63,7 @@ const LoginForm = () => {
       {
         !isLoggedIn &&
         <Container component="main" maxWidth="sm">
+          <form className="login-form" onSubmit={handleSubmit}>
           <Box
             sx={{
               boxShadow: 3,
@@ -124,26 +125,8 @@ const LoginForm = () => {
               </Grid>
             </Box>
           </Box>
+          </form>
         </Container>
-        // <form className="login-form" onSubmit={handleSubmit}>
-        //   <label className="login-form__label">Email:</label>
-        //   <input
-        //     className="login-form__input"
-        //     type="text"
-        //     value={email}
-        //     onChange={handleEmailChange}
-        //   />
-        //   <label className="login-form__label">Password:</label>
-        //   <input
-        //     className="login-form__input"
-        //     type="password"
-        //     value={password}
-        //     onChange={handlePasswordChange}
-        //   />
-        //   <button className="login-form__button" type="submit">
-        //     Login
-        //   </button>
-        // </form>
       }
     </>
   );
