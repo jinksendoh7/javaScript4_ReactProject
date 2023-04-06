@@ -5,10 +5,14 @@ import {Routes, Route} from 'react-router-dom';
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
+/*Constants */
+import { RoutesConst } from "./constants/AppConstants";
+
 import * as database from './database'
 import { useDispatch, useSelector} from 'react-redux';
 
 import './App.scss';
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 export default function App () {
   const dispatch = useDispatch();
@@ -26,7 +30,8 @@ useEffect(()=>{
     <>
       <main className="page">
         <Routes>
-           <Route path="/" element={<LoginPage/>}></Route>
+           <Route path={RoutesConst.HOME_ROUTE} element={<LoginPage />}></Route>
+           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </main>
