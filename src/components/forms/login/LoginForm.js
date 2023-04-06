@@ -8,10 +8,12 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+
 import './LoginForm.scss';
+import CopyrightComponet from '../../copyright/CopyrightComponent';
 
 import * as auth from '../../../auth';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
 
 
@@ -83,6 +85,7 @@ const LoginForm = () => {
                 margin="normal"
                 required
                 fullWidth
+                label="Email Address"
                 type="email"
                 value={email}
                 onChange={handleEmailChange}
@@ -94,6 +97,7 @@ const LoginForm = () => {
                 required
                 fullWidth
                 type="password"
+                label="Password"
                 value={password}
                 onChange={handlePasswordChange}
                 autoComplete="current-password"
@@ -117,11 +121,13 @@ const LoginForm = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
+              &nbsp;
+              <CopyrightComponet />
             </Box>
           </Box>
         </Container>
