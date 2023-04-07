@@ -16,6 +16,8 @@ h2 {
   font-weight: normal;
   font-size: 2rem;
 }
+a:visited {color:#000} 
+a:active {color:$accent-color}
 
 main {
   @include breakpoint {
@@ -23,7 +25,21 @@ main {
     align-items: flex-start;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1366px;
+    margin: 0 auto;
+    
+    & > div,
+    & > form {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  @include breakpoint-xl {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1400px;
     margin: 0 auto;
     
     & > div,

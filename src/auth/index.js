@@ -1,2 +1,2 @@
-export {login } from './login'
+export {login, guardAuth,logout } from './auth'
 

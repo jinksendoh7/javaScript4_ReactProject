@@ -1,0 +1,14 @@
+@import "../../../styles/variables.scss";
+
+.header{
+    background-color: $paper !important;
+    border-bottom: 2px solid $gray !important;
+    color: $primary-color !important;
+
+    
+}
+.menu-active{
+    color: $accent-color !important;
+    font-weight: 800;
+ 
+}
