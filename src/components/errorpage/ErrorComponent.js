@@ -1,13 +1,14 @@
 import { Typography, Container, Button, Box } from "@mui/material";
 import { IMAGE } from "../../assets/images/Images";
 import { Link } from "react-router-dom";
+import './ErrorComponent.scss'
 
 const ErrorPage = () => {
   return (
     <>
       <Container
         disableGutters
-        maxWidth="md"
+        maxWidth="sm"
         component="main"
         sx={{ pt: 10, pb: 6 }}
       >
@@ -15,18 +16,16 @@ const ErrorPage = () => {
           <img src={IMAGE.ERRIMAGE} alt="error logo" />
         </Typography>
         <Typography
-          variant="h2"
-          align="center"
-          color="text.secondary"
+          variant="h3"
           component="p"
+          className="errpageStyle"
         >
           Oops! Lost your way?
         </Typography>
         <Typography
-          variant="h5"
-          align="center"
-          color="text.secondary"
+          variant="h6"
           component="p"
+          className="errpageStyle"
         >
           Sorry we can't find that page. You'll find loads to explore in the
           homepage
@@ -36,15 +35,9 @@ const ErrorPage = () => {
           <Button
             component={Link}
             to={"/"} //change to mainpage or dashboard
-            style={{
-              borderRadius: 35,
-              backgroundColor: "#000738",
-              padding: "18px 36px",
-              marginTop: "15px",
-              fontSize: "18px",
-            }}
             variant="contained"
             size="large"
+            className="btn"
           >
             Home
           </Button>

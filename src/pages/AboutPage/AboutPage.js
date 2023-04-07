@@ -1,16 +1,7 @@
-
-import ErrorComponent from '../../components/errorpage/ErrorComponent'
-
-
-const AboutPage = () =>{
+const AboutPage = () => {
     return(
-        <> 
-
-        <ErrorComponent/>
-
-        {/* add footer */}
-        </>
-
+<div>hello</div>
     )
+
 }
 export default AboutPage;
