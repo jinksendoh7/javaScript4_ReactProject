@@ -1,10 +1,15 @@
 
+import ErrorComponent from '../../components/errorpage/ErrorComponent';
+import Footer from '../../components/footer/Footer';
 
+const NotFoundPage = () =>{
+    return(
+        <> 
 
-const NotFoundPage = () => {
-    return (
-       <h1>Page cannot be found</h1>
-    );
+        <ErrorComponent/>
+         <Footer />
+        </>
+
+    )
 }
-
 export default NotFoundPage;
