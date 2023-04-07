@@ -1,11 +1,11 @@
-import Slide from '@mui/material/Slide';
+
 import {useState} from 'react'
 import { Dialog, Button, DialogTitle, DialogActions, DialogContent,DialogContentText} from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 
-export default function ModalElement ({isOpen}){
+export default function ModalElement ({isOpen, handleCloseModal}){
   const [open, setOpen] = useState(isOpen);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -13,6 +13,7 @@ export default function ModalElement ({isOpen}){
  
   const handleClose = () => {
     setOpen(false);
+    handleCloseModal();
   };
   return (
     <div>

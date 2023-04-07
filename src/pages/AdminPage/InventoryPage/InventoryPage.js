@@ -9,6 +9,9 @@ const InventoryPage = () =>{
     const handleModalOpen = () =>{
         setOpen(true);
     }
+    const handleModalClose = ()=>{
+        setOpen(false)
+    }
     return(
         <> 
         <Grid container spacing={2}>
@@ -20,7 +23,7 @@ const InventoryPage = () =>{
                  <AddBoxOutlinedIcon/>&nbsp;{'Add Inventory'}
             </Button>
             </Grid>
-            {open && <ModalElement isOpen={open}/> }
+            {open && <ModalElement isOpen={open} handleCloseModal={handleModalClose}/> }
         </Grid>
         </>
 
