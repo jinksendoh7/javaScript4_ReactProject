@@ -2,7 +2,7 @@
 import ErrorComponent from '../../components/errorpage/ErrorComponent'
 
 
-const NotFoundPage = () =>{
+const AboutPage = () =>{
     return(
         <> 
 
@@ -13,4 +13,4 @@ const NotFoundPage = () =>{
 
     )
 }
-export default NotFoundPage;
+export default AboutPage;
