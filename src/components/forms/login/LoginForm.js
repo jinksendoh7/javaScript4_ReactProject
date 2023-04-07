@@ -9,20 +9,20 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import './LoginForm.scss';
 import CopyrightComponet from '../../copyright/CopyrightComponent';
-
+import {useNavigate} from 'react-router-dom';
 import * as auth from '../../../auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
+import { RoutesConst } from '../../../constants/AppConstants';
 
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const userInfo = useSelector((state) => state.user)
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -47,7 +47,7 @@ const LoginForm = () => {
             photoUrl: userAuth.photoURL,
           })
         );
-        setIsLoggedIn(true);
+        navigate(RoutesConst.ADMIN_ROUTE.concat('/',RoutesConst.ADMIN_DASHBOARD_ROUTE));
       }
 
     }
@@ -58,12 +58,6 @@ const LoginForm = () => {
 
   return (
     <>
-      {isLoggedIn &&
-        <div>Logged in</div>
-
-      }
-      {
-        !isLoggedIn &&
         <Container component="main" maxWidth="sm">
           <Box
             sx={{
@@ -131,7 +125,6 @@ const LoginForm = () => {
             </Box>
           </Box>
         </Container>
-      }
     </>
   );
 };
