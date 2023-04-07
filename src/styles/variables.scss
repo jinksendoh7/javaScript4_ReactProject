@@ -6,6 +6,7 @@ $gray-dark: #aeabab;
 $gray: #e3e3e3;
 $paper: #FFF;
 $ink: #000;
+$gray-darker-color: #808080;
 
 @mixin breakpoint {
   @media only screen and (min-width: 800px) {
