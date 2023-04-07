@@ -3,7 +3,6 @@
  .alert-success{
     padding: 1rem;
     margin: 0 auto;
-    background-color: $gray-dark-color;
     font-weight: 700;
     color:#fff;
     @include breakpoint {
@@ -15,7 +14,6 @@
 .alert-error{
     padding: 1rem;
     margin: 0 auto;
-    background-color: $red-color;
     font-weight: 700;
     color:#fff;
     @include breakpoint {
