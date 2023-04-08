@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 
-export default function ModalElement ({isOpen, handleCloseModal}){
+export default function ModalElement ({title,isOpen, handleCloseModal, element}){
   const [open, setOpen] = useState(isOpen);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -25,20 +25,16 @@ export default function ModalElement ({isOpen, handleCloseModal}){
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Add Vehicle Inventory"}
+          {title}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            {element}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Disagree
-          </Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
+            Close
           </Button>
         </DialogActions>
       </Dialog>
