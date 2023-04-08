@@ -27,7 +27,7 @@ export default function App () {
           <Route index element={<PublicPage />} />
           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
-          <Route path="/about" element={<AboutPage/>}></Route>
+          <Route path={RoutesConst.ABOUT_ROUTE} element={<AboutPage/>}></Route>
          <Route path={RoutesConst.ADMIN_ROUTE} element={<AdminPage />}>
           <Route path={''} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_DASHBOARD_ROUTE} element={<DashboardPage />}/>
