@@ -3,9 +3,10 @@ import {Routes, Route} from 'react-router-dom';
 /*Pages */
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import AboutPage from "./pages/AboutPage/AboutPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import PublicPage from './pages/PublicPage/PublicPage';
+import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";
+/* Admin Pages */
 import InventoryPage from './pages/AdminPage/InventoryPage/InventoryPage'
 import DashboardPage from "./pages/AdminPage/DashboardPage/DashboardPage";
 import AdminPage from './pages/AdminPage/AdminPage';

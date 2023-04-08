@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, Link } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import CopyrightComponet from "../copyright/CopyrightComponent";
 import "./Footer.scss";
 import { FaMapMarker } from "react-icons/fa";
