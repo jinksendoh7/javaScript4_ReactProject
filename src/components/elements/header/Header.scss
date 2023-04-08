@@ -7,6 +7,12 @@
 
     
 }
+.header-alt{
+    background-color: $paper !important;
+    border-bottom: 3px solid $primary-color !important;
+    color: $primary-color !important;
+    
+}
 .menu-active{
     color: $accent-color !important;
     font-weight: 800;

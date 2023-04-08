@@ -10,7 +10,7 @@ import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";
 import InventoryPage from './pages/AdminPage/InventoryPage/InventoryPage'
 import DashboardPage from "./pages/AdminPage/DashboardPage/DashboardPage";
 import AdminPage from './pages/AdminPage/AdminPage';
-
+import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
 
@@ -21,21 +21,21 @@ export default function App () {
 
   return (
     <>
-      <main className="page">
         <Routes>
-
-          <Route index element={<PublicPage />} />
+          <Route path={RoutesConst.HOME_ROUTE} element={<PublicPage />}>
+              <Route path={''} element={<ShopPage />}/>
+          </Route>
           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
           <Route path={RoutesConst.ABOUT_ROUTE} element={<AboutPage/>}></Route>
-         <Route path={RoutesConst.ADMIN_ROUTE} element={<AdminPage />}>
-          <Route path={''} element={<DashboardPage />}/>
+          <Route path={RoutesConst.ADMIN_ROUTE} element={<AdminPage />}>
+              <Route path={''} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_DASHBOARD_ROUTE} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
-      </main>
+   
     </>
   );
 }

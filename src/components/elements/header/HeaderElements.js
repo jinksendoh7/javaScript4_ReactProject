@@ -163,9 +163,11 @@ export default function MiniDrawer(props) {
                     justifyContent: 'center',
                   }}
                 >
-                    <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{MenuIcons[index]}</NavLink>
+                <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{MenuIcons[index]}</NavLink>
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={
+                   <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{text}</NavLink>
+                  } sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -190,7 +192,9 @@ export default function MiniDrawer(props) {
                 >
                   <NavLink className={({ isActive }) => (isActive ? 'menu-active' : '')}   to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{OtherIcons[index]}</NavLink>
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={
+                   <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{text}</NavLink>
+                } sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
