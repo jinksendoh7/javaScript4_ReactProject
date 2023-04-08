@@ -14,7 +14,7 @@ import { FireStoreConst } from "../../constants/AppConstants";
 import { useState } from "react";
 import TeamDetails from "./TeamDetails";
 
-const TeamMember = () => {
+const TeamMembers = () => {
   const [teamData, setTeamData] = useState([]);
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -39,4 +39,4 @@ const TeamMember = () => {
   );
 };
 
-export default TeamMember;
+export default TeamMembers;

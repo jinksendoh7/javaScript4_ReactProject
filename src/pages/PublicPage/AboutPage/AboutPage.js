@@ -1,12 +1,12 @@
 
 import Footer from '../../../components/footer/Footer';
-import TeamMember from '../../../components/about/TeamMembers'
+import TeamMembers from '../../../components/about/TeamMembers'
 
 const AboutPage = () =>{
     return(
         <> 
 
-   <TeamMember />
+   <TeamMembers />
          <Footer />
         </>
 
