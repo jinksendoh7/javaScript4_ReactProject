@@ -45,6 +45,7 @@ const AdminPage = () =>{
                setIsLoggedIn(true)
               } else {
                 dispatch(logout());
+                navigate(RoutesConst.HOME_ROUTE);
               }
             });
        
@@ -62,7 +63,7 @@ const AdminPage = () =>{
 
     return(
         <> 
-        
+        {isLoggedIn &&
         <Box sx={{ display: 'flex' }}>
             <HeaderElements userData={user}/>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
@@ -77,6 +78,8 @@ const AdminPage = () =>{
                 
             </Box>
         </Box>
+        }
+        {!isLoggedIn && <SpinnerLoader  size={55} loading={loading}/>}
         </>
 
     )

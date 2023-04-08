@@ -31,10 +31,11 @@ import Button from '@mui/material/Button';
 import './Header.scss';
 import { AppTextConst, RoutesConst } from '../../../constants/AppConstants';
 import { useDispatch} from 'react-redux';
-import { logout } from '../../../auth';
+import * as auth from '../../../auth';
 import {useNavigate} from 'react-router-dom';
+import {logout} from '../../../redux/slices/usersSlice';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -109,8 +110,9 @@ export default function MiniDrawer(props) {
   };
   
   const onLogout = () =>{
-   
-    navigate(RoutesConst.LOGIN_ROUTE);
+    auth.logout();
+    dispatch(logout());
+    navigate(RoutesConst.HOME_ROUTE);
   }
 
   const MenuIcons = [<SpeedOutlinedIcon/>,<GroupsOutlinedIcon/>, <DirectionsCarFilledOutlinedIcon/>, <InsertInvitationOutlinedIcon/>]
@@ -147,7 +149,7 @@ export default function MiniDrawer(props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard',  'Customers', 'Inventory', 'Visits'].map((text, index) => (
+          {['Dashboard',  'Customers', 'Vehicles', 'Test Drives'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
