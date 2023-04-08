@@ -3,6 +3,7 @@ export const RoutesConst = {
     LOGIN_ROUTE: '/login',
     SIGNUP_ROUTE: '/signup',
     ADMIN_ROUTE: '/admin',
+    ABOUT_ROUTE: '/about',
     ADMIN_DASHBOARD_ROUTE: 'dashboard',
     ADMIN_INVENTORY_ROUTE: 'inventory',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
@@ -12,4 +13,8 @@ export const RoutesConst = {
 
 export const AppTextConst = {
     companyName: 'One Stop Shop Dealership'
+}
+
+export const FireStoreConst = {
+    TEAM_DOC: 'TeamData',
 }
