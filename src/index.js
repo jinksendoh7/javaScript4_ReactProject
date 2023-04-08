@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
-import Footer from './components/footer/Footer';
-
 ReactDOM.render(
   <React.StrictMode>
   <BrowserRouter>
