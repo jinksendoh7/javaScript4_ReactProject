@@ -1,0 +1,26 @@
+@import "../../../../styles/variables.scss";
+
+.card-title{
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.card-currency-price{
+    color: $primary-color;
+    font-size: 1.25rem;
+    font-weight: 700;
+  
+}
+.card-tags{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: .25rem;
+    padding: .5rem;
+    width: 100%;
+    margin: 1rem 0 0 0;
+}
+.card-button{
+    margin-bottom: .5rem;
+}
