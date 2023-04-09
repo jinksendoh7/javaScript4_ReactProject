@@ -17,4 +17,5 @@ export const AppTextConst = {
 
 export const FireStoreConst = {
     TEAM_DOC: 'TeamData',
+    INVENTORY_VEHICLES: 'InventoryVehicles'
 }
