@@ -66,7 +66,7 @@ const ViewDetailPage = () =>{
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <Item>
-                    <PaymentCalculator price={data.price} isCash={false}/>
+                    <PaymentCalculator price={parseFloat(data.price)} isCash={false}/>
                 </Item>
             </Grid>
         </Grid>

@@ -1,7 +1,7 @@
 
 
 import {useEffect, useState} from 'react';
-import {Grid} from '@mui/material';
+import {Grid, Chip, Stack} from '@mui/material';
 import CardElement from '../../../components/elements/card/CardElement';
 import * as database from '../../../database';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,8 +32,16 @@ const ShopPage = () =>{
       
     return(
         <> 
+      
         {
-        !loading  && 
+        !loading  && <>
+          {deals && 
+          <Stack direction="row" spacing={1} sx={{mt:1, mb:3, p:2, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
+         {deals && Array.from(deals).map((deal, index) => deal.make && (
+            <Chip label={deal.make} key={index} color="primary" />
+            ))}
+        </Stack>
+      }
        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
             {deals && Array.from(deals).map((deal, index) => (
                 <Grid item xs={2} sm={3} md={3} key={index}>
@@ -43,6 +51,7 @@ const ShopPage = () =>{
                 </Grid>
             ))}
             </Grid>
+            </>
         } 
         {loading && <SpinnerLoader  size={55} loading={loading}/>}
         </>
