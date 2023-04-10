@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {Box, Tabs, Tab, Alert, Divider, Button, Chip, Stack, Switch} from '@mui/material';
+import {Box, Tabs, Tab, Alert, Divider, Button, Chip, Stack, Switch, TextField} from '@mui/material';
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import TabPanel from './TabPanel';
 import * as database from '../../../database';
@@ -126,26 +126,51 @@ const PaymentCalculator=({price, isCash})=>{
         </Box>
         <Box sx={{ width: '100%', border:1, borderColor: '#e3e3e3',p:1, borderRadius:1 }}>
             <div className='flex-row'>
-                <div className="data-title">Finance Total</div>
+                <div className="data-title">Vehicle Price</div>
                 <div className="data-title-text">
-                    <NumericFormat value={((price + FinanceConst.finance_fee + taxAmount) - downpayment).toFixed(2)}
+                    <NumericFormat value={(price).toFixed(2)}
                          displayType={'text'} thousandSeparator={true} prefix={'$'} />
                 </div>
             </div>
+            
              <div className='flex-row-alt'>
                 <div className="data-title-small">Tax Total</div>
                 <div className="data-title-text-small">
-                    <NumericFormat value={taxAmount.toFixed(2)}
+                    + <NumericFormat value={taxAmount.toFixed(2)}
                          displayType={'text'} thousandSeparator={true} prefix={'$'} />
                 </div>
             </div>
             <div className='flex-row-alt'>
                 <div className="data-title-small">Finance Fee</div>
                 <div className="data-title-text-small">
-                    <NumericFormat value={FinanceConst.finance_fee.toFixed(2)}
+                  +  <NumericFormat value={FinanceConst.finance_fee.toFixed(2)}
                          displayType={'text'} thousandSeparator={true} prefix={'$'} />
                 </div>
             </div>
+            <div className='flex-row'>
+                <div className="data-title"> - Downpayment
+                <div className="data-title-text-small">
+                  To reduce payment, enter your desired downpayment.
+                </div>
+                </div>
+                <div className="data-title-text">
+                <TextField
+                    size="small"
+                  type="number"
+                    onChange={(e)=>{setDownpayment(e.target.value); updateFinancing()}}
+                  />
+                </div>
+            </div>
+            
+            <Divider/>
+            <div className='flex-row'>
+                <div className="data-title">Finance Total</div>
+                <div className="data-title-text">
+                    <NumericFormat value={((price + FinanceConst.finance_fee + taxAmount) - downpayment).toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
+            </div>
+           
             <Divider/>
             <div className='flex-row'>
                 <div className="data-title">
@@ -180,7 +205,55 @@ const PaymentCalculator=({price, isCash})=>{
                 </Stack>
                 </div> 
         </Box>
-        <Box sx={{ width: '100%'}}>
+    </TabPanel>
+      <TabPanel value={value} index={1}>
+      <Box sx={{ width: '100%', mt:1, mb:2 }}>
+        {isUpdating && <SpinnerLoader  size={30} loading={isUpdating}/>}
+        {!isUpdating && 
+           <>
+            <div className="data-heading">  
+              <NumericFormat value={((price+taxAmount)- downpayment).toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            </div>
+            <div className="data-subheading">
+               {isTaxIncluded ? <b>With TAX (13%)</b>: <b>Without TAX</b>}
+            </div>
+            </>
+        }
+            
+        </Box>
+        <Box sx={{ width: '100%', border:1, borderColor: '#e3e3e3',p:1, borderRadius:1 }}>
+        <div className='flex-row'>
+                <div className="data-title">Vehicle Price</div>
+                <div className="data-title-text">
+                    <NumericFormat value={(price).toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
+            </div>
+            
+             <div className='flex-row-alt'>
+                <div className="data-title-small">Tax Total</div>
+                <div className="data-title-text-small">
+                    + <NumericFormat value={taxAmount.toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
+            </div>
+            <div className='flex-row'>
+                <div className="data-title"> - Downpayment
+                <div className="data-title-text-small">
+                  To reduce payment, enter your desired downpayment.
+                </div>
+                </div>
+                <div className="data-title-text">
+                <TextField
+                    size="small"
+                  type="number"
+                    onChange={(e)=>{setDownpayment(e.target.value); updateFinancing()}}
+                  />
+                </div>
+            </div>
+        </Box>
+      </TabPanel>
+      <Box sx={{ width: '100%'}}>
             <Button 
             onClick={handleOpenSave}
             sx={{mt:3, display:'block', width:'100%'}} 
@@ -196,11 +269,6 @@ const PaymentCalculator=({price, isCash})=>{
                 isSaveForm = {true}
                 />
             }
-    </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-  
     </Box>
         </>
     )

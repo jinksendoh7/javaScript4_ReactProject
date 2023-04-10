@@ -1,9 +1,20 @@
 import {Grid} from '@mui/material';
 import "./ListElement.scss"
+import { NumericFormat } from 'react-number-format';
+
 const ListElement=({data})=>{
     return(
         <>
-        <div className="data-title">Overview</div>
+          <Grid container spacing={{ xs: 2, md: 3 }}>
+           <Grid item xs={6} sm={6} md={6}>
+           <div className="data-title">Overview</div>
+           </Grid>
+           <Grid item xs={6} sm={6} md={6}>
+           <div className="data-title" style={{textAlign: 'right'}}>
+                 <NumericFormat value={data.mileage} displayType={'text'} thousandSeparator={true} /> km
+           </div>
+           </Grid>
+        </Grid>
         <Grid container spacing={{ xs: 2, md: 3 }}>
                 <Grid item xs={6} sm={6} md={6}>
                 <div className="flex-alternative">
