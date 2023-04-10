@@ -37,27 +37,30 @@ export default function CardElement({data, handleViewDetail}) {
         alt={data.year+ ' ' +data.make + ' '+data.model}
       />
       <CardContent>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
+      <Grid container spacing={1}>
+        <Grid item xs={9}>
           <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
           <div className="card-currency-price">
           <NumericFormat value={data.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
           </div>
         </Grid>
-        <Grid item xs={6}>
-       
+        <Grid item xs={3}>
+        {data.type.toLowerCase() === 'used' && 
+              <div className="data-text-mileage">
+            <NumericFormat value={data.mileage} displayType={'text'} thousandSeparator={true} /> km
+            </div>}
         </Grid>
         <div className="card-tags">
             <Chip label={data.type} color="primary" sx={{width: 100}}/>
-            <Chip label={data.transmission} color="primary" variant="outlined" sx={{width: 100}} />
-            <Chip label={data.fuel_type} color="success" sx={{width: 100}} />
+            <Chip label={data.transmission} color="warning" variant="outlined" sx={{width: 100}} />
+            <Chip label={data.fuel_type} color="success" variant="outlined" sx={{width: 100}} />
             {data.mileage <=AppNumberConst.LOW_MILEAGE &&  <Chip label="Low Mileage" color="success" variant="outlined" sx={{width: 100}} />}
         </div>
       </Grid>
        </CardContent>
       <CardActions>
         <div className="card-button">
-      <Button variant="contained" sx={{minWidth: 300}} disableElevation onClick={() => handleClick(data.id)}>
+      <Button variant="contained" sx={{minWidth: 330}} disableElevation onClick={() => handleClick(data.id)}>
         View Detail
       </Button>
       </div>
