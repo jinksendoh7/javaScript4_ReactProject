@@ -1,22 +1,24 @@
 @import "../../styles/variables.scss";
 
-.appName, .footerCall{
+.appName,
+.footerCall {
     color: $gray-dark;
-
 }
-.footerBox{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+.footerBox {
     padding-top: 2rem;
     padding-bottom: 2rem;
-   position: fixed;
-  left:0;
-  bottom:0;
-  right:0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
     text-align: center;
     background-color: $gray-light,
 }
 
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}

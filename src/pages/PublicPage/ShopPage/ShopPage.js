@@ -1,6 +1,5 @@
 
 
-
 import {useEffect, useState} from 'react';
 import {Grid} from '@mui/material';
 import CardElement from '../../../components/elements/card/CardElement';
@@ -30,6 +29,7 @@ const ShopPage = () =>{
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);
       }, [dispatch]);
+      
     return(
         <> 
         {

@@ -14,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import './Header.scss';
 
+import Logo from '../../logo/logo';
+import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
+
 function HeaderPublic() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -35,8 +38,10 @@ function HeaderPublic() {
     <AppBar position="static" elevation={0} className='header-alt'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            LOGO
+          <Logo
+          url={MainLogo}
+          altDisplay="mainLogo"
+          />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
