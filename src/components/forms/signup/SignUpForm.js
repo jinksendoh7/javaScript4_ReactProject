@@ -12,6 +12,9 @@ import Container from "@mui/material/Container";
 import { useNavigate } from 'react-router-dom';
 import CopyrightComponet from "../../copyright/CopyrightComponent";
 
+import Logo from '../../logo/logo';
+import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
+
 
 const SignUpForm = () => {
     const [recieve, setRecieve] = useState(false); //Promotion checkbox 
@@ -39,9 +42,10 @@ const SignUpForm = () => {
                     alignItems: "center",
                 }}
             >
-                <Typography component="h1" variant='h5'>
-                    Sign Up
-                </Typography>
+                <Logo
+                    url={MainLogo}
+                    altDisplay="formLogo"
+                />
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <Grid
                         container

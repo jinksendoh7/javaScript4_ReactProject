@@ -18,7 +18,7 @@ export const AppNumberConst = {
     TIMEOUT_SEC: 1000,
 }
 export const AppTextConst = {
-    companyName: 'One Stop Shop Dealership',
+    companyName: 'Advantage Auto Sales',
     BUILD_YOUR_DEAL_TEXT: 'BUILD YOUR DEAL.',
     BUILD_YOUR_DEAL_DESCRIPTION: ' Customize your payment terms according to your preference, then save it and a sales representative will contact you.',
 }

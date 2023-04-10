@@ -10,12 +10,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import CopyrightComponet from '../../copyright/CopyrightComponent';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as auth from '../../../auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
 import { RoutesConst } from '../../../constants/AppConstants';
 
+import Logo from '../../logo/logo';
+import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const LoginForm = () => {
             photoUrl: userAuth.photoURL,
           })
         );
-        navigate(RoutesConst.ADMIN_ROUTE.concat('/',RoutesConst.ADMIN_DASHBOARD_ROUTE));
+        navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_DASHBOARD_ROUTE));
       }
 
     }
@@ -58,73 +60,75 @@ const LoginForm = () => {
 
   return (
     <>
-        <Container component="main" maxWidth="sm">
-          <Box
-            sx={{
-              boxShadow: 3,
-              borderRadius: 2,
-              px: 4,
-              py: 6,
-              marginTop: 25,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography component="h1" variant='h5'>
-              Sign in
-            </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                label="Email Address"
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="password"
-                label="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot Password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+      <Container component="main" maxWidth="sm">
+        <Box
+          sx={{
+            boxShadow: 3,
+            borderRadius: 2,
+            px: 4,
+            py: 6,
+            marginTop: 25,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+
+          <Logo
+            url={MainLogo}
+            altDisplay="formLogo"
+          />
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              label="Email Address"
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              type="password"
+              label="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot Password?
+                </Link>
               </Grid>
-              &nbsp;
-              <CopyrightComponet />
-            </Box>
+              <Grid item>
+                <Link href="signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+            &nbsp;
+            <CopyrightComponet />
           </Box>
-        </Container>
+        </Box>
+      </Container>
     </>
   );
 };
