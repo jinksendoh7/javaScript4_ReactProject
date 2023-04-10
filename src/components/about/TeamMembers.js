@@ -1,14 +1,7 @@
 import {
   Container,
   Grid,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActions,
-  Button,
 } from "@mui/material";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { load } from "../../database/read";
 import { FireStoreConst } from "../../constants/AppConstants";
 import { useState } from "react";
@@ -16,7 +9,7 @@ import TeamDetails from "./TeamDetails";
 
 const TeamMembers = () => {
   const [teamData, setTeamData] = useState([]);
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  //const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const getTeamData = async () => {
     try {

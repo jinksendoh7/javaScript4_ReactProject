@@ -1,5 +1,4 @@
 import {
-  Container,
   Grid,
   Typography,
   Card,
@@ -9,9 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { load } from "../../database/read";
-import { FireStoreConst } from "../../constants/AppConstants";
-import { useState } from "react";
+
 
 function TeamDetails(props) {
   return (
