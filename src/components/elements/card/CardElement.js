@@ -1,3 +1,4 @@
+
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,19 +11,27 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 
 import './CardElement.scss'
-import { AppNumberConst } from '../../../constants/AppConstants';
+import { AppNumberConst, FinanceConst } from '../../../constants/AppConstants';
+import * as paymentHelper from '../../../helpers';
 
-export default function CardElement({data, handleViewDetail}) {
-
+export default function CardElement({data, handleViewDetail, financeMode, terms, frequency}) {
   const handleClick= (id) =>{
     handleViewDetail(id);
   }
+
+  const updateFinancing = () => {
+       
+        let pv = parseFloat(data.price);
+        let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
+        return pricing.toFixed(2);
+}
+
   return (
-    <Card sx={{ maxWidth: 350, border: 1, borderColor: '#e3e3e3' }} elavation={2} >
+    <Card sx={{ maxWidth: 345, border: 1, borderColor: '#e3e3e3' }} elavation={2} >
       <CardHeader
         title={<div className="flex">
           <div>
-              <code>VIN: {data.vin}</code>
+              <code>VIN:{data.vin}</code>
           </div>
            <div className="card-highlight">
             {data.isAvailable ? 'In-Stock': ''}
@@ -41,8 +50,15 @@ export default function CardElement({data, handleViewDetail}) {
         <Grid item xs={9}>
           <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
           <div className="card-currency-price">
-          <NumericFormat value={data.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+          <NumericFormat value={financeMode ? updateFinancing() : data.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+          {financeMode && <>/<span className="small-heading"> {frequency}</span></>}
           </div>
+          {financeMode && 
+          <div className="data-subheading" style={{textAlign:'start'}}>
+                Finance for <b>{terms} months</b> for {FinanceConst.apr}% APR
+                *TAX NOT INCLUDED
+            </div>
+        }
         </Grid>
         <Grid item xs={3}>
         {data.type.toLowerCase() === 'used' && 
@@ -60,7 +76,7 @@ export default function CardElement({data, handleViewDetail}) {
        </CardContent>
       <CardActions>
         <div className="card-button">
-      <Button variant="contained" sx={{minWidth: 330}} disableElevation onClick={() => handleClick(data.id)}>
+      <Button variant="contained" sx={{minWidth: 325}} disableElevation onClick={() => handleClick(data.id)}>
         View Detail
       </Button>
       </div>

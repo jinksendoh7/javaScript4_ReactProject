@@ -2,7 +2,7 @@
 
 .appName,
 .footerCall {
-    color: $gray-dark;
+    color: $ink;
 }
 
 .footerBox {
@@ -21,4 +21,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
+}
+.footerContainer {
+    @include breakpoint-sm{
+        flex-direction: column;
+        justify-content: center;
+    
+    }
+    
 }

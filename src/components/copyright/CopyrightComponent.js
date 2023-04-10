@@ -5,7 +5,7 @@ export default function CopyrightComponet(props, color) {
   return (
     <Typography
       variant="body2"
-      color= '#aeabab'
+      color= '#000'
       align="center"
       {...props}
     >
