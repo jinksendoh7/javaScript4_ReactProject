@@ -8,14 +8,42 @@ export const RoutesConst = {
     ADMIN_INVENTORY_ROUTE: 'vehicles',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
+    ADMIN_CUSTOMERS_ROUTE: 'customers',
+    VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
     
 }
 
+export const AppNumberConst = {
+    LOW_MILEAGE: 200000,
+    TIMEOUT_SEC: 1000,
+}
 export const AppTextConst = {
-    companyName: 'One Stop Shop Dealership'
+    companyName: 'One Stop Shop Dealership',
+    BUILD_YOUR_DEAL_TEXT: 'BUILD YOUR DEAL.',
+    BUILD_YOUR_DEAL_DESCRIPTION: ' Customize your payment terms according to your preference, then save it and a sales representative will contact you.',
+}
+export const FinanceConst = {
+    finance_fee: 195.00,
+    tax: 13,
+    apr: 7.99,
+    payments:{
+      monthly: {
+        numberPayments: 72,
+        periodicPayments: 12,
+      },
+      bi_weekly: {
+        numberPayments: 156,
+        periodicPayments: 26,
+      },
+      weekly:{
+        numberPayments: 312,
+        periodicPayments: 52,
+      }
+    }
 }
 
 export const FireStoreConst = {
     TEAM_DOC: 'TeamData',
-    INVENTORY_VEHICLES: 'InventoryVehicles'
+    INVENTORY_VEHICLES: 'InventoryVehicles',
+    CUSTOMER_DEALS: 'CustomerDeals'
 }

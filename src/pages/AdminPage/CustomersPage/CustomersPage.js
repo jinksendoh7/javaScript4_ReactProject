@@ -3,7 +3,7 @@
 const CustomersPage = () =>{
     return(
         <> 
-       Customer
+       Customer1
     
         </>
 
