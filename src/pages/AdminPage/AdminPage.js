@@ -15,7 +15,7 @@ import SpinnerLoader from '../../components/spinner-loader/SpinnerLoaderComponen
 import Box from '@mui/material/Box';
 import Container from "@mui/material/Container";
 
-import { RoutesConst } from '../../constants/AppConstants';
+import { RoutesConst, AppNumberConst } from '../../constants/AppConstants';
 import SnackbarElement from '../../components/elements/snack-bar/SnackbarElement';
 
 
@@ -49,7 +49,7 @@ const AdminPage = () =>{
               }
             });
        
-          }, 1000);
+          }, AppNumberConst.TIMEOUT_SEC);
           return () => clearTimeout(timer);
          
       })();

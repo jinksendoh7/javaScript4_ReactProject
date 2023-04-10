@@ -11,6 +11,8 @@ import InventoryPage from './pages/AdminPage/InventoryPage/InventoryPage'
 import DashboardPage from "./pages/AdminPage/DashboardPage/DashboardPage";
 import AdminPage from './pages/AdminPage/AdminPage';
 import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
+import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
+
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
 
@@ -24,6 +26,7 @@ export default function App () {
         <Routes>
           <Route path={RoutesConst.HOME_ROUTE} element={<PublicPage />}>
               <Route path={''} element={<ShopPage />}/>
+              <Route exact path={RoutesConst.VIEW_DETAIL_PAGE_ROUTE} element={<ViewDetailPage />}/>
           </Route>
           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
