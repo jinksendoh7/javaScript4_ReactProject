@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Box, Tabs, Tab, Alert, Divider, Button, Chip, Stack, Switch} from '@mui/material';
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import TabPanel from './TabPanel';
@@ -22,35 +22,45 @@ const PaymentCalculator=({price, isCash})=>{
     const [value, setValue] = useState(0);
     const [isTaxIncluded, setIsTaxIncluded] = useState(false);
     const [frequency, setFrequency] = useState('Monthly');
-    const [terms, setTerms] = useState('60 Months');
+    const [terms, setTerms] = useState(60);
     const [isUpdating, setIsUpdating] = useState(false);
     const [financePrice, setFinancePrice] = useState(0);
+    const [taxAmount, setTaxAmount] = useState(0);
+    const [downpayment, setDownpayment] = useState(0)
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
       updateFinancing();
     };
 
-    const handleIncludeTax = (event) => {
-        setIsTaxIncluded(event.target.checked);
+    const handleIncludeTax = () => {
+        setIsTaxIncluded(!isTaxIncluded);
         updateFinancing();
       };
+
+    const handleUpdateOnTerms = () =>{
+
+    }
     const updateFinancing = () => {
         setIsUpdating(true);
         const timer = setTimeout(() => {
-            (async() =>{ 
-                const downpayment = 0;
-                    const taxAmount =  isTaxIncluded ? ((price + FinanceConst.finance_fee) * (FinanceConst.tax /100)): 0;
-                    const pv = price + ((taxAmount) - (downpayment));
-                    const pricing = paymentHelper.computeFinancing(pv, terms.match(/\d+/g)[0], frequency);
+     
+                    let taxTotal =  isTaxIncluded ? ((price + FinanceConst.finance_fee) * (FinanceConst.tax /100)): 0;
+                    let pv = price + ((taxTotal) - (downpayment));
+                    let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
+                    setTaxAmount(taxAmount)
                     setFinancePrice(pricing);
-                    console.log(financePrice,'FP')
                     setIsUpdating(false);
-              })() 
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);
     }
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            updateFinancing();
+        }, AppNumberConst.TIMEOUT_SEC);
+        return () => clearTimeout(timer);
+      }, []);
    
     return(
         <>
@@ -82,7 +92,10 @@ const PaymentCalculator=({price, isCash})=>{
         <Box sx={{ width: '100%', border:1, borderColor: '#e3e3e3',p:1, borderRadius:1 }}>
             <div className='flex-row'>
                 <div className="data-title">Finance Total</div>
-                <div className="data-title-text">$59,000</div>
+                <div className="data-title-text">
+                    <NumericFormat value={((price + FinanceConst.finance_fee + taxAmount) - downpayment).toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
             </div>
             <Divider/>
             <div className='flex-row'>
@@ -112,11 +125,11 @@ const PaymentCalculator=({price, isCash})=>{
                 <div className="data-title">Terms</div>
                 <div className="flex-row">
                 <Stack direction="row" spacing={2} sx={{mb:2}}>
-                    <Chip label="36 Months" color="primary" variant={terms === '36 Months' ?'': 'outlined'} onClick={()=> {setTerms('36 Months');updateFinancing();}}/>
-                    <Chip label="48 Months" color="primary" variant={terms === '48 Months' ?'': 'outlined'} onClick={()=> {setTerms('48 Months');updateFinancing();}} />
-                    <Chip label="60 Months" color="primary" variant={terms === '60 Months' ?'': 'outlined'} onClick={()=> {setTerms('60 Months'); updateFinancing();}}/>
-                    <Chip label="72 Months" color="primary" variant={terms === '72 Months' ?'': 'outlined'} onClick={()=> {setTerms('72 Months'); updateFinancing();}}/>
-                    <Chip label="84 Months" color="primary" variant={terms === '84 Months' ?'': 'outlined'} onClick={()=> {setTerms('84 Months'); updateFinancing();}}/>
+                    <Chip label="36 Months" color="primary" variant={terms === 36 ?'': 'outlined'} onClick={()=> {setTerms(36);updateFinancing();}}/>
+                    <Chip label="48 Months" color="primary" variant={terms === 48 ?'': 'outlined'} onClick={()=> {setTerms(48);updateFinancing();}} />
+                    <Chip label="60 Months" color="primary" variant={terms === 60 ?'': 'outlined'} onClick={()=> {setTerms(60); updateFinancing();}}/>
+                    <Chip label="72 Months" color="primary" variant={terms === 72 ?'': 'outlined'} onClick={()=> {setTerms(72); updateFinancing();}}/>
+                    <Chip label="84 Months" color="primary" variant={terms === 84 ?'': 'outlined'} onClick={()=> {setTerms(84); updateFinancing();}}/>
                 </Stack>
                 </div> 
         </Box>
