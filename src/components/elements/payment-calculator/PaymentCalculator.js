@@ -20,7 +20,7 @@ function a11yProps(index) {
   
 const PaymentCalculator=({price, isCash})=>{
     const [value, setValue] = useState(0);
-    const [isTaxIncluded, setIsTaxIncluded] = useState(false);
+    const [isTaxIncluded, setIsTaxIncluded] = useState(true);
     const [frequency, setFrequency] = useState('Monthly');
     const [terms, setTerms] = useState(60);
     const [isUpdating, setIsUpdating] = useState(false);
@@ -35,17 +35,20 @@ const PaymentCalculator=({price, isCash})=>{
 
     const handleIncludeTax = () => {
         setIsTaxIncluded(!isTaxIncluded);
+        console.log(isTaxIncluded,'40')
         updateFinancing();
       };
 
-    const handleUpdateOnTerms = () =>{
-
+    const handleUpdateOnTerms = (terms) =>{
+        setTerms(terms);
+        updateFinancing();
     }
     const updateFinancing = () => {
         setIsUpdating(true);
         const timer = setTimeout(() => {
-     
+           
                     let taxTotal =  isTaxIncluded ? ((price + FinanceConst.finance_fee) * (FinanceConst.tax /100)): 0;
+                    console.log(taxTotal)
                     let pv = price + ((taxTotal) - (downpayment));
                     let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
                     setTaxAmount(taxAmount)
@@ -56,11 +59,8 @@ const PaymentCalculator=({price, isCash})=>{
     }
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            updateFinancing();
-        }, AppNumberConst.TIMEOUT_SEC);
-        return () => clearTimeout(timer);
-      }, []);
+        updateFinancing();
+      }, [isTaxIncluded, terms, frequency]);
    
     return(
         <>
@@ -83,7 +83,7 @@ const PaymentCalculator=({price, isCash})=>{
                /<span className="small-heading"> {frequency}</span>
             </div>
             <div className="data-subheading">
-                Finance for {terms} for {FinanceConst.apr}% APR
+                Finance for <b>{terms} months</b> for {FinanceConst.apr}% APR
             </div>
             </>
         }
@@ -125,11 +125,11 @@ const PaymentCalculator=({price, isCash})=>{
                 <div className="data-title">Terms</div>
                 <div className="flex-row">
                 <Stack direction="row" spacing={2} sx={{mb:2}}>
-                    <Chip label="36 Months" color="primary" variant={terms === 36 ?'': 'outlined'} onClick={()=> {setTerms(36);updateFinancing();}}/>
-                    <Chip label="48 Months" color="primary" variant={terms === 48 ?'': 'outlined'} onClick={()=> {setTerms(48);updateFinancing();}} />
-                    <Chip label="60 Months" color="primary" variant={terms === 60 ?'': 'outlined'} onClick={()=> {setTerms(60); updateFinancing();}}/>
-                    <Chip label="72 Months" color="primary" variant={terms === 72 ?'': 'outlined'} onClick={()=> {setTerms(72); updateFinancing();}}/>
-                    <Chip label="84 Months" color="primary" variant={terms === 84 ?'': 'outlined'} onClick={()=> {setTerms(84); updateFinancing();}}/>
+                    <Chip label="36 Months" color="primary" variant={terms === 36 ?'': 'outlined'} onClick={()=> {handleUpdateOnTerms(36)}}/>
+                    <Chip label="48 Months" color="primary" variant={terms === 48 ?'': 'outlined'} onClick={()=> {handleUpdateOnTerms(48)}} />
+                    <Chip label="60 Months" color="primary" variant={terms === 60 ?'': 'outlined'} onClick={()=> {handleUpdateOnTerms(60)}}/>
+                    <Chip label="72 Months" color="primary" variant={terms === 72 ?'': 'outlined'} onClick={()=> {handleUpdateOnTerms(72)}}/>
+                    <Chip label="84 Months" color="primary" variant={terms === 84 ?'': 'outlined'} onClick={()=> {handleUpdateOnTerms(84)}}/>
                 </Stack>
                 </div> 
         </Box>

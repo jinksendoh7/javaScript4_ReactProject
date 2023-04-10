@@ -12,7 +12,7 @@ export const getNPer = (terms, freq) => {
         result = (terms / 12) * FinanceConst.payments.weekly.periodicPayments;
       break;
 
-      case 'Bi-weekly':
+      case 'Bi-Weekly':
         result = (terms / 12) * FinanceConst.payments.bi_weekly.periodicPayments;
     break;
     }
