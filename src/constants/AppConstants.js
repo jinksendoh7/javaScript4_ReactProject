@@ -8,6 +8,7 @@ export const RoutesConst = {
     ADMIN_INVENTORY_ROUTE: 'vehicles',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
+    ADMIN_CUSTOMERS_ROUTE: 'customers',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
     
 }
@@ -43,5 +44,6 @@ export const FinanceConst = {
 
 export const FireStoreConst = {
     TEAM_DOC: 'TeamData',
-    INVENTORY_VEHICLES: 'InventoryVehicles'
+    INVENTORY_VEHICLES: 'InventoryVehicles',
+    CUSTOMER_DEALS: 'CustomerDeals'
 }

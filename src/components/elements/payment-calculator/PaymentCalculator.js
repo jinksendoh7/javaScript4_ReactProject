@@ -2,13 +2,16 @@ import {useState, useEffect} from 'react';
 import {Box, Tabs, Tab, Alert, Divider, Button, Chip, Stack, Switch} from '@mui/material';
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import TabPanel from './TabPanel';
-import { AppTextConst, FinanceConst, AppNumberConst } from '../../../constants/AppConstants';
+import * as database from '../../../database';
+import { AppTextConst, FinanceConst, AppNumberConst, FireStoreConst } from '../../../constants/AppConstants';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import "./PaymentCalculator.scss";
 import { NumericFormat } from 'react-number-format';
 import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
 import * as paymentHelper from '../../../helpers';
 import SpinnerLoader from '../../spinner-loader/SpinnerLoaderComponent';
+import ModalElement from '../modal/ModalElement';
+import CustomerDealForm from '../../forms/customer-deal/CustomerDealForm';
 
 function a11yProps(index) {
     return {
@@ -27,12 +30,44 @@ const PaymentCalculator=({price, isCash})=>{
     const [financePrice, setFinancePrice] = useState(0);
     const [taxAmount, setTaxAmount] = useState(0);
     const [downpayment, setDownpayment] = useState(0)
+    const [openSave, setOpenSave] = useState(false);
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
       updateFinancing();
     };
+    const handleModalClose = ()=>{
+        setOpenSave(false)
+    }
+    const handleOpenSave = () =>{
+        setOpenSave(true);
 
+    }
+    const handleSaveDeal = (customerInfo) =>{
+        
+         const timer = setTimeout(() => {
+            (async() =>{ 
+                const data = {
+                    firstname: customerInfo.firstname,
+                    lastname: customerInfo.lastname,
+                    email: customerInfo.email,
+                    contact: customerInfo.contact,
+                    isFinancing: value === 0 ? true: false,
+                    pricing: financePrice,
+                    withTax: isTaxIncluded,
+                    frequency: frequency,
+                    terms: terms,
+                    financeFee: FinanceConst.finance_fee,
+                    vehiclePrice: price
+                }
+                const save = await database.save(FireStoreConst.CUSTOMER_DEALS, data);
+                if(save){
+                    console.log('saved...')
+                }
+              })() 
+        }, AppNumberConst.TIMEOUT_SEC);
+        return () => clearTimeout(timer);
+    }
     const handleIncludeTax = () => {
         setIsTaxIncluded(!isTaxIncluded);
         console.log(isTaxIncluded,'40')
@@ -51,7 +86,7 @@ const PaymentCalculator=({price, isCash})=>{
                     console.log(taxTotal)
                     let pv = price + ((taxTotal) - (downpayment));
                     let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
-                    setTaxAmount(taxAmount)
+                    setTaxAmount(taxTotal)
                     setFinancePrice(pricing);
                     setIsUpdating(false);
         }, AppNumberConst.TIMEOUT_SEC);
@@ -97,6 +132,20 @@ const PaymentCalculator=({price, isCash})=>{
                          displayType={'text'} thousandSeparator={true} prefix={'$'} />
                 </div>
             </div>
+             <div className='flex-row-alt'>
+                <div className="data-title-small">Tax Total</div>
+                <div className="data-title-text-small">
+                    <NumericFormat value={taxAmount.toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
+            </div>
+            <div className='flex-row-alt'>
+                <div className="data-title-small">Finance Fee</div>
+                <div className="data-title-text-small">
+                    <NumericFormat value={FinanceConst.finance_fee.toFixed(2)}
+                         displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </div>
+            </div>
             <Divider/>
             <div className='flex-row'>
                 <div className="data-title">
@@ -107,9 +156,7 @@ const PaymentCalculator=({price, isCash})=>{
                 />
                 Include Tax</div>
                 <div className="data-title-text">
-                <Button sx={{textTransform:'capitalize'}}>Pricing Breakdown
-                    <ArrowRightAltOutlinedIcon/> 
-                </Button>
+                
                 </div>
             </div>
         </Box>
@@ -134,8 +181,21 @@ const PaymentCalculator=({price, isCash})=>{
                 </div> 
         </Box>
         <Box sx={{ width: '100%'}}>
-            <Button sx={{mt:3, display:'block', width:'100%'}}disableElevation variant="contained" color="primary">Save Deal</Button>
+            <Button 
+            onClick={handleOpenSave}
+            sx={{mt:3, display:'block', width:'100%'}} 
+            disableElevation variant="contained" 
+            color="primary">Save My Deal</Button>
         </Box>
+        {openSave && 
+                <ModalElement 
+                title={"Save My Deal"}
+                isOpen={openSave} 
+                handleCloseModal={handleModalClose}
+                element={<CustomerDealForm handleSaveForm = {handleSaveDeal}/>} 
+                isSaveForm = {true}
+                />
+            }
     </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
