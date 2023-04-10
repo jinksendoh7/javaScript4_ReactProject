@@ -8,7 +8,6 @@ export const RoutesConst = {
     ADMIN_INVENTORY_ROUTE: 'vehicles',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
-    ADMIN_CUSTOMERS_ROUTE: 'customers',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
     
 }
