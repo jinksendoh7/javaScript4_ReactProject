@@ -16,7 +16,7 @@ export default function ModalElement ({title,isOpen, handleCloseModal, element})
     handleCloseModal();
   };
   return (
-    <div>
+    <>
      
      <Dialog
         fullScreen={fullScreen}
@@ -28,9 +28,9 @@ export default function ModalElement ({title,isOpen, handleCloseModal, element})
           {title}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          
             {element}
-          </DialogContentText>
+         
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
@@ -38,6 +38,6 @@ export default function ModalElement ({title,isOpen, handleCloseModal, element})
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

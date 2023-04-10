@@ -29,7 +29,7 @@ const InventoryPage = () =>{
                 title={"Add Vehicle Inventory"}
                 isOpen={open} 
                 handleCloseModal={handleModalClose}
-                element={<VehicleForm/>} 
+                element={<VehicleForm handleCloseModal={handleModalClose} />} 
                 />
             }
         </Grid>
