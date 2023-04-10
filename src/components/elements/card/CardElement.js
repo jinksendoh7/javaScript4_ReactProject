@@ -18,7 +18,7 @@ export default function CardElement({data, handleViewDetail}) {
     handleViewDetail(id);
   }
   return (
-    <Card sx={{ maxWidth: 320, border: 1, borderColor: '#e3e3e3' }} elavation={2} >
+    <Card sx={{ maxWidth: 350, border: 1, borderColor: '#e3e3e3' }} elavation={2} >
       <CardHeader
         title={<div className="flex">
           <div>

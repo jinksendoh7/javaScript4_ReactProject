@@ -16,12 +16,12 @@
     font-weight: 700;
     margin: .5rem 0;
 }
-.flex{
+.flex-alternative{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     padding: .5rem;
     margin: .5rem;
-    border: 1px solid $gray-light;
     border-radius: 5px;
+    border: 1px solid $gray-light;
 }
