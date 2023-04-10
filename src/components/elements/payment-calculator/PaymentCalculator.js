@@ -7,11 +7,11 @@ import { AppTextConst, FinanceConst, AppNumberConst, FireStoreConst } from '../.
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import "./PaymentCalculator.scss";
 import { NumericFormat } from 'react-number-format';
-import ArrowRightAltOutlinedIcon from '@mui/icons-material/ArrowRightAltOutlined';
 import * as paymentHelper from '../../../helpers';
 import SpinnerLoader from '../../spinner-loader/SpinnerLoaderComponent';
 import ModalElement from '../modal/ModalElement';
 import CustomerDealForm from '../../forms/customer-deal/CustomerDealForm';
+import SnackbarElement from '../snack-bar/SnackbarElement';
 
 function a11yProps(index) {
     return {
@@ -31,6 +31,7 @@ const PaymentCalculator=({price, isCash})=>{
     const [taxAmount, setTaxAmount] = useState(0);
     const [downpayment, setDownpayment] = useState(0)
     const [openSave, setOpenSave] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -58,11 +59,16 @@ const PaymentCalculator=({price, isCash})=>{
                     frequency: frequency,
                     terms: terms,
                     financeFee: FinanceConst.finance_fee,
-                    vehiclePrice: price
+                    vehiclePrice: price,
+                    status: customerInfo.status,
+                    createdAt: customerInfo.createdAt,
+                    assignedTo: customerInfo.assignedTo,
                 }
                 const save = await database.save(FireStoreConst.CUSTOMER_DEALS, data);
                 if(save){
                     console.log('saved...')
+                    setIsSaved(true);
+                    handleModalClose();
                 }
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
@@ -270,6 +276,7 @@ const PaymentCalculator=({price, isCash})=>{
                 />
             }
     </Box>
+    {isSaved && <SnackbarElement isOpen={isSaved} message={'Your deal was saved. Please wait for our customer representative to call you.'}/>}
         </>
     )
 

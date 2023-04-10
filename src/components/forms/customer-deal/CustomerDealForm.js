@@ -1,5 +1,8 @@
 import {Grid, TextField, Box, Button} from '@mui/material';
 import {useState} from 'react';
+import { AppTextConst } from '../../../constants/AppConstants';
+import { Timestamp } from "@firebase/firestore";
+
 const CustomerDealFrom = ({handleSaveForm}) =>{
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -11,7 +14,10 @@ const CustomerDealFrom = ({handleSaveForm}) =>{
             firstname: firstname,
             lastname: lastname,
             email: email,
-            contact: contactNumber
+            contact: contactNumber,
+            createdAt:  Timestamp.fromDate(new Date()),
+            status: AppTextConst.INITIAL_STATUS,
+            assignedTo: AppTextConst.UNASSIGNED,
         })
 
     }
