@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 
-export default function ModalElement ({title,isOpen, handleCloseModal, element}){
+export default function ModalElement ({title,isOpen, handleCloseModal, element, isSaveForm}){
   const [open, setOpen] = useState(isOpen);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -27,10 +27,8 @@ export default function ModalElement ({title,isOpen, handleCloseModal, element})
         <DialogTitle id="responsive-dialog-title">
           {title}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+        <DialogContent component="div">
             {element}
-          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

@@ -18,8 +18,20 @@
     padding: 5px;
     align-content: center;
 }
+.flex-row-alt{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
 .data-title{
     font-size: 1rem;
+    color: $ink;
+    font-weight: 700;
+    padding: 5px;
+}
+.data-title-small{
+    font-size: .8rem;
     color: $ink;
     font-weight: 700;
     padding: 5px;
@@ -27,6 +39,11 @@
 .data-title-text{
     font-size: 1.2rem;
     color: $primary-color;
+    font-weight: 700;
+}
+.data-title-text-small{
+    font-size: .8rem;
+    color: $ink;
     font-weight: 700;
 }
 .small-heading{

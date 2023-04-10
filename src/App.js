@@ -12,7 +12,7 @@ import DashboardPage from "./pages/AdminPage/DashboardPage/DashboardPage";
 import AdminPage from './pages/AdminPage/AdminPage';
 import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
 import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
-
+import CustomerPage from './pages/AdminPage/CustomersPage/CustomersPage'
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
 
@@ -35,6 +35,7 @@ export default function App () {
               <Route path={''} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_DASHBOARD_ROUTE} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
+              <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerPage />}/>
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
