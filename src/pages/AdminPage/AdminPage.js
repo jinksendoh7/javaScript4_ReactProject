@@ -16,7 +16,6 @@ import Box from '@mui/material/Box';
 import Container from "@mui/material/Container";
 
 import { RoutesConst, AppNumberConst } from '../../constants/AppConstants';
-import SnackbarElement from '../../components/elements/snack-bar/SnackbarElement';
 
 
 const AdminPage = () =>{
@@ -71,7 +70,6 @@ const AdminPage = () =>{
                 {loading? <SpinnerLoader  size={55} loading={loading}/>
                 :
                 <Container component="main" maxWidth={false}>
-                  {isLoggedIn && <SnackbarElement isOpen={isLoggedIn} message={'Welcome back '.concat(user.email)}/>}
                 <Outlet/>
                 </Container>
                 }

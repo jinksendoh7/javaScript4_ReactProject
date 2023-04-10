@@ -6,7 +6,7 @@ import CardElement from '../../../components/elements/card/CardElement';
 import * as database from '../../../database';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeals } from '../../../redux/slices/dealsSlice';
-import { FireStoreConst, AppNumberConst, RoutesConst } from '../../../constants/AppConstants';
+import { FireStoreConst, AppNumberConst } from '../../../constants/AppConstants';
 import SpinnerLoader from '../../../components/spinner-loader/SpinnerLoaderComponent';
 import {useNavigate} from 'react-router-dom';
 
@@ -37,8 +37,9 @@ const ShopPage = () =>{
         !loading  && <>
           {deals && 
           <Stack direction="row" spacing={1} sx={{mt:1, mb:3, p:2, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
+         <Chip label="All" color="primary" />
          {deals && Array.from(deals).map((deal, index) => deal.make && (
-            <Chip label={deal.make} key={index} color="primary" />
+            <Chip label={deal.make} key={index} color="primary" variant="outlined"/>
             ))}
         </Stack>
       }
