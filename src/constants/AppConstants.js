@@ -6,6 +6,7 @@ export const RoutesConst = {
     ABOUT_ROUTE: '/about',
     ADMIN_DASHBOARD_ROUTE: 'dashboard',
     ADMIN_INVENTORY_ROUTE: 'vehicles',
+    ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
     
