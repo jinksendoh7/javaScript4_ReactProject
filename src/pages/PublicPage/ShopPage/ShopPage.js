@@ -18,7 +18,7 @@ const ShopPage = () =>{
     const deals = useSelector((state)=> state.deals);
     const [loading, setLoading] = useState(true);
     const handleViewDetail = (id)=>{
-        navigate(RoutesConst.VIEW_DETAIL_PAGE_ROUTE.concat('/', id));
+        navigate('view/'+id);
     }
     useEffect(() => {
         const timer = setTimeout(() => {
