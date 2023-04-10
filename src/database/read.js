@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import {db} from '../configs/firebase'
 
 export const load = async(collectionName) =>{
@@ -17,4 +17,22 @@ export const load = async(collectionName) =>{
         throw new Error('Failed to load the database');
     }
   }
+  export const loadById = async(collectionName, id) =>{
+    let data = [];
+    try{
+          const docRef = doc(db, collectionName, id);
+          const query = await getDoc(docRef);
+          if (query.exists()) {
+                data.push({
+                  ...query.data(),
+                  id: query.id
+                });
+          }
+          return data;
+    }
+    catch(error){
+        throw new Error('Failed to load the data in the database' + error);
+    }
+  }
+
 

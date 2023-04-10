@@ -1,0 +1,27 @@
+@import "../../../styles//variables.scss";
+
+.data-title{
+    font-weight: 700;
+    color: $primary-color;
+    margin: .5rem 0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.data-label{
+    color: $ink;
+    font-weight: 500;
+}   
+.data-text{
+    color: $primary-color;
+    font-weight: 700;
+    margin: .5rem 0;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: .5rem;
+    margin: .5rem;
+    border: 1px solid $gray-light;
+    border-radius: 5px;
+}
