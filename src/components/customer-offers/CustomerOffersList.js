@@ -1,53 +1,31 @@
 
+import {useNavigate} from 'react-router-dom';
+
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
-
 import { TbLiveView } from "react-icons/tb";
 import { IconButton } from '@mui/material';
-
-import {useNavigate} from 'react-router-dom';
-
-import { useState, useEffect } from 'react';
-import { FireStoreConst } from '../../constants/AppConstants';
-import { load } from '../../database';
-
 
 function CustomerOffersList({ data }) {
 
     const navigate = useNavigate();
-    const [vehicleView, setVehicleView] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const res = await load(FireStoreConst.INVENTORY_VEHICLES);
-            setVehicleView(res);
-        })();
-
-    }, []);
-    console.log(vehicleView)
-    console.log(data.id)
 
     const handleViewDetail = ()=>{
-        const viewVehicle = [...vehicleView];
-        viewVehicle.forEach((vehicle) => {
-            const id = vehicle.id;
-            if(vehicle.id === data.vehicleID) {
-                console.log('Navigating to Vehicle Information')
-                navigate('/view/'+id);
-            }
-        })
+        const id = data.vehicleID;
+        navigate('/view/'+id);
     }
     
-
     return (
         <>
             <Paper
                 sx={{
                     p: 1,
+                    mr: 2,
                     mb: 1,
-                    width: 'auto',
+                    ml: 10,
+                    maxWidth: 'auto',
                     flexGrow: 1,
                 }}
             >
