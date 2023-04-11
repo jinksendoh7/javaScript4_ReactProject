@@ -27,6 +27,8 @@ import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Button from '@mui/material/Button';
+import Logo from '../../logo/logo';
+import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 
 import './Header.scss';
 import { AppTextConst, RoutesConst } from '../../../constants/AppConstants';
@@ -135,7 +137,10 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {AppTextConst.companyName}
+          <Logo
+              url={MainLogo}
+              altDisplay="mainLogo"
+              />
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Button variant="contained" onClick={onLogout}  disableElevation>Logout</Button>

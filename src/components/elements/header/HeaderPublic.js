@@ -36,7 +36,7 @@ function HeaderPublic() {
   };
 
   return (
-    <AppBar position="static" elevation={0} className='header-alt'>
+    <AppBar position="fixed" elevation={0} className='header-alt'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to={RoutesConst.HOME_ROUTE}>
