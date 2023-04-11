@@ -106,7 +106,7 @@ const InventoryPage = () =>{
         !loading  && <>
        <Grid container spacing={{ xs: 1, md: 1 }}>
             {deals && Array.from(deals).map((deal, index) => (
-                <Grid item sm={6} key={index}>
+                <Grid item sm={12} md={6} key={index} sx={{p:3}}>
                     <HorizontalCardElement
                     handleViewDetail={handleViewDetail}
                     financeMode={financeMode}

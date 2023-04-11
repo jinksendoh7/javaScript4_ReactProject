@@ -55,7 +55,9 @@ const ShopPage = () =>{
                 const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
                 setLoading(false);
                 dispatch(setDeals(data));
-                setFilters((data).filter((deal) => deal.make))
+                setFilters( [
+                    ...new Map(data.map((item) => [item["make"], item])).values(),
+                ]);
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
     }
@@ -65,7 +67,9 @@ const ShopPage = () =>{
                 const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
                 setLoading(false);
                 dispatch(setDeals(data));
-                setFilters((data).filter(((value, index, self) => self.indexOf(value) === index)))
+                setFilters( [
+                    ...new Map(data.map((item) => [item["make"], item])).values(),
+                ]);
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);

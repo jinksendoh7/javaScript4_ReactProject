@@ -4,6 +4,9 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { NumericFormat } from 'react-number-format';
+
+
 import './HorizontalCardElement.scss'
 export default function HorizontalCardElement({data}) {
   const theme = useTheme();
@@ -16,11 +19,21 @@ export default function HorizontalCardElement({data}) {
         image={data.imageUrl}
         alt="Live from space album cover"
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-             <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
+      <Box sx={{ display: 'flex', flexDirection: 'column',  maxWidth:380 }}>
+        <CardContent sx={{}}>
+          <div className="flex">
+              <div>
+                 <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
+                <code>VIN:{data.vin}</code>
+                <div  className="card-pricing">
+                 <NumericFormat value={data.price.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+             </div>
+             </div>
+            
+        </div>
         </CardContent>
        </Box>
+      
     </Card>
   );
 }

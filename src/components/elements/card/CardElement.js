@@ -50,7 +50,7 @@ export default function CardElement({data, handleViewDetail, financeMode, terms,
         <Grid item xs={9}>
           <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
           <div className="card-currency-price">
-          <NumericFormat value={financeMode ? updateFinancing() : data.price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+          <NumericFormat value={financeMode ? updateFinancing() : data.price.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
           {financeMode && <>/<span className="small-heading"> {frequency}</span></>}
           </div>
           {financeMode && 
