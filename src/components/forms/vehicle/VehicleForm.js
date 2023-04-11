@@ -211,11 +211,10 @@ const VehicleForm = ({ handleCloseModal }) => {
           variant="contained"
           color="primary"
           sx={{ height: 40 }}
-          startIcon={<FaPlusCircle />}
           onClick={handleSubmit}
         >
-          Add Vehicle
-        </Button>
+          Save Inventory  
+           </Button>
       </Box>
     </>
   );

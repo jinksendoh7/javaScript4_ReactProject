@@ -63,19 +63,18 @@ const AdminPage = () =>{
     return(
         <> 
         {isLoggedIn &&
-        <Box sx={{ display: 'flex' }}>
+        <>
             <HeaderElements userData={user}/>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
+             <Container maxWidth={false} sx={{mt:5}} disableGutters>
+             <DrawerHeader />
+           
                 {loading? <SpinnerLoader  size={55} loading={loading}/>
                 :
-                <Container component="main" maxWidth={false}>
                 <Outlet/>
-                </Container>
                 }
                 
-            </Box>
-        </Box>
+            </Container>
+        </>
         }
         {!isLoggedIn && <SpinnerLoader  size={55} loading={loading}/>}
         </>

@@ -65,7 +65,7 @@ const ShopPage = () =>{
                 const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
                 setLoading(false);
                 dispatch(setDeals(data));
-                setFilters((data).filter((deal) => deal.make))
+                setFilters((data).filter(((value, index, self) => self.indexOf(value) === index)))
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);
@@ -74,18 +74,17 @@ const ShopPage = () =>{
     return(
         <> 
         <Grid container spacing={{ xs: 1, md: 1 }} sx={{ mb:3, p:1,borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
-         <Grid item sm>
+         <Grid item sm={8}>
           {filters && 
-                <Stack direction="row" spacing={1} >
-                <Chip label="All" onClick={() => {handleFilter('All')}} color="primary" variant={make === 'All' ? '': 'outlined'}/>
+          <>
+                <Chip label="All" onClick={() => {handleFilter('All')}} color="primary" variant={make === 'All' ? '': 'outlined'} sx={{mr:.5}}/>
                         {deals && Array.from(filters).map((deal, index) => deal.make && (
-                            <Chip onClick={() => { handleFilter(deal.make)}} label={deal.make} key={index} color="primary" variant={make ===deal.make ? '': 'outlined'}/>
+                            <Chip onClick={() => { handleFilter(deal.make)}} label={deal.make} key={index} color="primary" variant={make ===deal.make ? '': 'outlined'} sx={{mr:.5}}/>
                             ))}
-                </Stack>
+            </> 
          }
          </Grid>
-         <div style={{flexGrow:financeMode? 1 : 4}}></div>
-         <Grid item sm>
+         <Grid item sm={4}>
           {financeMode && 
           <>  <Select
                 size="small"
