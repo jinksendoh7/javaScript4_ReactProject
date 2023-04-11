@@ -17,6 +17,7 @@ export const load = async(collectionName) =>{
         throw new Error('Failed to load the database');
     }
   }
+  
   export const loadById = async(collectionName, id) =>{
     let data = [];
     try{
