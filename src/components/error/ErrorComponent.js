@@ -7,12 +7,13 @@ const ErrorPage = () => {
   return (
     <>
       <Container
+        className="errorContainer"
         disableGutters
         maxWidth="sm"
         component="main"
         sx={{ pt: 10, pb: 6 }}
       >
-        <Typography align="center" gutterBottom>
+        <Typography gutterBottom>
           <img src={IMAGE.ERRIMAGE} alt="error logo" />
         </Typography>
         <Typography
@@ -30,8 +31,6 @@ const ErrorPage = () => {
           Sorry we can't find that page. You'll find loads to explore in the
           homepage
         </Typography>
-
-        <Box textAlign="center">
           <Button
             component={Link}
             to={"/"} //change to mainpage or dashboard
@@ -41,7 +40,7 @@ const ErrorPage = () => {
           >
             Home
           </Button>
-        </Box>
+ 
       </Container>
     </>
   );

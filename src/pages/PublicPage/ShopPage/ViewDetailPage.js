@@ -41,7 +41,7 @@ const ViewDetailPage = () =>{
         <> 
         {
         !loading  && 
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, mb:20 }}>
           <Grid container spacing={{ xs: 1,sm: 2, md: 2 }} >
             <Grid item xs={12} sm={12} md={6}>
                 <Item>
@@ -66,7 +66,7 @@ const ViewDetailPage = () =>{
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <Item>
-                    <PaymentCalculator price={data.price} isCash={false}/>
+                    <PaymentCalculator price={parseFloat(data.price)} isCash={false}/>
                 </Item>
             </Grid>
         </Grid>

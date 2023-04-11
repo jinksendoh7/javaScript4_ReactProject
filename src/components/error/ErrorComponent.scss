@@ -7,6 +7,13 @@
     padding: 18px 36px;
 }
 .errpageStyle{
+    padding-bottom: 10px;
+}
+
+.errorContainer {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    color: $gray-dark
+    align-items: center;
+    color: $gray-dark;
 }

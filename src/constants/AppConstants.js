@@ -6,7 +6,6 @@ export const RoutesConst = {
     ABOUT_ROUTE: '/about',
     ADMIN_DASHBOARD_ROUTE: 'dashboard',
     ADMIN_INVENTORY_ROUTE: 'vehicles',
-    ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
@@ -18,10 +17,12 @@ export const AppNumberConst = {
     TIMEOUT_SEC: 1000,
 }
 export const AppTextConst = {
-    companyName: 'One Stop Shop Dealership',
+    companyName: 'Advantage Auto Sales',
     BUILD_YOUR_DEAL_TEXT: 'BUILD YOUR DEAL.',
     BUILD_YOUR_DEAL_DESCRIPTION: ' Customize your payment terms according to your preference, then save it and a sales representative will contact you.',
-}
+    INITIAL_STATUS: 'Open',
+    UNASSIGNED: 'Unassigned',
+  }
 export const FinanceConst = {
     finance_fee: 195.00,
     tax: 13,
