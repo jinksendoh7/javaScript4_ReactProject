@@ -13,13 +13,15 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
 import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
 import CustomerPage from './pages/AdminPage/CustomersPage/CustomersPage'
+
+import CustomerOffers from './components/customer-offers/CustomerOffers';
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
+
 
 import './App.scss';
 
 export default function App () {
- 
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function App () {
               <Route path={''} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_DASHBOARD_ROUTE} element={<DashboardPage />}/>
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
-              <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerPage />}/>
+              <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerOffers />}/>
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
