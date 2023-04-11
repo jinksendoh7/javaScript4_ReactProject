@@ -191,6 +191,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         </FormControl>
         <TextField
           label="Image URL"
+          
           onChange={(e) => {
             setImageUrl(e.target.value);
           }}
@@ -201,11 +202,10 @@ const VehicleForm = ({ handleCloseModal }) => {
           variant="contained"
           color="primary"
           sx={{ height: 40 }}
-          startIcon={<FaPlusCircle />}
           onClick={handleSubmit}
         >
-          Add Vehicle
-        </Button>
+          Save Inventory  
+           </Button>
       </Box>
     </>
   );
