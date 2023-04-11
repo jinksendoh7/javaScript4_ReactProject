@@ -104,7 +104,7 @@ const InventoryPage = () =>{
         <Container maxWidth="xl"  sx={{mt:5}}>
         {
         !loading  && <>
-       <Grid container spacing={{ xs: 2, md: 2 }}>
+       <Grid container spacing={{ xs: 1, md: 1 }}>
             {deals && Array.from(deals).map((deal, index) => (
                 <Grid item sm={6} key={index}>
                     <HorizontalCardElement
