@@ -15,8 +15,8 @@ import { FireStoreConst } from "../../../constants/AppConstants";
 import * as write from "../../../database/write";
 const VehicleForm = ({ handleCloseModal }) => {
   //forms
-  const [make, setMake] = useState("");
-  const [vin, setVin] = useState("");
+  const [make, setMake] = useState();
+  const [vin, setVin] = useState();
   const [model, setModel] = useState("");
   const [year, setYear] = useState(0);
   const [drivetrain, setDriveTrain] = useState("");
@@ -50,7 +50,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         imageUrl: imageURL,
         isAvailable: true,
       };
-
+    
       await write.save(
         FireStoreConst.INVENTORY_VEHICLES,
         data
@@ -70,45 +70,50 @@ const VehicleForm = ({ handleCloseModal }) => {
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch", fontSize: "12px" },
         }}
-        //autoComplete="off"
       >
         <TextField
           label="Make"
+          required
           onChange={(e) => {
             setMake(e.target.value);
           }}
         />
         <TextField
           label="VIN"
+          required
           onChange={(e) => {
             setVin(e.target.value);
           }}
         />
         <TextField
           label="Model"
+          required
           onChange={(e) => {
             setModel(e.target.value);
           }}
         />
         <TextField
           label="Year"
+          required
           type="number"
           onChange={(e) => {
-            setYear(e.target.value);
+            setYear(parseInt(e.target.value));
           }}
         />
         <TextField
           label="Drive Train"
+          required
           onChange={(e) => {
             setDriveTrain(e.target.value);
           }}
         />
-        <FormControl
+        <FormControl required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Fuel</InputLabel>
           <Select
             label="Type"
+            required
             defaultValue=""
             onChange={(e) => {
               setFuelType(e.target.value);
@@ -120,30 +125,34 @@ const VehicleForm = ({ handleCloseModal }) => {
         </FormControl>
         <TextField
           label="Exterior"
+          required
           onChange={(e) => {
             setExterior(e.target.value);
           }}
         />
         <TextField
           label="Interior"
+          required
           onChange={(e) => {
             setInterior(e.target.value);
           }}
         />
         <TextField
           label="Mileage"
+          required
           type="number"
           onChange={(e) => {
-            setMileage(e.target.value);
+            setMileage(parseInt(e.target.value));
           }}
         />
         <TextField
           label="Stock Number"
+          required
           onChange={(e) => {
             setStockNumber(e.target.value);
           }}
         />
-        <FormControl
+        <FormControl required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Price</InputLabel>
@@ -152,12 +161,12 @@ const VehicleForm = ({ handleCloseModal }) => {
             label="Price"
             type="number"
             onChange={(e) => {
-              setPrice(e.target.value);
+              setPrice(parseInt(e.target.value));
             }}
           />
         </FormControl>
 
-        <FormControl
+        <FormControl required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Transmission</InputLabel>
@@ -174,7 +183,7 @@ const VehicleForm = ({ handleCloseModal }) => {
             <MenuItem value={"Electric"}>Electric</MenuItem>
           </Select>
         </FormControl>
-        <FormControl
+        <FormControl required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Type</InputLabel>
@@ -191,7 +200,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         </FormControl>
         <TextField
           label="Image URL"
-          
+          required
           onChange={(e) => {
             setImageUrl(e.target.value);
           }}
