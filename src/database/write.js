@@ -13,21 +13,36 @@ export const save = async(collectionName, data) =>{
     }
 }
 
-export const update = async(collectionName, status, id) =>{
-
-    try{
-        const docRef =  doc(db, collectionName,id);
-        await updateDoc(docRef, {
-            done: status
-        });
+export const update = async(collectionName, data, id) => {
+    console.log('Updating....');
+    try {
+        const docRef = doc(db, collectionName, id);
+        await updateDoc(docRef, data);
+        console.log('Success updating: ', docRef.id)
         return true;
-    
     }
-    catch(error){
-      
-        throw new Error('Failed to updated data in the database');
+    catch (error) {
+        console.error(error);
+        return false;
     }
 }
+
+
+// export const update = async(collectionName, status, id) =>{
+
+//     try{
+//         const docRef =  doc(db, collectionName,id);
+//         await updateDoc(docRef, {
+//             done: status
+//         });
+//         return true;
+     
+//     }
+//     catch(error){
+      
+//         throw new Error('Failed to updated data in the database');
+//     }
+// }
 
 export const remove = async(collectionName,  id) =>{
 
