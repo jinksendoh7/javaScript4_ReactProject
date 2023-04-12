@@ -5,18 +5,21 @@ import { FireStoreConst } from '../../constants/AppConstants';
 import { load } from '../../database/read';
 
 import CustomerOffersList from './CustomerOffersList';
+import SpinnerLoader from '../spinner-loader/SpinnerLoaderComponent';
 
 
 
 function CustomerOffers() {
-    
 
     const [offers, setOffers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         (async () => {
             const data = await load(FireStoreConst.CUSTOMER_DEALS);
             setOffers(data);
+            setLoading(false);
         })();
 
     }, []);
@@ -24,6 +27,8 @@ function CustomerOffers() {
 
     return (
         <div>
+            { 
+            !loading  && <>
             {offers && Array.from(offers).map((offer, index) => (
                 <Grid item xs key={index}>
                     <CustomerOffersList
@@ -31,7 +36,9 @@ function CustomerOffers() {
                         />
                 </Grid>
             ))}
-
+            </>
+            }
+            {loading && <SpinnerLoader  size={55} loading={loading}/>}
 
         </div>
     );
