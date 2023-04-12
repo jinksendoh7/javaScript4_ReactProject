@@ -12,6 +12,8 @@ import { setDeals } from '../../../redux/slices/dealsSlice';
 import { FireStoreConst, AppNumberConst } from '../../../constants/AppConstants';
 import SpinnerLoader from '../../../components/spinner-loader/SpinnerLoaderComponent';
 import {useNavigate} from 'react-router-dom';
+import FilterBarElement from '../../../components/elements/filter-bar/FilterBarElement';
+
 const InventoryPage = () =>{
     const [open, setOpen]= useState(false);
     const handleModalOpen = () =>{
@@ -85,6 +87,7 @@ const InventoryPage = () =>{
             sx={{pb:1,
                 ml:5,
                 mr:3,
+                mb:3,
                  display:'flex',
                 flexDirection:'row',
                 justifyContent:'space-between',
@@ -101,7 +104,25 @@ const InventoryPage = () =>{
             </Button>
             </Grid>
         </Grid>
-        <Container maxWidth="xl"  sx={{mt:5}}>
+      
+        <Container maxWidth="xl"  sx={{mt:3}}>
+        <Grid container spacing={{ xs: 1, md: 1 }} sx={{mb:3, p:3, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
+          <FilterBarElement
+         deals= {deals}
+         filters={filters}
+         make={make}
+         terms={terms}
+         frequency ={frequency}
+         setFrequency= {setFrequency}
+         setMake = {setMake}
+         setTerms = {setTerms} 
+         financeMode={financeMode}
+         handleFilter = {handleFilter}
+         handlePaymentChange = {handlePaymentChange}
+         handleChangeFinanceMode = {handleChangeFinanceMode}
+         isAdmin={true}
+           />
+        </Grid> 
         {
         !loading  && <>
        <Grid container spacing={{ xs: 1, md: 1 }}>

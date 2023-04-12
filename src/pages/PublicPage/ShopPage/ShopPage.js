@@ -9,6 +9,7 @@ import { setDeals } from '../../../redux/slices/dealsSlice';
 import { FireStoreConst, AppNumberConst } from '../../../constants/AppConstants';
 import SpinnerLoader from '../../../components/spinner-loader/SpinnerLoaderComponent';
 import {useNavigate} from 'react-router-dom';
+import FilterBarElement from '../../../components/elements/filter-bar/FilterBarElement';
 
 const ShopPage = () =>{
     const dispatch = useDispatch();
@@ -78,57 +79,24 @@ const ShopPage = () =>{
     return(
         <> 
         <Grid container spacing={{ xs: 1, md: 1 }} sx={{ mb:3, p:1,borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
-         <Grid item sm={8}>
-          {filters && 
-          <>
-                <Chip label="All" onClick={() => {handleFilter('All')}} color="primary" variant={make === 'All' ? '': 'outlined'} sx={{mr:.5}}/>
-                        {deals && Array.from(filters).map((deal, index) => deal.make && (
-                            <Chip onClick={() => { handleFilter(deal.make)}} label={deal.make} key={index} color="primary" variant={make ===deal.make ? '': 'outlined'} sx={{mr:.5}}/>
-                            ))}
-            </> 
-         }
-         </Grid>
-         <Grid item sm={4}>
-          {financeMode && 
-          <>  <Select
-                size="small"
-                sx={{ml:2, width: 120, fontSize:12}}
-                value={frequency}
-                onChange={(e) => {setFrequency(e.target.value); handlePaymentChange()}}
-             
-            >
-                    <MenuItem disabled value="">
-                        <em>Frequency</em>
-                    </MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={"Monthly"} selected={frequency==='Monthly'}>Monthly</MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={"Weekly"} selected={frequency==='Weekly'}>Weekly</MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={"Bi-Weekly"} selected={frequency==='Bi-Weekly'}>Bi-Weekly</MenuItem>
-            </Select>
-            <Select
-                size="small"
-                sx={{ml:2, width: 120, fontSize:12}}
-                value={terms}
-                onChange={(e) => {setTerms(e.target.value);handlePaymentChange()}}
-            >
-                    <MenuItem disabled value="">
-                        <em>Terms</em>
-                    </MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={36} selected={terms===36? true: false}>36 Months</MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={48} selected={terms===48 ? true: false}>48 Months</MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={60} selected={terms===60? true: false }>60 Months</MenuItem>
-                <MenuItem sx={{ width: 120, fontSize:12}} value={72} selected={terms===72 ? true: false}>72 Months</MenuItem>
-            </Select>
-            </>
-            }
-              <Switch
-                checked={financeMode}
-                onChange={() =>{handleChangeFinanceMode(); handlePaymentChange();}}
-                /> <span style={{textAlign:'end', fontSize: 14, fontWeight:700}}> View in Finance Mode</span>
-        </Grid>
+          <FilterBarElement
+         deals= {deals}
+         filters={filters}
+         make={make}
+         terms={terms}
+         frequency ={frequency}
+         setFrequency= {setFrequency}
+         setMake = {setMake}
+         setTerms = {setTerms} 
+         financeMode={financeMode}
+         handleFilter = {handleFilter}
+         handlePaymentChange = {handlePaymentChange}
+         handleChangeFinanceMode = {handleChangeFinanceMode}
+           />
         </Grid> 
         {
         !loading  && <>
-       <Grid container spacing={{ xs: 2, md: 2 }}>
+       <Grid container spacing={{ xs: 2, md: 2 }} sx={{overflow:'hidden'}}>
             {deals && Array.from(deals).map((deal, index) => (
                 <Grid item xs key={index}>
                     <CardElement
