@@ -113,12 +113,22 @@ const LoginForm = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link 
+                  variant="body2"
+                  component="button"
+                  underline="hover"
+                  onClick = {()=>navigate('/')}
+                  >
                   Forgot Password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="signup" variant="body2">
+                <Link 
+                  variant="body2"
+                  component="button"
+                  underline="hover"
+                  onClick = {()=>navigate('/signup')}
+                  >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -133,3 +143,14 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+{/* <Link 
+onClick={() => {
+    navigate('/login')
+}}
+component="button"
+variant="body2"
+underline="hover"
+>
+Already have an account? Sign In
+</Link> */}
