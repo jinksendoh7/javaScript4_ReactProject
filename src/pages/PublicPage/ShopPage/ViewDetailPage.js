@@ -66,7 +66,14 @@ const ViewDetailPage = () =>{
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <Item>
-                    <PaymentCalculator price={parseFloat(data.price)} isCash={false}/>
+                    <PaymentCalculator 
+                    price={parseFloat(data.price)}
+                    isCash={false}
+                    vehicleName={data.year + ' ' + data.make + ' '+ data.model}
+                    vin={data.vin}
+                    vehicleId={data.id}
+                    stockNumber= {data.stockNumber}
+                    />
                 </Item>
             </Grid>
         </Grid>

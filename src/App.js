@@ -13,8 +13,7 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
 import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
 import CustomerPage from './pages/AdminPage/CustomersPage/CustomersPage'
-
-import CustomerOffers from './components/customer-offers/CustomerOffers';
+import ViewDealsPage from './pages/AdminPage/DealsPage/ViewDealsPage';
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
 
@@ -34,10 +33,10 @@ export default function App () {
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
           <Route path={RoutesConst.ABOUT_ROUTE} element={<AboutPage/>}></Route>
           <Route path={RoutesConst.ADMIN_ROUTE} element={<AdminPage />}>
-              <Route path={''} element={<DashboardPage />}/>
-              <Route path={RoutesConst.ADMIN_DASHBOARD_ROUTE} element={<DashboardPage />}/>
+              <Route path={''} element={<InventoryPage />}/>
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
-              <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerOffers />}/>
+              <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerPage />}/>
+              <Route exact path={RoutesConst.ADMIN_VIEW_DEALS_ROUTE} element={<ViewDealsPage />}/>
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>

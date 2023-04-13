@@ -16,13 +16,15 @@ import FilterBarElement from '../../../components/elements/filter-bar/FilterBarE
 const InventoryPage = () =>{
     const navigate = useNavigate();
     const [open, setOpen]= useState(false);
+    
+    const dispatch = useDispatch();
+    
     const handleModalOpen = () =>{
         setOpen(true);
     }
     const handleModalClose = ()=>{
         setOpen(false)
     }
-    const dispatch = useDispatch();
 
 
     const deals = useSelector((state)=> state.deals);
@@ -35,9 +37,6 @@ const InventoryPage = () =>{
 
     const handleChangeFinanceMode = () =>{
         setFinanceMode(!financeMode)
-    }
-    const handleViewDetail = (id)=>{
-        navigate('view/'+id);
     }
 
     const handleFilter = (selected) =>{
@@ -135,7 +134,6 @@ const InventoryPage = () =>{
             {deals && Array.from(deals).map((deal, index) => (
                 <Grid item sm={12} md={6} key={index} sx={{p:3}}>
                     <HorizontalCardElement
-                    handleViewDetail={handleViewDetail}
                     financeMode={financeMode}
                     terms={terms}
                     frequency={frequency}
