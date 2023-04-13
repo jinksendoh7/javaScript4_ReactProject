@@ -1,35 +1,49 @@
 import {
-    createUserWithEmailAndPassword,
-    updateProfile,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut,
-  } from 'firebase/auth';
-import {auth} from '../configs/firebase'
-export const login = async(email, password) =>{
-    try{
-      const userAuth = await signInWithEmailAndPassword(auth, email, password)
-      return userAuth.user;
-    }
-    catch(error){
-        console.log(error);
-    }
-  }
-export const logout = async()=>{
-  try{
-     auth.signOut();
-     return true;
-  }
-  catch(error){
-      console.log(error);
+  createUserWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { auth } from '../configs/firebase'
+
+
+export const SignUpWithFirebaseAuth = async (email, password) => {
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    return (result.user)
+  }catch(e) {
+    console.log(e)
   }
 }
-export const guardAuth = async()=>{
-  try{
+
+
+export const login = async (email, password) => {
+  try {
+    const userAuth = await signInWithEmailAndPassword(auth, email, password)
+    return userAuth.user;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+export const logout = async () => {
+  try {
+    auth.signOut();
+    return true;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
+export const guardAuth = async () => {
+  try {
     await onAuthStateChanged(auth, (userAuth) => {
-     
+
       if (userAuth) {
-        const user = {   
+        const user = {
           email: userAuth.email,
           uid: userAuth.uid,
           displayName: userAuth.displayName,
@@ -41,11 +55,12 @@ export const guardAuth = async()=>{
       }
     });
   }
-  catch(error){
-      console.log(error);
+  catch (error) {
+    console.log(error);
   }
 
 }
-export const loginWithGoogle = async()=>{
-    console.log('Logging in...')
+
+export const loginWithGoogle = async () => {
+  console.log('Logging in...')
 }

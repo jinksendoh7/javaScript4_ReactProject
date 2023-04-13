@@ -1,31 +1,83 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-
+import { Button, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
-import CopyrightComponet from "../../copyright/CopyrightComponent";
 
 import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
+import CopyrightComponet from "../../copyright/CopyrightComponent";
+
+import { ErrorMessageConst, FireStoreConst, SuccessMessageConst } from "../../../constants/AppConstants";
+import { SignUpWithFirebaseAuth } from "../../../auth/auth";
+import StorageService from "../../../database/services/StorageService";
+import { serverTimestamp } from "firebase/firestore";
+
+import ErrorMessage from "../../error/ErrorMessage";
+import SuccessMessage from "../../success/SuccessMessage";
 
 
 const SignUpForm = () => {
-    const [recieve, setRecieve] = useState(false); //Promotion checkbox 
 
     const [firstName, setfirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [recieve, setRecieve] = useState(false); //Promotion checkbox 
+
+    const [isError, setIsError] = useState(false);
+    const [errMessage, setErrMessage] = useState('');
+
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        return ('')
+    const clearForm = () => {
+        setfirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setRecieve(false)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (password.length <= 5 || confirmPassword <= 5) {
+            setIsError(true);
+            setIsSuccess(false);
+            setErrMessage(ErrorMessageConst.INVALID_PASSWORD_LENGTH);
+        }
+
+        if (password !== confirmPassword) {
+            setIsError(true);
+            setIsSuccess(false);
+            setErrMessage(ErrorMessageConst.PASSWORDS_DO_NOT_MATCH);
+        }
+
+        else {
+           await SignUpWithFirebaseAuth(email, password);
+            try {
+                const docRef = await StorageService.createDoc(FireStoreConst.USER_DOC, {
+                    timestamp: serverTimestamp(),
+                    firstname: firstName,
+                    lastname: lastName,
+                    email: email,
+                    recieve: recieve,
+                });
+                console.log(SuccessMessageConst.CONSOLE_LOG_ADD_USER, docRef.id);
+                clearForm();
+                setIsSuccess(true);
+                setIsError(false);
+                setSuccessMessage(SuccessMessageConst.WELCOME_MESSAGE);
+            } catch (e) {
+                console.error(ErrorMessageConst.ERROR_USER_ADD, e);
+                setIsError(true);
+                setErrMessage(e.message);
+                setIsSuccess(false);
+            }
+        }
     }
 
     return (
@@ -46,7 +98,7 @@ const SignUpForm = () => {
                     url={MainLogo}
                     altDisplay="formLogo"
                 />
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                     <Grid
                         container
                         spacing={2}
@@ -66,7 +118,7 @@ const SignUpForm = () => {
                                 label="First Name"
                                 fullWidth={true}
                                 value={firstName}
-                                onChange={(event) => setfirstName(event.target.value)}
+                                onChange={(e) => setfirstName(e.target.value)}
                             />
                         </Grid>
                         <Grid
@@ -80,7 +132,7 @@ const SignUpForm = () => {
                                 label="Last Name"
                                 fullWidth={true}
                                 value={lastName}
-                                onChange={(event) => setLastName(event.target.value)}
+                                onChange={(e) => setLastName(e.target.value)}
                             />
                         </Grid>
                     </Grid>
@@ -90,8 +142,8 @@ const SignUpForm = () => {
                         fullWidth
                         type="email"
                         label="Email Address"
-                        value={''}
-                        onChange={''}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         autoComplete="email"
                         autoFocus
                     />
@@ -99,19 +151,21 @@ const SignUpForm = () => {
                         margin="normal"
                         required
                         fullWidth
-                        type="password1"
+                        type="password"
                         label="Password"
-                        value={''}
-                        onChange={''}
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
-                        type="password2"
+                        type="password"
                         label="Confirm Password"
-                        value={''}
-                        onChange={''}
+                        id="password2"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <FormControlLabel
                         control={
@@ -129,14 +183,23 @@ const SignUpForm = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Sign In
+                        Register
                     </Button>
-                    <Grid container justifyContent="center">
-                        <Grid item>
-                            <Link href="/" variant="body2">
-                                {"Already have an account? Sign In"}
-                            </Link>
-                        </Grid>
+
+                    {isError && <ErrorMessage message={errMessage} />}
+                    {isSuccess && <SuccessMessage message={successMessage} />}
+
+                    <Grid item container justifyContent="center">
+                        <Link
+                            onClick={() => {
+                                navigate('/login')
+                            }}
+                            component="button"
+                            variant="body2"
+                            underline="hover"
+                        >
+                            Already have an account? Sign In
+                        </Link>
                     </Grid>
                     &nbsp;
                     <CopyrightComponet />
