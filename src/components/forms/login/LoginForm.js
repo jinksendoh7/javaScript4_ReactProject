@@ -14,7 +14,7 @@ import * as auth from '../../../auth';
 import { useDispatch } from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
 import { RoutesConst } from '../../../constants/AppConstants';
-
+import SnackbarElement from '../../elements/snack-bar/SnackbarElement';
 import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 
@@ -24,6 +24,7 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isNotValid, setIsNotValid] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -36,8 +37,8 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Handle login logic here
-    console.log('in');
     try {
+      setIsNotValid(false);
       const userAuth = await auth.login(email, password)
       if (userAuth) {
         dispatch(
@@ -48,7 +49,10 @@ const LoginForm = () => {
             photoUrl: userAuth.photoURL,
           })
         );
-        navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_DASHBOARD_ROUTE));
+        navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_INVENTORY_ROUTE));
+      }
+      else{
+        setIsNotValid(true);
       }
 
     }
@@ -137,6 +141,8 @@ const LoginForm = () => {
             <CopyrightComponet />
           </Box>
         </Box>
+        {isNotValid && <SnackbarElement isOpen={isNotValid} message={'Please enter a valid username and password..'}/>}
+     
       </Container>
     </>
   );
