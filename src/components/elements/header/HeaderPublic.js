@@ -6,7 +6,10 @@ import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 import { RoutesConst } from '../../../constants/AppConstants';
 
+import LoginButton from './buttons/LoginButton';
+
 function HeaderPublic() {
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -33,6 +36,8 @@ function HeaderPublic() {
               altDisplay="mainLogo"
               />
           </Link>
+          <div style={{flex:1}}></div>
+          <LoginButton />
         </Toolbar>
       </Container>
     </AppBar>
