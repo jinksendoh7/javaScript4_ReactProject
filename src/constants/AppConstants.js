@@ -22,6 +22,8 @@ export const AppTextConst = {
     BUILD_YOUR_DEAL_DESCRIPTION: ' Customize your payment terms according to your preference, then save it and a sales representative will contact you.',
     INITIAL_STATUS: 'Open',
     UNASSIGNED: 'Unassigned',
+    EDITMODALTITLE: "Edit Vehicle Information",
+    ADDMODALTITLE: "Add Vehicle Information"
   }
 export const FinanceConst = {
     finance_fee: 195.00,
