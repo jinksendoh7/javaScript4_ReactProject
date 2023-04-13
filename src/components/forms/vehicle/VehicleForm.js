@@ -10,54 +10,107 @@ import {
   InputAdornment,
   Button,
 } from "@mui/material";
-import { FaPlusCircle } from "react-icons/fa";
-import { FireStoreConst } from "../../../constants/AppConstants";
-import * as write from "../../../database/write";
-const VehicleForm = ({ handleCloseModal }) => {
+import { FireStoreConst, AppTextConst } from "../../../constants/AppConstants";
+import * as database from "../../../database";
+
+const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
   //forms
   const [make, setMake] = useState();
   const [vin, setVin] = useState();
-  const [model, setModel] = useState("");
-  const [year, setYear] = useState(0);
-  const [drivetrain, setDriveTrain] = useState("");
-  const [fuel_type, setFuelType] = useState("");
-  const [exterior, setExterior] = useState("");
-  const [interior, setInterior] = useState("");
-  const [mileage, setMileage] = useState(0);
-  const [stockNumber, setStockNumber] = useState("");
-  const [price, setPrice] = useState(0);
-  const [transmission, setTransmission] = useState("");
-  const [type, setType] = useState("");
-  const [imageURL, setImageUrl] = useState("");
+  const [model, setModel] = useState();
+  const [year, setYear] = useState();
+  const [drivetrain, setDriveTrain] = useState();
+  const [fuel_type, setFuelType] = useState();
+  const [exterior, setExterior] = useState();
+  const [interior, setInterior] = useState();
+  const [mileage, setMileage] = useState();
+  const [stockNumber, setStockNumber] = useState();
+  const [price, setPrice] = useState();
+  const [transmission, setTransmission] = useState();
+  const [type, setType] = useState(undefined);
+  const [imageUrl, setImageUrl] = useState(undefined);
+
+  //for edit modal
+  if (modalType === AppTextConst.EDITMODALTITLE) {
+    if (make === undefined) {
+      setMake(forEditData.make);
+    }
+    if (vin === undefined) {
+      setVin(forEditData.vin);
+    }
+    if (model === undefined) {
+      setModel(forEditData.model);
+    }
+    if (year === undefined) {
+      setYear(forEditData.year);
+    }
+    if (drivetrain === undefined) {
+      setDriveTrain(forEditData.drivetrain);
+    }
+    if (fuel_type === undefined) {
+      setFuelType(forEditData.fuel_type);
+    }
+    if (exterior === undefined) {
+      setExterior(forEditData.exterior);
+    }
+    if (interior === undefined) {
+      setInterior(forEditData.interior);
+    }
+    if (mileage === undefined) {
+      setMileage(forEditData.mileage);
+    }
+    if (stockNumber === undefined) {
+      setStockNumber(forEditData.stockNumber);
+    }
+    if (price === undefined) {
+      setPrice(forEditData.price);
+    }
+    if (transmission === undefined) {
+      setTransmission(forEditData.transmission);
+    }
+    if (type === undefined) {
+      setType(forEditData.type);
+    }
+    if (imageUrl === undefined) {
+      setImageUrl(forEditData.imageUrl);
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const data = {
+      make: make,
+      vin: vin,
+      model: model,
+      year: year,
+      drivetrain: drivetrain,
+      fuel_type: fuel_type,
+      exterior: exterior,
+      interior: interior,
+      mileage: mileage,
+      stockNumber: stockNumber,
+      price: price,
+      transmission: transmission,
+      type: type,
+      imageUrl: imageUrl,
+      isAvailable: true,
+    };
+
     try {
-      const data = {
-        make: make,
-        vin: vin,
-        model: model,
-        year: year,
-        drivetrain: drivetrain,
-        fuel_type: fuel_type,
-        exterior: exterior,
-        interior: interior,
-        mileage: mileage,
-        stockNumber: stockNumber,
-        price: price,
-        transmission: transmission,
-        type: type,
-        imageUrl: imageURL,
-        isAvailable: true,
-      };
-    
-      await write.save(
-        FireStoreConst.INVENTORY_VEHICLES,
-        data
-      );
+      if (modalType === AppTextConst.ADDMODALTITLE) {
+        await database.save(FireStoreConst.INVENTORY_VEHICLES, data);
+        console.log("Added!");
+      } else {
+        await database.update(
+          FireStoreConst.INVENTORY_VEHICLES,
+          data,
+          forEditData.id
+        );
+        console.log("Edit!");
+      }
 
       handleCloseModal();
-      // //console.log(addVehicle);
     } catch (e) {
       console.log(e);
     }
@@ -74,6 +127,10 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Make"
           required
+          // defaultValue={
+          //   modalType === AppTextConst.ADDMODALTITLE ? null : forEditData.make
+          // }
+          value={make}
           onChange={(e) => {
             setMake(e.target.value);
           }}
@@ -81,6 +138,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="VIN"
           required
+          value={vin}
           onChange={(e) => {
             setVin(e.target.value);
           }}
@@ -88,6 +146,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Model"
           required
+          value={model}
           onChange={(e) => {
             setModel(e.target.value);
           }}
@@ -96,6 +155,7 @@ const VehicleForm = ({ handleCloseModal }) => {
           label="Year"
           required
           type="number"
+          value={year}
           onChange={(e) => {
             setYear(parseInt(e.target.value));
           }}
@@ -103,18 +163,20 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Drive Train"
           required
+          value={drivetrain}
           onChange={(e) => {
             setDriveTrain(e.target.value);
           }}
         />
-        <FormControl required
+        <FormControl
+          required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Fuel</InputLabel>
           <Select
             label="Type"
             required
-            defaultValue=""
+            value={fuel_type}
             onChange={(e) => {
               setFuelType(e.target.value);
             }}
@@ -126,6 +188,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Exterior"
           required
+          value={exterior}
           onChange={(e) => {
             setExterior(e.target.value);
           }}
@@ -133,6 +196,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Interior"
           required
+          value={interior}
           onChange={(e) => {
             setInterior(e.target.value);
           }}
@@ -141,6 +205,7 @@ const VehicleForm = ({ handleCloseModal }) => {
           label="Mileage"
           required
           type="number"
+          value={mileage}
           onChange={(e) => {
             setMileage(parseInt(e.target.value));
           }}
@@ -148,11 +213,13 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Stock Number"
           required
+          value={stockNumber}
           onChange={(e) => {
             setStockNumber(e.target.value);
           }}
         />
-        <FormControl required
+        <FormControl
+          required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Price</InputLabel>
@@ -160,19 +227,21 @@ const VehicleForm = ({ handleCloseModal }) => {
             endAdornment={<InputAdornment position="end">$</InputAdornment>}
             label="Price"
             type="number"
+            value={price}
             onChange={(e) => {
               setPrice(parseInt(e.target.value));
             }}
           />
         </FormControl>
 
-        <FormControl required
+        <FormControl
+          required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Transmission</InputLabel>
           <Select
             label="Transmission"
-            defaultValue=""
+            value={transmission}
             onChange={(e) => {
               setTransmission(e.target.value);
             }}
@@ -183,13 +252,14 @@ const VehicleForm = ({ handleCloseModal }) => {
             <MenuItem value={"Electric"}>Electric</MenuItem>
           </Select>
         </FormControl>
-        <FormControl required
+        <FormControl
+          required
           style={{ m: 1, width: "25ch", margin: "8px", fontSize: "12px" }}
         >
           <InputLabel>Type</InputLabel>
           <Select
             label="Type"
-            defaultValue=""
+            value={type}
             onChange={(e) => {
               setType(e.target.value);
             }}
@@ -201,6 +271,7 @@ const VehicleForm = ({ handleCloseModal }) => {
         <TextField
           label="Image URL"
           required
+          value={imageUrl}
           onChange={(e) => {
             setImageUrl(e.target.value);
           }}
@@ -213,8 +284,8 @@ const VehicleForm = ({ handleCloseModal }) => {
           sx={{ height: 40 }}
           onClick={handleSubmit}
         >
-          Save Inventory  
-           </Button>
+          Save Inventory
+        </Button>
       </Box>
     </>
   );

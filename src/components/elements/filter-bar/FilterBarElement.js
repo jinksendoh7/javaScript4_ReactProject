@@ -19,10 +19,11 @@ const FilterBarElement = ({deals,
     return (
         <>
          <Grid item sm={isAdmin ? 7: 8}>
+
           {filters && 
           <>
                 <Chip label="All" onClick={() => {handleFilter('All')}} color="primary" variant={make === 'All' ? '': 'outlined'} sx={{mr:.5}}/>
-                        {deals && Array.from(filters).map((deal, index) => deal.make && (
+                        {deals && Array.from(filters).map((deal, index, value ) => deal.make && (
                             <Chip onClick={() => { handleFilter(deal.make)}} label={deal.make} key={index} color="primary" variant={make ===deal.make ? '': 'outlined'} sx={{mr:.5}}/>
                             ))}
             </> 

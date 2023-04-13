@@ -25,7 +25,9 @@ export const AppTextConst = {
     DEAL_CREATED: 'Customer created a deal.',
     DEAL_REVISED: 'Deal was revised by Sales',
     DEAL_ACCEPTED_BY_SALES: 'Deal was accepted by Sales. Awaiting for customer response.',
-    DEAL_CLOSED: 'Closed Deal. Customer Accepted the deal'
+    DEAL_CLOSED: 'Closed Deal. Customer Accepted the deal',
+    EDITMODALTITLE: "Edit Vehicle Information",
+    ADDMODALTITLE: "Add Vehicle Information"
   }
 export const FinanceConst = {
     finance_fee: 195.00,

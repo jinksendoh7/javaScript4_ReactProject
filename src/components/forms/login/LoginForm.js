@@ -6,13 +6,12 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import CopyrightComponet from '../../copyright/CopyrightComponent';
 import { useNavigate } from 'react-router-dom';
 import * as auth from '../../../auth';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login, logout } from '../../../redux/slices/usersSlice';
 import { RoutesConst } from '../../../constants/AppConstants';
 

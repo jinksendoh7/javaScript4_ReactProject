@@ -31,7 +31,7 @@ import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 
 import './Header.scss';
-import { AppTextConst, RoutesConst } from '../../../constants/AppConstants';
+import { RoutesConst } from '../../../constants/AppConstants';
 import { useDispatch} from 'react-redux';
 import * as auth from '../../../auth';
 import {useNavigate} from 'react-router-dom';

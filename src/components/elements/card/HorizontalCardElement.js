@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +9,7 @@ import Badge from '@mui/material/Badge';
 import { NumericFormat } from 'react-number-format';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import {useNavigate} from 'react-router-dom';
-import { FinanceConst, RoutesConst } from '../../../constants/AppConstants';
+import { FinanceConst, RoutesConst, AppTextConst } from '../../../constants/AppConstants';
 import './HorizontalCardElement.scss'
 import * as paymentHelper from '../../../helpers';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -18,8 +18,10 @@ import * as database from '../../../database';
 import { FireStoreConst } from '../../../constants/AppConstants';
 import {useState, useEffect} from 'react';
 
-export default function HorizontalCardElement({data, financeMode, terms, frequency}) {
-const navigate = useNavigate();
+
+export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency}) {
+
+
   const updateFinancing = () => {
         let pv = parseFloat(data.price);
         let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
@@ -41,6 +43,19 @@ useEffect(() => {
 })()  
 
 }, [data, setTotal]);
+
+
+const retrieveClick = () => {
+  handleModalOpen(modalTitleName);
+  onRetrieveClick(data.id);
+  };
+
+
+ const deleteClick = () => {
+    const id = data.id;
+    onRemoveVehicle(id);
+  };
+
 
   return (
     <Card sx={{ display: 'flex',border:1, borderColor: '#e3e3e3'}} elevation={0}>
@@ -80,10 +95,10 @@ useEffect(() => {
         disableElevation  sx={{p:1, minWidth:100}} size="small" onClick={() =>handleViewDealClick(data.id)}>
         Deals ({total}) 
         </Button>
-        <Button variant="outlined" sx={{pt:1, mt:2}} size="small">
+        <Button variant="outlined" sx={{pt:1, mt:2}} size="small" onClick={retrieveClick} value={AppTextConst.EDITMODALTITLE}>
         <EditOutlinedIcon/>
          Update</Button>
-         <Button variant="outlined"  sx={{pt:1, mt:1}} disableElevation color="error" size="small">
+         <Button variant="outlined"  sx={{pt:1, mt:1}} disableElevation color="error" size="small" onClick={deleteClick}>
          <DeleteOutlineOutlinedIcon/>
          DELETE</Button>
         </CardContent>
