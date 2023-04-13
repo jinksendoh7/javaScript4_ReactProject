@@ -19,8 +19,8 @@ function SlideTransition(props) {
           horizontal: 'center',
         }}
         action={
-          <Button color="inherit" size="small" onClick={()=> setOpen(false)}>
-            X
+          <Button color="warning" size="small" sx={{ml:5}} onClick={()=> setOpen(false)}>
+           Dismiss
           </Button>
         }
       />

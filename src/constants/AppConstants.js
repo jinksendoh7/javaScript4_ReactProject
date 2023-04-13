@@ -9,7 +9,7 @@ export const RoutesConst = {
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
-    
+    ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId'
 }
 
 export const AppNumberConst = {
@@ -22,6 +22,10 @@ export const AppTextConst = {
     BUILD_YOUR_DEAL_DESCRIPTION: ' Customize your payment terms according to your preference, then save it and a sales representative will contact you.',
     INITIAL_STATUS: 'Open',
     UNASSIGNED: 'Unassigned',
+    DEAL_CREATED: 'Customer created a deal.',
+    DEAL_REVISED: 'Deal was revised by Sales',
+    DEAL_ACCEPTED_BY_SALES: 'Deal was accepted by Sales. Awaiting for customer response.',
+    DEAL_CLOSED: 'Closed Deal. Customer Accepted the deal',
     EDITMODALTITLE: "Edit Vehicle Information",
     ADDMODALTITLE: "Add Vehicle Information"
   }
@@ -49,6 +53,8 @@ export const FireStoreConst = {
     TEAM_DOC: 'TeamData',
     INVENTORY_VEHICLES: 'InventoryVehicles',
     CUSTOMER_DEALS: 'CustomerDeals',
+
+    LOGS_CUSTOMER_DEALS: 'LogsCustomerDeals',
     USER_DOC: 'users'
 }
 
@@ -65,4 +71,5 @@ export const ErrorMessageConst = {
 export const SuccessMessageConst = {
     WELCOME_MESSAGE: 'Welcome to Advanatage Auto Sales',
     CONSOLE_LOG_ADD_USER: 'User added to the database with ID: ',
+
 }

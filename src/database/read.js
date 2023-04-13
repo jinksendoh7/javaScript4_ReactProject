@@ -37,3 +37,39 @@ export const load = async(collectionName) =>{
   }
 
 
+export const loadByParamId = async(collectionName, paramId)=>{
+  let data = [];
+  try{
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    querySnapshot.forEach((doc) => {
+      if(paramId == doc.data().id){
+        data.push({
+          ...doc.data(),
+          id: doc.id
+         });
+      }
+   
+    });
+   return data;
+}
+  catch(error){
+      throw new Error('Failed to load the data in the database' + error);
+  }
+}
+
+export const countTotalById = async(collectionName, paramId) =>{
+
+ let count =0;
+  try{
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    querySnapshot.forEach((doc) => {
+      if(paramId === doc.data().vehicleId){
+          count++;
+      }
+    });
+  return count;
+}
+  catch(error){
+      throw new Error('Failed to load the data in the database' + error);
+  }
+}

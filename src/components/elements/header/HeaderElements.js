@@ -117,7 +117,7 @@ export default function MiniDrawer(props) {
     navigate(RoutesConst.HOME_ROUTE);
   }
 
-  const MenuIcons = [<SpeedOutlinedIcon/>,<GroupsOutlinedIcon/>, <DirectionsCarFilledOutlinedIcon/>, <InsertInvitationOutlinedIcon/>]
+  const MenuIcons = [<GroupsOutlinedIcon/>, <DirectionsCarFilledOutlinedIcon/>]
   const OtherIcons = [<AccountCircleOutlinedIcon/>,<SettingsOutlinedIcon/>,<ExitToAppOutlinedIcon/>];
   return (
     <>
@@ -153,9 +153,9 @@ export default function MiniDrawer(props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {['Dashboard',  'Customers', 'Vehicles', 'Test Drives'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+        <List sx={{mt:5}}>
+          {[ 'Customers', 'Vehicles' ].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: 'block'}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

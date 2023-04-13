@@ -21,7 +21,7 @@ function a11yProps(index) {
   }
 
   
-const PaymentCalculator=({price, isCash})=>{
+const PaymentCalculator=({price, isCash, vehicleName, vin, vehicleId, stockNumber})=>{
     const [value, setValue] = useState(0);
     const [isTaxIncluded, setIsTaxIncluded] = useState(true);
     const [frequency, setFrequency] = useState('Monthly');
@@ -45,18 +45,24 @@ const PaymentCalculator=({price, isCash})=>{
 
     }
     const handleSaveDeal = (customerInfo) =>{
-        
+      setIsSaved(false);
          const timer = setTimeout(() => {
             (async() =>{ 
                 const data = {
                     firstname: customerInfo.firstname,
                     lastname: customerInfo.lastname,
                     email: customerInfo.email,
+                    vehicle: vehicleName,
+                    vin: vin,
+                    vehicleId: vehicleId,
+                    stockNumber:stockNumber,
                     contact: customerInfo.contact,
-                    isFinancing: value === 0 ? true: false,
+                    isFinancing: !value ? true: false,
                     pricing: financePrice,
                     withTax: isTaxIncluded,
+                    taxAmount:taxAmount, 
                     frequency: frequency,
+                    downpayment: downpayment,
                     terms: terms,
                     financeFee: FinanceConst.finance_fee,
                     vehiclePrice: price,
@@ -65,14 +71,45 @@ const PaymentCalculator=({price, isCash})=>{
                     assignedTo: customerInfo.assignedTo,
                 }
                 const save = await database.save(FireStoreConst.CUSTOMER_DEALS, data);
-                if(save){
+                const log = {
+                  id: save,
+                  type: AppTextConst.DEAL_CREATED,
+                  status: customerInfo.status,
+                  customerName:  customerInfo.firstname + ' ' + customerInfo.lastname,
+                  email: customerInfo.email,
+                  createdAt: customerInfo.createdAt,
+                  pricing: financePrice,
+                  withTax: isTaxIncluded,
+                  frequency: frequency,
+                  isFinancing: !value ? true: false,
+                  terms: terms,
+                  financeFee: FinanceConst.finance_fee,
+                  vehiclePrice: price,
+                  imageUrl: data.imageUrl,
+                  taxAmount:taxAmount, 
+                  downpayment: downpayment
+                }
+                const updateLog =  updateLogs(log);
+                if(save && updateLog){
                     console.log('saved...')
                     setIsSaved(true);
-                    handleModalClose();
                 }
+                handleModalClose();
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);
+    }
+    const updateLogs = (data) =>{
+      (async() =>{ 
+      const update = await database.save(FireStoreConst.LOGS_CUSTOMER_DEALS, data);
+      if(update){
+        console.log('update logs...')
+        setIsSaved(true);
+        return update;
+        handleModalClose();
+
+        }
+      })(); 
     }
     const handleIncludeTax = () => {
         setIsTaxIncluded(!isTaxIncluded);
