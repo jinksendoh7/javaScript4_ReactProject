@@ -1,5 +1,11 @@
-import { collection, addDoc, updateDoc,doc, deleteDoc } from "firebase/firestore";
-import {db} from '../configs/firebase'
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../configs/firebase";
 
 export const save = async(collectionName, data) =>{
 
@@ -26,23 +32,6 @@ export const update = async(collectionName, data, id) => {
         return false;
     }
 }
-
-
-// export const update = async(collectionName, status, id) =>{
-
-//     try{
-//         const docRef =  doc(db, collectionName,id);
-//         await updateDoc(docRef, {
-//             done: status
-//         });
-//         return true;
-     
-//     }
-//     catch(error){
-      
-//         throw new Error('Failed to updated data in the database');
-//     }
-// }
 
 export const remove = async(collectionName,  id) =>{
 

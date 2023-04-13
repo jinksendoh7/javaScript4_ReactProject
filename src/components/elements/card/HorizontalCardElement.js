@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,20 +8,32 @@ import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
 import { NumericFormat } from 'react-number-format';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-
-import { FinanceConst } from '../../../constants/AppConstants';
+import { FinanceConst, AppTextConst } from '../../../constants/AppConstants';
 import './HorizontalCardElement.scss'
 import * as paymentHelper from '../../../helpers';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency}) {
-  const theme = useTheme();
+export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency, onRemoveVehicle, onRetrieveClick, handleModalOpen, modalTitleName}) {
+  //const theme = useTheme();
 
   const updateFinancing = () => {
         let pv = parseFloat(data.price);
         let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
         return pricing.toFixed(2);
 }
+
+
+const retrieveClick = () => {
+  handleModalOpen(modalTitleName);
+  onRetrieveClick(data.id);
+  };
+
+
+ const deleteClick = () => {
+    const id = data.id;
+    onRemoveVehicle(id);
+  };
+
 
   return (
     <Card sx={{ display: 'flex',border:1, borderColor: '#e3e3e3'}} elevation={0}>
@@ -62,10 +74,10 @@ export default function HorizontalCardElement({data,handleViewDetail, financeMod
           Deals
         
         </Button>
-        <Button variant="outlined" sx={{pt:1, mt:2}} size="small">
+        <Button variant="outlined" sx={{pt:1, mt:2}} size="small" onClick={retrieveClick} value={AppTextConst.EDITMODALTITLE}>
         <EditOutlinedIcon/>
          Update</Button>
-         <Button variant="contained"  sx={{pt:1, mt:1}} disableElevation color="error" size="small">
+         <Button variant="contained"  sx={{pt:1, mt:1}} disableElevation color="error" size="small" onClick={deleteClick}>
          <DeleteOutlineOutlinedIcon/>
          DELETE</Button>
         </CardContent>
