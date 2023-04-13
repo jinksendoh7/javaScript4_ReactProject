@@ -19,8 +19,8 @@ import { FireStoreConst } from '../../../constants/AppConstants';
 import {useState, useEffect} from 'react';
 
 
-export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency}) {
-
+export default function HorizontalCardElement({data,handleModalOpen, financeMode, terms, frequency, modalTitleName, onRemoveVehicle, onRetrieveClick}) {
+const navigate = useNavigate();
 
   const updateFinancing = () => {
         let pv = parseFloat(data.price);
@@ -45,6 +45,7 @@ useEffect(() => {
 }, [data, setTotal]);
 
 
+
 const retrieveClick = () => {
   handleModalOpen(modalTitleName);
   onRetrieveClick(data.id);
@@ -55,7 +56,6 @@ const retrieveClick = () => {
     const id = data.id;
     onRemoveVehicle(id);
   };
-
 
   return (
     <Card sx={{ display: 'flex',border:1, borderColor: '#e3e3e3'}} elevation={0}>
