@@ -1,22 +1,36 @@
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { FireStoreConst } from '../../constants/AppConstants';
 
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
+import { Grid, Paper, Typography, Checkbox, Select, MenuItem } from '@mui/material';
+
 import { TbLiveView } from "react-icons/tb";
 import { IconButton } from '@mui/material';
+import { update } from '../../database';
 
 function CustomerOffersList({ data }) {
 
     const navigate = useNavigate();
 
-    const handleViewDetail = ()=>{
-        const id = data.vehicleID;
-        navigate('/view/'+id);
-    }
+    const [statusChange, setStatusChange] = useState(data.status);
     
+    const handleViewDetail = () => {
+        const id = data.vehicleID;
+        navigate('/view/' + id);
+    }
+
+    const handleStatusChange = async () => {
+        const id = data.id;
+        const updated = await update(FireStoreConst.CUSTOMER_DEALS, {status: statusChange }, id);
+        console.log(statusChange)
+        if(!updated) {
+            console.error('Failed to update status');
+        } else {
+            console.log('Success');
+        } 
+    }
+
     return (
         <>
             <Paper
@@ -64,9 +78,16 @@ function CustomerOffersList({ data }) {
                         {data.withTax.toString()}
                     </Typography>
 
-                    <Typography variant='body2' sx={{ padding: 1 }}>
-                        {data.status}
-                    </Typography>
+                    <Select
+                        size="small"
+                        sx={{ ml: 2, width: 160, fontSize: 12 }}
+                        value={statusChange}
+                        onChange={(e) => { setStatusChange(e.target.value); handleStatusChange();}}
+                    >
+                        <MenuItem sx={{ width: 160, fontSizez: 12 }} value="Open">Open</MenuItem>
+                        <MenuItem sx={{ width: 160, fontSizez: 12 }} value="Awaiting">Awaiting Customer</MenuItem>
+                        <MenuItem sx={{ width: 160, fontSizez: 12 }} value="Closed">Closed</MenuItem>
+                    </Select>
 
                     <Typography variant='body2' sx={{ padding: 1 }}>
                         ${data.vehiclePrice}

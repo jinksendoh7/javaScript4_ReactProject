@@ -104,8 +104,8 @@ const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
       } else {
         await database.update(
           FireStoreConst.INVENTORY_VEHICLES,
-          forEditData.id,
-          data
+          data,
+          forEditData.id
         );
         console.log("Edit!");
       }

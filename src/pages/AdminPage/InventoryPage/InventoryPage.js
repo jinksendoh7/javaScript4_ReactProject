@@ -19,7 +19,7 @@ import FilterBarElement from "../../../components/elements/filter-bar/FilterBarE
 const InventoryPage = () => {
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState("");
-const [forEditData, setForEditData] = useState([]);//retrieve data for edit func
+  const [forEditData, setForEditData] = useState([]); //retrieve data for edit func
 
   const handleModalOpen = (modalName) => {
     setModalType(modalName);
@@ -101,14 +101,12 @@ const [forEditData, setForEditData] = useState([]);//retrieve data for edit func
     try {
       deals.map((data) => {
         if (data.id === id) {
-          setForEditData(data)
+          setForEditData(data);
         }
       });
 
-console.log(forEditData)
-    } catch (e) {
-     
-    }
+      console.log(forEditData);
+    } catch (e) {}
   };
 
   return (
@@ -193,13 +191,12 @@ console.log(forEditData)
                       frequency={frequency}
                       onRemoveVehicle={onRemoveVehicle}
                       handleModalOpen={handleModalOpen}
-                  onRetrieveClick={onRetrieveClick}
+                      onRetrieveClick={onRetrieveClick}
                       modalTitleName={AppTextConst.EDITMODALTITLE}
                       data={deal}
                     />
                   </Grid>
-                )
-                )}
+                ))}
             </Grid>
           </>
         )}
@@ -210,7 +207,13 @@ console.log(forEditData)
           title={modalType}
           isOpen={open}
           handleCloseModal={handleModalClose}
-          element={<VehicleForm handleCloseModal={handleModalClose} modalType={modalType} forEditData={forEditData} />}
+          element={
+            <VehicleForm
+              handleCloseModal={handleModalClose}
+              modalType={modalType}
+              forEditData={forEditData}
+            />
+          }
         />
       )}
     </>
