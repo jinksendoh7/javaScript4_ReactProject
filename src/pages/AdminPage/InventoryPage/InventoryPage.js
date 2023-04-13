@@ -5,16 +5,16 @@ import ModalElement from '../../../components/elements/modal/ModalElement';
 import VehicleForm from '../../../components/forms/vehicle/VehicleForm';
 import HorizontalCardElement from '../../../components/elements/card/HorizontalCardElement';
 import {useEffect, useState} from 'react';
-import CardElement from '../../../components/elements/card/CardElement';
 import * as database from '../../../database';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeals } from '../../../redux/slices/dealsSlice';
 import { FireStoreConst, AppNumberConst } from '../../../constants/AppConstants';
 import SpinnerLoader from '../../../components/spinner-loader/SpinnerLoaderComponent';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FilterBarElement from '../../../components/elements/filter-bar/FilterBarElement';
 
 const InventoryPage = () =>{
+    const navigate = useNavigate();
     const [open, setOpen]= useState(false);
     const handleModalOpen = () =>{
         setOpen(true);
@@ -23,7 +23,7 @@ const InventoryPage = () =>{
         setOpen(false)
     }
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+
 
     const deals = useSelector((state)=> state.deals);
     const [loading, setLoading] = useState(true);
@@ -33,12 +33,13 @@ const InventoryPage = () =>{
     const [terms, setTerms] = useState(60);
     const [frequency, setFrequency] = useState('Monthly');
 
-    const handleViewDetail = (id)=>{
-        navigate('view/'+id);
-    }
     const handleChangeFinanceMode = () =>{
         setFinanceMode(!financeMode)
     }
+    const handleViewDetail = (id)=>{
+        navigate('view/'+id);
+    }
+
     const handleFilter = (selected) =>{
         setLoading(true);
         setMake(selected);
@@ -59,6 +60,7 @@ const InventoryPage = () =>{
         return () => clearTimeout(timer);
 
     }
+ 
     const handlePaymentChange = ()=>{
         setLoading(true);
         const timer = setTimeout(() => {
@@ -66,7 +68,9 @@ const InventoryPage = () =>{
                 const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
                 setLoading(false);
                 dispatch(setDeals(data));
-                setFilters((data).filter((deal) => deal.make))
+                setFilters( [
+                    ...new Map(data.map((item) => [item["make"], item])).values(),
+                ]);
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
     }
@@ -76,7 +80,9 @@ const InventoryPage = () =>{
                 const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
                 setLoading(false);
                 dispatch(setDeals(data));
-                setFilters((data).filter((deal) => deal.make))
+                setFilters( [
+                    ...new Map(data.map((item) => [item["make"], item])).values(),
+                ]);
               })() 
         }, AppNumberConst.TIMEOUT_SEC);
         return () => clearTimeout(timer);
@@ -106,7 +112,7 @@ const InventoryPage = () =>{
         </Grid>
       
         <Container maxWidth="xl"  sx={{mt:3}}>
-        <Grid container spacing={{ xs: 1, md: 1 }} sx={{mb:3, p:3, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
+        <Grid container spacing={{ xs: 1, md: 1 }} sx={{mb:3, p:1, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
           <FilterBarElement
          deals= {deals}
          filters={filters}

@@ -8,13 +8,13 @@ import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
 import { NumericFormat } from 'react-number-format';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-
-import { FinanceConst } from '../../../constants/AppConstants';
+import Link from '@mui/material/Link'
+import { FinanceConst, RoutesConst } from '../../../constants/AppConstants';
 import './HorizontalCardElement.scss'
 import * as paymentHelper from '../../../helpers';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency}) {
+export default function HorizontalCardElement({data,handleViewDetail, financeMode, terms, frequency,}) {
   const theme = useTheme();
 
   const updateFinancing = () => {
@@ -22,6 +22,10 @@ export default function HorizontalCardElement({data,handleViewDetail, financeMod
         let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
         return pricing.toFixed(2);
 }
+const handleViewDetailClick = (id)=>{
+  handleViewDetail(id);
+}
+
 
   return (
     <Card sx={{ display: 'flex',border:1, borderColor: '#e3e3e3'}} elevation={0}>
@@ -34,7 +38,9 @@ export default function HorizontalCardElement({data,handleViewDetail, financeMod
         <CardContent sx={{flex:'1 1 auto'}}>
           <div className="flex">
               <div>
-                 <div className="card-title">{data.year+ ' ' +data.make + ' '+data.model}</div>
+                 <div className="card-title" onClick={() => handleViewDetailClick(data.id)}>
+                    {data.year+ ' ' +data.make + ' '+data.model}
+                   </div>  
                 <code>VIN:{data.vin}</code>
                 <div  className="card-pricing">
                 <NumericFormat value={financeMode ? updateFinancing() : data.price.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
@@ -56,8 +62,8 @@ export default function HorizontalCardElement({data,handleViewDetail, financeMod
        </Box>
        <Box sx={{ display: 'flex', flexDirection: 'column', m:1, width:100, justifyContent:'space-between', alignContent:'flex-end' }}>
         <CardContent sx={{flex:'auto'}}>
-        <Button variant="outlined" color="warning" sx={{pt:1,pl:2, mb:1}} size="small">
-        <Badge badgeContent={6} color="warning" sx={{mr:3}}>
+        <Button variant="outlined"  sx={{pt:1,pl:2, mb:1}} size="small">
+        <Badge badgeContent={6} color="primary" sx={{mr:3}}>
           </Badge>
           Deals
         
