@@ -72,7 +72,10 @@ const InventoryPage = () => {
         const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
         setLoading(false);
         dispatch(setDeals(data));
-        setFilters(data.filter((deal) => deal.make));
+        setFilters( [
+                    ...new Map(data.map((deal) => [deal["make"], deal])).values(),
+                ]);
+        //setFilters(data.filter((deal) => deal.make));
       })();
     }, AppNumberConst.TIMEOUT_SEC);
   };
@@ -82,7 +85,10 @@ const InventoryPage = () => {
         const data = await database.load(FireStoreConst.INVENTORY_VEHICLES);
         setLoading(false);
         dispatch(setDeals(data));
-        setFilters(data.filter((deal) => deal.make));
+        setFilters( [
+                    ...new Map(data.map((deal) => [deal["make"], deal])).values(),
+                ]);
+        //setFilters(data.filter((deal) => deal.make));
       })();
     }, AppNumberConst.TIMEOUT_SEC);
     return () => clearTimeout(timer);
