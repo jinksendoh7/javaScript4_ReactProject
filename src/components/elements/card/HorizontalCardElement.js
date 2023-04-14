@@ -19,7 +19,7 @@ import { FireStoreConst } from '../../../constants/AppConstants';
 import {useState, useEffect} from 'react';
 
 
-export default function HorizontalCardElement({data,handleModalOpen, financeMode, terms, frequency, modalTitleName, onRemoveVehicle, onRetrieveClick}) {
+export default function HorizontalCardElement({data,handleModalOpen, financeMode, terms, frequency, onRemoveVehicle, onRetrieveClick, modalTitleName}) {
 const navigate = useNavigate();
 
   const updateFinancing = () => {
