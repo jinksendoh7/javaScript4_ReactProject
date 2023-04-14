@@ -27,8 +27,8 @@ const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
   const [stockNumber, setStockNumber] = useState();
   const [price, setPrice] = useState();
   const [transmission, setTransmission] = useState();
-  const [type, setType] = useState(undefined);
-  const [imageUrl, setImageUrl] = useState(undefined);
+  const [type, setType] = useState();
+  const [imageUrl, setImageUrl] = useState();
 
   //for edit modal
   if (modalType === AppTextConst.EDITMODALTITLE) {
@@ -127,9 +127,6 @@ const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
         <TextField
           label="Make"
           required
-          // defaultValue={
-          //   modalType === AppTextConst.ADDMODALTITLE ? null : forEditData.make
-          // }
           value={make}
           onChange={(e) => {
             setMake(e.target.value);
