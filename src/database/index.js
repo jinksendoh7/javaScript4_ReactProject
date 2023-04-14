@@ -1,2 +1,2 @@
-export { load, loadById, loadByParamId, countTotalById} from './read'
+export { load, loadById, loadByParamId, countTotalById, loadByUid} from './read'
 export { save, update, remove} from './write'

@@ -19,12 +19,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 
 import DrawerHeader from './DrawerHeader';
-import SpeedOutlinedIcon from '@mui/icons-material/SpeedOutlined';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
-import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Button from '@mui/material/Button';
 import Logo from '../../logo/logo';
@@ -37,6 +34,8 @@ import * as auth from '../../../auth';
 import {useNavigate} from 'react-router-dom';
 import {logout} from '../../../redux/slices/usersSlice';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import {useState} from 'react'
+import SnackbarElement from '../snack-bar/SnackbarElement';
 
 const drawerWidth = 300;
 
@@ -103,6 +102,7 @@ export default function MiniDrawer(props) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLogout, setIsLogout] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -201,14 +201,19 @@ export default function MiniDrawer(props) {
                   <NavLink className={({ isActive }) => (isActive ? 'menu-active' : '')}   to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{OtherIcons[index]}</NavLink>
                 </ListItemIcon>
                 <ListItemText primary={
+                    text ==='Sign Out' ?
                    <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{text}</NavLink>
+                  :
+                  <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} onClick={()=>onLogout()}>{text}</NavLink>
+              
                 } sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
-     
+      {isLogout && <SnackbarElement isOpen={isLogout} message={'You have succesffuly logout.'}/>}
+    
       </>
   );
 }

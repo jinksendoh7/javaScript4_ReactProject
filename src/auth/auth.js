@@ -63,10 +63,15 @@ export const guardAuth = async () => {
 
 }
 
-async function updateEmailForCurrentUser(currentUser, email) {
-  return await updateEmail(currentUser, email);
-}
-
 async function updatePasswordForCurrentUser(currentUser,password) {
-  return await updatePassword(currentUser, password);
+  try {
+    const isUpdate = await updatePassword(currentUser, password);
+    if(isUpdate){
+      return true;
+    }
+    return false;
+  }
+  catch (error) {
+    console.log(error);
+  }
 }

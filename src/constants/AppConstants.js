@@ -10,7 +10,8 @@ export const RoutesConst = {
     ADMIN_VISITS_ROUTE: 'visits',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
     ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId',
-    ADMIN_USERS_ROUTE: 'users'
+    ADMIN_USERS_ROUTE: 'users',
+    ADMIN_MY_ACCOUNT_ROUTE: 'my-account'
 }
 
 export const AppNumberConst = {

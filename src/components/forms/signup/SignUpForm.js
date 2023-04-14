@@ -131,6 +131,7 @@ const SignUpForm = () => {
                                 fullWidth={true}
                                 value={firstName}
                                 onChange={(e) => setfirstName(e.target.value)}
+                        
                             />
                         </Grid>
                         <Grid

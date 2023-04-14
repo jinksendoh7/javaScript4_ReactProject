@@ -35,6 +35,25 @@ export const load = async(collectionName, sort) =>{
         throw new Error('Failed to load the data in the database' + error);
     }
   }
+  export const loadByUid = async(collectionName, uid) =>{
+    console.log(uid,'UID')
+    let data = [];
+    try{
+      const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('timestamp')));
+      querySnapshot.forEach((doc) => {
+        if(uid == doc.data().id)
+            data.push({
+              ...doc.data(),
+              id: doc.id
+            });
+        });
+          
+          return data;
+    }
+    catch(error){
+        throw new Error('Failed to load the data in the database' + error);
+    }
+  }
 
 export const chkIfUserActive = async(collectionName, id) =>{
   try{
