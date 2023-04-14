@@ -39,7 +39,7 @@ const LoginForm = () => {
       const userAuth = await auth.login(email, password)
       if (userAuth) {
         //check isActive
-        const isActive = await database.loadByParamId(FireStoreConst.USER_DOC, userAuth.uid);
+        const isActive = await database.chkIfUserActive(FireStoreConst.USER_DOC, userAuth.uid);
         if (isActive) {
           dispatch(
             login({
