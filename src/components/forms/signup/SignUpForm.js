@@ -1,20 +1,17 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 import { Button, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 import CopyrightComponet from "../../copyright/CopyrightComponent";
-
-import { ErrorMessageConst, FireStoreConst, SuccessMessageConst } from "../../../constants/AppConstants";
-import { SignUpWithFirebaseAuth } from "../../../auth/auth";
-import StorageService from "../../../database/services/StorageService";
-import { serverTimestamp } from "firebase/firestore";
-
 import ErrorMessage from "../../error/ErrorMessage";
 import SuccessMessage from "../../success/SuccessMessage";
 
 import * as database from '../../../database';
+import { serverTimestamp } from "firebase/firestore";
+import { SignUpWithFirebaseAuth } from "../../../auth/auth";
+import { ErrorMessageConst, FireStoreConst, SuccessMessageConst } from "../../../constants/AppConstants";
 
 const SignUpForm = () => {
 
@@ -30,7 +27,7 @@ const SignUpForm = () => {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
-    
+
     const navigate = useNavigate();
 
     const clearForm = () => {
@@ -58,8 +55,8 @@ const SignUpForm = () => {
         }
 
         else {
-           const result = await SignUpWithFirebaseAuth(email, password);
-            if(result){
+            const result = await SignUpWithFirebaseAuth(email, password);
+            if (result) {
                 const docRef = database.save(FireStoreConst.USER_DOC, {
                     id: result.uid,
                     timestamp: serverTimestamp(),
@@ -69,27 +66,27 @@ const SignUpForm = () => {
                     subscribe: recieve,
                     isActive: false,
                 });
-                if(docRef){
+                if (docRef) {
                     clearForm();
                     setIsSuccess(true);
                     setIsError(false);
                     setSuccessMessage(SuccessMessageConst.WELCOME_MESSAGE);
+                    setTimeout(()=> {
+                        navigate('/login');
+                    }, 1000)
                 }
-                else{
+                else {
                     setIsError(true);
                     setErrMessage('Theres an error on signing up. Please contact the administrator.');
                     setIsSuccess(false);
                 }
-              
-            } 
-            else{
+            }
+            else {
                 setIsError(true);
                 setErrMessage('Your email address was already exist in the system. Please try a diffent email and password.');
                 setIsSuccess(false);
-            }   
-            
             }
-        
+        }
     }
 
     return (
@@ -182,7 +179,7 @@ const SignUpForm = () => {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={recieve}  // changed value to checked to enable the false state set after submission to uncheck if was checked originally.
+                                checked={recieve}  
                                 onChange={(e) => setRecieve(e.target.checked)}
                                 color="primary"
                             />
@@ -220,5 +217,4 @@ const SignUpForm = () => {
         </Container>
     )
 }
-
 export default SignUpForm;

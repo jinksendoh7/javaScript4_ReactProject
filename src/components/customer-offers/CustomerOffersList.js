@@ -1,20 +1,27 @@
 
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { update } from '../../database';
 import { FireStoreConst } from '../../constants/AppConstants';
 
-import { Grid, Paper, Typography, Checkbox, Select, MenuItem } from '@mui/material';
+import {
+    Grid, 
+    Paper, 
+    Typography, 
+    Checkbox, 
+    Select, 
+    MenuItem,
+    IconButton
+} from '@mui/material';
 
 import { TbLiveView } from "react-icons/tb";
-import { IconButton } from '@mui/material';
-import { update } from '../../database';
 
 function CustomerOffersList({ data }) {
-
     const navigate = useNavigate();
 
     const [statusChange, setStatusChange] = useState(data.status);
-    
+
     const handleViewDetail = () => {
         const id = data.vehicleID;
         navigate('/view/' + id);
@@ -22,13 +29,13 @@ function CustomerOffersList({ data }) {
 
     const handleStatusChange = async () => {
         const id = data.id;
-        const updated = await update(FireStoreConst.CUSTOMER_DEALS, {status: statusChange }, id);
+        const updated = await update(FireStoreConst.CUSTOMER_DEALS, { status: statusChange }, id);
         console.log(statusChange)
-        if(!updated) {
+        if (!updated) {
             console.error('Failed to update status');
         } else {
             console.log('Success');
-        } 
+        }
     }
 
     return (
@@ -43,7 +50,6 @@ function CustomerOffersList({ data }) {
                     flexGrow: 1,
                 }}
             >
-
                 <Grid
                     container
                     direction="row"
@@ -82,7 +88,7 @@ function CustomerOffersList({ data }) {
                         size="small"
                         sx={{ ml: 2, width: 160, fontSize: 12 }}
                         value={statusChange}
-                        onChange={(e) => { setStatusChange(e.target.value); handleStatusChange();}}
+                        onChange={(e) => { setStatusChange(e.target.value); handleStatusChange(); }}
                     >
                         <MenuItem sx={{ width: 160, fontSizez: 12 }} value="Open">Open</MenuItem>
                         <MenuItem sx={{ width: 160, fontSizez: 12 }} value="Awaiting">Awaiting Customer</MenuItem>
@@ -105,8 +111,6 @@ function CustomerOffersList({ data }) {
                 </Grid>
             </Paper>
         </>
-
     )
 }
-
 export default CustomerOffersList;

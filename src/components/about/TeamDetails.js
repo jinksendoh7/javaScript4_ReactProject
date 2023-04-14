@@ -7,8 +7,8 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 
+import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function TeamDetails(props) {
   return (
@@ -50,5 +50,4 @@ function TeamDetails(props) {
     </Grid>
   );
 }
-
 export default TeamDetails;

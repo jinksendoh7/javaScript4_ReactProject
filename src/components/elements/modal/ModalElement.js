@@ -1,24 +1,24 @@
 
-import {useState} from 'react'
-import { Dialog, Button, DialogTitle, DialogActions, DialogContent,DialogContentText} from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useState } from 'react'
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Dialog, Button, DialogTitle, DialogActions, DialogContent } from '@mui/material';
 
 
-export default function ModalElement ({title,isOpen, handleCloseModal, element, isSaveForm}){
+
+export default function ModalElement({ title, isOpen, handleCloseModal, element }) {
   const [open, setOpen] = useState(isOpen);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
- 
   const handleClose = () => {
     setOpen(false);
     handleCloseModal();
   };
+
   return (
     <>
-     
-     <Dialog
+      <Dialog
         fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
@@ -28,8 +28,8 @@ export default function ModalElement ({title,isOpen, handleCloseModal, element, 
           {title}
         </DialogTitle>
         <DialogContent>
-          
-            {element}
+
+          {element}
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

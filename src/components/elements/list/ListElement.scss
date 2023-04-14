@@ -1,31 +1,36 @@
 @import "../../../styles//variables.scss";
 
-.data-title{
+.data-title {
     font-weight: 700;
     color: $primary-color;
     margin: .5rem 0;
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
-.data-label{
+
+.data-label {
     color: $ink;
     font-weight: 500;
-}   
-.data-text{
+}
+
+.data-text {
     color: $primary-color;
     font-weight: 700;
     margin: .5rem 0;
 }
-.data-text-alt{
+
+.data-text-alt {
     font-size: 14px;
 }
-.data-title-alt{
+
+.data-title-alt {
     color: $primary-color;
     font-weight: 700;
-    margin-bottom:.2rem;
+    margin-bottom: .2rem;
     font-size: 1rem;
 }
-.flex-alternative{
+
+.flex-alternative {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

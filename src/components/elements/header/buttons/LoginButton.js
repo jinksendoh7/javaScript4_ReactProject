@@ -10,5 +10,4 @@ const LoginButton = () => {
         <Button variant="contained" onClick={handleLogin} disableElevation>Login</Button>
     )
 }
-
 export default LoginButton;

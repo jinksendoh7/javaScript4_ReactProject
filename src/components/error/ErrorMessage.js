@@ -1,14 +1,11 @@
 import { Alert, AlertTitle } from "@mui/material";
 
-
-function ErrorMessage({message}) {
-
+function ErrorMessage({ message }) {
     return (
         <Alert severity="error">
             <AlertTitle>Error</AlertTitle>
-           {message}
+            {message}
         </Alert>
     );
 }
-
 export default ErrorMessage

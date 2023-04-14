@@ -1,32 +1,37 @@
 @import "../../../styles//variables.scss";
 
-.timeline-heading{
+.timeline-heading {
     color: $primary-color;
     font-weight: 700;
     font-size: 1rem;
 
 }
 
-.timeline-subheading{
+.timeline-subheading {
     color: $primary-color;
     font-size: 13px;
     font-weight: 700;
 }
-.timeline-text{
+
+.timeline-text {
     color: $ink;
     font-weight: 700;
 }
-.small-heading{
+
+.small-heading {
     font-size: .9rem;
     font-weight: 700;
 }
-.timeline-title{
+
+.timeline-title {
     font-weight: 700;
     font-size: .8rem;
 }
-.data-subheading{
+
+.data-subheading {
     text-align: center;
 }
-.data-text{
+
+.data-text {
     font-size: 1rem;
 }
