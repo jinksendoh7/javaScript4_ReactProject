@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 /*Pages */
 import LoginPage from "./pages/LoginPage/LoginPage";
-import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import PublicPage from './pages/PublicPage/PublicPage';
 import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";

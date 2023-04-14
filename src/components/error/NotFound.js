@@ -1,9 +1,9 @@
 import { Typography, Container, Button } from "@mui/material";
 import { IMAGE } from "../../assets/images/Images";
 import { Link } from "react-router-dom";
-import './ErrorComponent.scss'
+import './NotFound.scss'
 
-const ErrorPage = () => {
+const NotFound = () => {
   return (
     <>
       <Container
@@ -44,4 +44,4 @@ const ErrorPage = () => {
     </>
   );
 };
-export default ErrorPage;
+export default NotFound;

@@ -66,11 +66,11 @@ const UsersPage = () => {
                             {user.email}
                         </div>
                         <div className="user-text">
-                            <b>Status:</b>
+                            <b>Status:&nbsp;</b>
                             {user.isActive ?
                                 <div style={{ color: 'green', m: 1, fontWeight: 700 }}>Active</div>
                                 :
-                                <div style={{ color: 'red', m: 1, fontWeight: 700 }}>Inctive</div>
+                                <div style={{ color: 'red', m: 1, fontWeight: 700 }}>Inactive</div>
 
                             }
                         </div>
