@@ -1,4 +1,8 @@
 import { db } from "../configs/firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../configs/firebase";
+
+
 import {
     collection,
     addDoc,
@@ -40,6 +44,16 @@ export const remove = async (collectionName, id) => {
     }
     catch (error) {
         throw new Error('Failed to remove data in the database');;
+    }
+}
+
+export const reset = async (email) => {
+    try{
+        await sendPasswordResetEmail(auth, email);
+        console.log('Password has been reset');
+    } catch(error) {
+        console.error(error);
+        //alert('Please verify you have the correct email.');
     }
 }
 
