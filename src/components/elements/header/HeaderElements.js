@@ -34,7 +34,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import Box from '@mui/material/Box';
 
 import DrawerHeader from './DrawerHeader';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
