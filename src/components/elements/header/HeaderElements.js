@@ -182,7 +182,7 @@ export default function MiniDrawer(props) {
         </List>
         <Divider />
         <List>
-          {['My Account','Signout'].map((text, index) => (
+          {['My Profile','Signout'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{

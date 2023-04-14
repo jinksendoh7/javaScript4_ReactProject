@@ -52,6 +52,7 @@ const MyAccountPage = ()=>{
                         setFirstname(user[0].firstname);
                         setLastname(user[0].lastname);
                         setEmail(user[0].email);
+                        setReceived(user[0].received);
                         setUser(user[0]);
                     })();
                
