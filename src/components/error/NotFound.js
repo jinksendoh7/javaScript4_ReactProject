@@ -1,9 +1,9 @@
-import { Typography, Container, Button, Box } from "@mui/material";
+import { Typography, Container, Button } from "@mui/material";
 import { IMAGE } from "../../assets/images/Images";
 import { Link } from "react-router-dom";
-import './ErrorComponent.scss'
+import './NotFound.scss'
 
-const ErrorPage = () => {
+const NotFound = () => {
   return (
     <>
       <Container
@@ -31,19 +31,17 @@ const ErrorPage = () => {
           Sorry we can't find that page. You'll find loads to explore in the
           homepage
         </Typography>
-          <Button
-            component={Link}
-            to={"/"} //change to mainpage or dashboard
-            variant="contained"
-            size="large"
-            className="btn"
-          >
-            Home
-          </Button>
- 
+        <Button
+          component={Link}
+          to={"/admin"} //change to mainpage or dashboard
+          variant="contained"
+          size="large"
+          className="btn"
+        >
+          Home
+        </Button>
       </Container>
     </>
   );
 };
-
-export default ErrorPage;
+export default NotFound;

@@ -1,24 +1,19 @@
 import { useState } from 'react';
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../redux/slices/usersSlice';
+import { Button, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from '@mui/material';
+
+import * as database from '../../../database'
+import * as auth from '../../../auth';
+import { FireStoreConst } from '../../../constants/AppConstants';
+import { RoutesConst } from '../../../constants/AppConstants';
 
 import CopyrightComponet from '../../copyright/CopyrightComponent';
-import { useNavigate } from 'react-router-dom';
-import * as auth from '../../../auth';
-import { useDispatch } from 'react-redux';
-import { login, logout } from '../../../redux/slices/usersSlice';
-import { RoutesConst } from '../../../constants/AppConstants';
 import SnackbarElement from '../../elements/snack-bar/SnackbarElement';
 import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
-import { FireStoreConst } from '../../../constants/AppConstants';
-import * as database from '../../../database'
+
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -38,14 +33,14 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
+
     try {
       setIsNotValid(false);
       const userAuth = await auth.login(email, password)
       if (userAuth) {
         //check isActive
         const isActive = await database.loadByParamId(FireStoreConst.USER_DOC, userAuth.uid);
-        if(isActive){
+        if (isActive) {
           dispatch(
             login({
               email: userAuth.email,
@@ -56,15 +51,13 @@ const LoginForm = () => {
           );
           navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_INVENTORY_ROUTE));
         }
-      else{
+        else {
+          setIsNotValid(true);
+        }
+      }
+      else {
         setIsNotValid(true);
       }
-      
-      }
-      else{
-        setIsNotValid(true);
-      }
-
     }
     catch (e) {
       console.log(e);
@@ -86,7 +79,6 @@ const LoginForm = () => {
             alignItems: "center",
           }}
         >
-
           <Logo
             url={MainLogo}
             altDisplay="formLogo"
@@ -127,22 +119,22 @@ const LoginForm = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link 
+                <Link
                   variant="body2"
                   component="button"
                   underline="hover"
-                  onClick = {()=>navigate('/')}
-                  >
+                  onClick={() => navigate('/')}
+                >
                   Forgot Password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link 
+                <Link
                   variant="body2"
                   component="button"
                   underline="hover"
-                  onClick = {()=>navigate('/signup')}
-                  >
+                  onClick={() => navigate('/signup')}
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -151,22 +143,9 @@ const LoginForm = () => {
             <CopyrightComponet />
           </Box>
         </Box>
-        {isNotValid && <SnackbarElement isOpen={isNotValid} message={'Please enter a valid username and password..'}/>}
-     
+        {isNotValid && <SnackbarElement isOpen={isNotValid} message={'Please enter a valid username and password..'} />}
       </Container>
     </>
   );
 };
-
 export default LoginForm;
-
-{/* <Link 
-onClick={() => {
-    navigate('/login')
-}}
-component="button"
-variant="body2"
-underline="hover"
->
-Already have an account? Sign In
-</Link> */}

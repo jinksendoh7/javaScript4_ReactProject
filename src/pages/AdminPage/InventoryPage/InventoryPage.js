@@ -13,11 +13,9 @@ import {
   AppTextConst,
 } from "../../../constants/AppConstants";
 import SpinnerLoader from "../../../components/spinner-loader/SpinnerLoaderComponent";
-import { useNavigate } from "react-router-dom";
 import FilterBarElement from "../../../components/elements/filter-bar/FilterBarElement";
 
 const InventoryPage = () => {
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -31,6 +29,7 @@ const InventoryPage = () => {
   };
 
   const deals = useSelector((state) => state.deals);
+
   const [loading, setLoading] = useState(true);
   const [make, setMake] = useState("All");
   const [filters, setFilters] = useState(make);
@@ -75,7 +74,9 @@ const InventoryPage = () => {
         ]);
       })();
     }, AppNumberConst.TIMEOUT_SEC);
+    return () => clearTimeout(timer);
   };
+
   //delete data in  firestore
   const onRemoveVehicle = async (id) => {
     try {
@@ -85,16 +86,17 @@ const InventoryPage = () => {
     }
   };
 
-  const onRetrieveClick = async (id) => {
+  const onRetrieveClick = async (id) => {  //ERROR EXPECTING RETURN VALUE
     try {
       deals.map((data) => {
         if (data.id === id) {
           setForEditData(data);
         }
+        return console.log(forEditData);
       });
-
-      console.log(forEditData);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -110,41 +112,42 @@ const InventoryPage = () => {
     }, AppNumberConst.TIMEOUT_SEC);
     return () => clearTimeout(timer);
   }, [dispatch]);
+
   return (
     <>
-    <Container maxWidth="xl" sx={{ mt: 3 }}>
-      <Grid
-        container
-        spacing={3}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Grid item xs={6} sm={8} md={9} lg={10}>
-          <div
-            style={{fontWeight: 700, verticalAlign: "top" }}
-          >
-            <span>Vehicle Inventory</span>
-          </div>
+      <Container maxWidth="xl" sx={{ mt: 3 }}>
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Grid item xs={6} sm={8} md={9} lg={10}>
+            <div
+              style={{ fontWeight: 700, verticalAlign: "top" }}
+            >
+              <span>Vehicle Inventory</span>
+            </div>
+          </Grid>
+          <div style={{ flex: 1 }}></div>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button
+              variant="contained"
+              disableElevation
+              color="warning"
+              onClick={(e) => {
+                handleModalOpen(e.target.value);
+              }}
+              value={AppTextConst.ADDMODALTITLE}
+            >
+              <AddBoxOutlinedIcon />
+              &nbsp;{"Add Inventory"}
+            </Button>
+          </Grid>
         </Grid>
-        <div style={{flex:1}}></div>
-        <Grid item xs={6} sm={4} md={3} lg={2}>
-          <Button
-            variant="contained"
-            disableElevation
-            color="warning"
-            onClick={(e) => {
-              handleModalOpen(e.target.value);
-            }}
-            value={AppTextConst.ADDMODALTITLE}
-          >
-            <AddBoxOutlinedIcon />
-            &nbsp;{"Add Inventory"}
-          </Button>
-        </Grid>
-      </Grid>
       </Container>
       <Container maxWidth="xl" sx={{ mt: 3 }}>
         <Grid

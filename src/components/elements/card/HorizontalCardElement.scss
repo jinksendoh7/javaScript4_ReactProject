@@ -1,18 +1,21 @@
 @import "../../../styles/variables.scss";
 
-body{
+body {
     overflow-x: hidden;
 }
-.card-title{
+
+.card-title {
     font-size: 1rem;
     font-weight: 700;
 }
-.card-pricing{
+
+.card-pricing {
     font-size: 1.1rem;
     font-weight: 700;
     color: $ink;
 }
-code{
+
+code {
     font-size: .9rem;
     margin: 0;
 }

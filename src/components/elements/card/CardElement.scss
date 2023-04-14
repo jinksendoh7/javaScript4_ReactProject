@@ -1,26 +1,31 @@
 @import "../../../styles/variables.scss";
-code{
+
+code {
     font-size: .9rem;
 }
-.card-title{
+
+.card-title {
     color: $primary-color;
     font-weight: 700;
     font-size: 1rem;
 }
-.card-currency-price{
+
+.card-currency-price {
     color: $primary-color;
     font-size: 1.5rem;
     font-weight: 700;
-  
+
 }
-.data-text-mileage{
+
+.data-text-mileage {
     font-weight: 700;
     text-align: right;
     font-size: 1rem;
     color: $ink;
 }
-.card-tags{
-    display:flex;
+
+.card-tags {
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
@@ -29,10 +34,12 @@ code{
     width: 100%;
     margin: 1rem 0 0 0;
 }
-.card-button{
+
+.card-button {
     margin-bottom: .5rem;
 }
-.card-highlight{
+
+.card-highlight {
     background-color: $accent-color;
     padding: 7px;
     border-radius: 5px;
@@ -42,8 +49,9 @@ code{
     text-align: center;
     font-weight: 700;
 }
-.flex{
-    display:flex;
+
+.flex {
+    display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
 }

@@ -1,7 +1,6 @@
 import { Alert, AlertTitle } from "@mui/material";
 
 function SuccessMessage({ message }) {
-
     return (
         <Alert severity="success">
             <AlertTitle>Success</AlertTitle>
@@ -9,5 +8,4 @@ function SuccessMessage({ message }) {
         </Alert>
     );
 }
-
 export default SuccessMessage

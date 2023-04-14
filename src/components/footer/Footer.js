@@ -1,4 +1,4 @@
-import { Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import CopyrightComponent from "../copyright/CopyrightComponent";
 import "./Footer.scss";
 
@@ -7,9 +7,9 @@ const Footer = () => {
     <Box className="footerBox" component="footer">
       <Grid className="footerContainer">
         <Grid item sm>
-            <CopyrightComponent/>
+          <CopyrightComponent />
         </Grid>
-       </Grid>
+      </Grid>
     </Box>
   );
 };
