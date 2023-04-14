@@ -5,6 +5,7 @@ export const RoutesConst = {
     SIGNUP_ROUTE: '/signup',
     ADMIN_ROUTE: '/admin',
     ABOUT_ROUTE: '/about',
+    RESET_ROUTE: '/reset',
     ADMIN_DASHBOARD_ROUTE: 'dashboard',
     ADMIN_INVENTORY_ROUTE: 'vehicles',
     ADMIN_CUSTOMERS_ROUTE: 'customers',
@@ -77,5 +78,5 @@ export const ErrorMessageConst = {
 export const SuccessMessageConst = {
   WELCOME_MESSAGE: 'Thank You. Your user account will be reviewed and approved by Sales Department first before using the application.',
   CONSOLE_LOG_ADD_USER: 'User added to the database with ID: ',
-
+  RESET_EMAIL_MESSAGE: 'A link to reset your password has been sent to your email!'
 }

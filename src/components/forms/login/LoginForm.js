@@ -123,9 +123,9 @@ const LoginForm = () => {
                   variant="body2"
                   component="button"
                   underline="hover"
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate('/reset')}
                 >
-                  Forgot Password?
+                 {"Forgot Password?"}
                 </Link>
               </Grid>
               <Grid item>

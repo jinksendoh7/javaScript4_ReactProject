@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import PublicPage from './pages/PublicPage/PublicPage';
 import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";
+import ResetPage from './pages/ResetPage/ResetPage';
 
 /* Admin Pages */
 import InventoryPage from './pages/AdminPage/InventoryPage/InventoryPage'
@@ -25,11 +26,11 @@ export default function App() {
 
   return (
     <>
-
         <Routes>
           <Route path={RoutesConst.HOME_ROUTE} element={<PublicPage />}>
               <Route path={''} element={<ShopPage />}/>
               <Route exact path={RoutesConst.VIEW_DETAIL_PAGE_ROUTE} element={<ViewDetailPage />}/>
+              <Route path={RoutesConst.RESET_ROUTE} element={<ResetPage />} />
           </Route>
           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
@@ -44,7 +45,6 @@ export default function App() {
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
-   
     </>
   );
 }
