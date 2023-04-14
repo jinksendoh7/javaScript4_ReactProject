@@ -50,23 +50,21 @@ const ViewDealsPage = () =>{
     }, [vehicleId, setCustomers]);
     return (
         <> 
+         <Container maxWidth="xl"  sx={{mt:3}}>
           <Grid container spacing={3} 
-            sx={{pb:1,
-                ml:5,
-                mr:3,
-                mb:3,
+            sx={{
                  display:'flex',
                 flexDirection:'row',
                 justifyContent:'space-between',
-                borderBottom:1, borderColor:'#e3e3e3'
+              
                 }} >
             <Grid item xs>
                 <div style={{paddingLeft:25, fontWeight:700, verticalAlign:'top'}}>
                 <span>Offers from Customers </span>
                 </div>
              </Grid>
-            
         </Grid>
+        </Container>  
         <Container maxWidth="xl"  sx={{mt:3}}>
         <Grid container spacing={{ xs: 1, md: 1 }}> 
         <Grid item xs={9}>

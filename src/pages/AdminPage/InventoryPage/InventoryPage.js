@@ -112,28 +112,24 @@ const InventoryPage = () => {
   }, [dispatch]);
   return (
     <>
+    <Container maxWidth="xl" sx={{ mt: 3 }}>
       <Grid
         container
         spacing={3}
         sx={{
-          pb: 1,
-          ml: 5,
-          mr: 3,
-          mb: 3,
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          borderBottom: 1,
-          borderColor: "#e3e3e3",
         }}
       >
         <Grid item xs={6} sm={8} md={9} lg={10}>
           <div
-            style={{ paddingLeft: 25, fontWeight: 700, verticalAlign: "top" }}
+            style={{fontWeight: 700, verticalAlign: "top" }}
           >
             <span>Vehicle Inventory</span>
           </div>
         </Grid>
+        <div style={{flex:1}}></div>
         <Grid item xs={6} sm={4} md={3} lg={2}>
           <Button
             variant="contained"
@@ -149,7 +145,7 @@ const InventoryPage = () => {
           </Button>
         </Grid>
       </Grid>
-
+      </Container>
       <Container maxWidth="xl" sx={{ mt: 3 }}>
         <Grid
           container

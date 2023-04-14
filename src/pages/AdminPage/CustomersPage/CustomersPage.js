@@ -39,23 +39,20 @@ const CustomersPage = () =>{
  
     return(
         <> 
+          <Container maxWidth="xl" sx={{ mt: 3 }}>
           <Grid container spacing={3} 
-            sx={{pb:1,
-                ml:5,
-                mr:3,
-                mb:3,
-                 display:'flex',
+            sx={{ display:'flex',
                 flexDirection:'row',
                 justifyContent:'space-between',
-                borderBottom:1, borderColor:'#e3e3e3'
                 }} >
             <Grid item xs>
-                <div style={{paddingLeft:25, fontWeight:700, verticalAlign:'top'}}>
+                <div style={{fontWeight:700, verticalAlign:'top'}}>
                 <span>Customers</span>
                 </div>
              </Grid>
             
         </Grid>
+        </Container>
         <Container maxWidth="xl"  sx={{mt:3}}>
             <Grid container spacing={{ xs: 1, md: 1 }}> 
                 <Grid item xs>
