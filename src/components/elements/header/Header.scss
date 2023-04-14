@@ -1,30 +1,30 @@
 @import "../../../styles/variables.scss";
 
-.header{
+.header {
     background-color: $paper !important;
     border-bottom: 2px solid $gray !important;
     color: $primary-color !important;
     min-height: 80px !important;
-    
 }
-a{
+
+a {
     color: $ink !important;
 }
-.header-alt{
+
+.header-alt {
     background-color: $paper !important;
     border-bottom: 3px solid $primary-color !important;
     color: $primary-color !important;
-    
 }
-.menu-active{
+
+.menu-active {
     color: $primary-color !important;
     font-weight: 700;
- 
 }
 
 .mainLogo {
-   display: flex;
-   justify-content: flex-start;
-   width: 38%;
-   margin: 20px 10px 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    width: 38%;
+    margin: 20px 10px 20px 0;
 }

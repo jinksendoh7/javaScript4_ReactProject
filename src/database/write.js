@@ -1,26 +1,25 @@
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
 import { db } from "../configs/firebase";
+import {
+    collection,
+    addDoc,
+    updateDoc,
+    doc,
+    deleteDoc,
+} from "firebase/firestore";
 
-export const save = async(collectionName, data) =>{
-
-    try{
+export const save = async (collectionName, data) => {
+    //console.log('Adding...')
+    try {
         const docRef = await addDoc(collection(db, collectionName), data);
         return docRef.id;
-    
     }
-    catch(error){
+    catch (error) {
         throw error
     }
 }
 
-export const update = async(collectionName, data, id) => {
-    console.log('Updating....');
+export const update = async (collectionName, data, id) => {
+    //console.log('Updating....');
     try {
         const docRef = doc(db, collectionName, id);
         await updateDoc(docRef, data);
@@ -33,17 +32,15 @@ export const update = async(collectionName, data, id) => {
     }
 }
 
-export const remove = async(collectionName,  id) =>{
-
-    try{
-        await deleteDoc(doc(db, collectionName,id));
+export const remove = async (collectionName, id) => {
+    //console.log('Removing...')
+    try {
+        await deleteDoc(doc(db, collectionName, id));
         return true
-        
     }
-    catch(error){
+    catch (error) {
         throw new Error('Failed to remove data in the database');;
     }
-    }
+}
 
- 
- 
+

@@ -1,31 +1,31 @@
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 /*Pages */
 import LoginPage from "./pages/LoginPage/LoginPage";
-import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import PublicPage from './pages/PublicPage/PublicPage';
 import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";
+
 /* Admin Pages */
 import InventoryPage from './pages/AdminPage/InventoryPage/InventoryPage'
-import DashboardPage from "./pages/AdminPage/DashboardPage/DashboardPage";
 import AdminPage from './pages/AdminPage/AdminPage';
-import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
+import ShopPage from './pages/PublicPage/ShopPage/ShopPage'
 import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
 import CustomerPage from './pages/AdminPage/CustomersPage/CustomersPage'
 import ViewDealsPage from './pages/AdminPage/DealsPage/ViewDealsPage';
 import UsersPage from './pages/AdminPage/UsersPage/UsersPage';
 import MyAccountPage from './pages/AdminPage/MyAccountPage/MyAccountPage';
+
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
-
-
 import './App.scss';
 
-export default function App () {
+export default function App() {
 
   return (
     <>
+
         <Routes>
           <Route path={RoutesConst.HOME_ROUTE} element={<PublicPage />}>
               <Route path={''} element={<ShopPage />}/>
@@ -48,5 +48,3 @@ export default function App () {
     </>
   );
 }
-
-

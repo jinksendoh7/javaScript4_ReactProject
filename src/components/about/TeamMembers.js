@@ -1,10 +1,7 @@
-import {
-  Container,
-  Grid,
-} from "@mui/material";
+import { useState } from "react";
+import { Container, Grid } from "@mui/material";
 import { load } from "../../database/read";
 import { FireStoreConst } from "../../constants/AppConstants";
-import { useState } from "react";
 import TeamDetails from "./TeamDetails";
 
 const TeamMembers = () => {
@@ -31,5 +28,4 @@ const TeamMembers = () => {
     </Container>
   );
 };
-
 export default TeamMembers;

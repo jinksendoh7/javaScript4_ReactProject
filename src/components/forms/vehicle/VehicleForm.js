@@ -10,8 +10,8 @@ import {
   InputAdornment,
   Button,
 } from "@mui/material";
-import { FireStoreConst, AppTextConst } from "../../../constants/AppConstants";
 import * as database from "../../../database";
+import { FireStoreConst, AppTextConst } from "../../../constants/AppConstants";
 
 const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
   //forms
@@ -287,5 +287,4 @@ const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
     </>
   );
 };
-
 export default VehicleForm;

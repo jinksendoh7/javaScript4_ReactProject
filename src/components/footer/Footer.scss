@@ -23,11 +23,12 @@
     align-items: center;
 
 }
+
 .footerContainer {
-    @include breakpoint-sm{
+    @include breakpoint-sm {
         flex-direction: column;
         justify-content: center;
-    
+
     }
-    
+
 }

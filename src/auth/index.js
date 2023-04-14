@@ -1,2 +1,7 @@
-export {login, guardAuth,logout } from './auth'
+export {
+    login,
+    guardAuth,
+    logout,
+    SignUpWithFirebaseAuth
+} from './auth'
 

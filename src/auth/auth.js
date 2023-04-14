@@ -1,24 +1,21 @@
+import { auth } from '../configs/firebase'
+
 import {
   createUserWithEmailAndPassword,
-  updateProfile,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   updateEmail,
   updatePassword,
-  signOut,
 } from 'firebase/auth';
-import { auth } from '../configs/firebase'
-
 
 export const SignUpWithFirebaseAuth = async (email, password) => {
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
     return (result.user)
-  }catch(e) {
+  } catch (e) {
     console.log(e)
   }
 }
-
 
 export const login = async (email, password) => {
   try {
@@ -60,7 +57,6 @@ export const guardAuth = async () => {
   catch (error) {
     console.log(error);
   }
-
 }
 
 async function updatePasswordForCurrentUser(currentUser,password) {
@@ -74,4 +70,5 @@ async function updatePasswordForCurrentUser(currentUser,password) {
   catch (error) {
     console.log(error);
   }
+
 }
