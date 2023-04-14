@@ -33,11 +33,32 @@ import MuiAppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
+
+import DrawerHeader from './DrawerHeader';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
+import Button from '@mui/material/Button';
+import Logo from '../../logo/logo';
+import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
+
+import './Header.scss';
+import { RoutesConst } from '../../../constants/AppConstants';
+import { useDispatch} from 'react-redux';
+import * as auth from '../../../auth';
+import {useNavigate} from 'react-router-dom';
+import {logout} from '../../../redux/slices/usersSlice';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import {useState} from 'react'
+import SnackbarElement from '../snack-bar/SnackbarElement';
+
 
 const drawerWidth = 300;
 
@@ -102,6 +123,7 @@ export default function MiniDrawer(props) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLogout, setIsLogout] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -201,13 +223,22 @@ export default function MiniDrawer(props) {
                   <NavLink className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/' + text.replace(" ", "-").toLowerCase()}>{OtherIcons[index]}</NavLink>
                 </ListItemIcon>
                 <ListItemText primary={
-                  <NavLink className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/' + text.replace(" ", "-").toLowerCase()}>{text}</NavLink>
+
+                    text ==='Sign Out' ?
+                   <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} to={'/admin/'+ text.replace(" ","-").toLowerCase()}>{text}</NavLink>
+                  :
+                  <NavLink  className={({ isActive }) => (isActive ? 'menu-active' : '')} onClick={()=>onLogout()}>{text}</NavLink>
+
                 } sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
-    </>
+
+      {isLogout && <SnackbarElement isOpen={isLogout} message={'You have succesffuly logout.'}/>}
+    
+      </>
+
   );
 }

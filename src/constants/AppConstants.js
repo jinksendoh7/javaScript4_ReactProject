@@ -1,16 +1,19 @@
 export const RoutesConst = {
-  HOME_ROUTE: '/',
-  LOGIN_ROUTE: '/login',
-  SIGNUP_ROUTE: '/signup',
-  ADMIN_ROUTE: '/admin',
-  ABOUT_ROUTE: '/about',
-  ADMIN_DASHBOARD_ROUTE: 'dashboard',
-  ADMIN_INVENTORY_ROUTE: 'vehicles',
-  ADMIN_CUSTOMERS_ROUTE: 'customers',
-  ADMIN_VISITS_ROUTE: 'visits',
-  VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
-  ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId',
-  ADMIN_USERS_ROUTE: 'users'
+
+    HOME_ROUTE: '/',
+    LOGIN_ROUTE: '/login',
+    SIGNUP_ROUTE: '/signup',
+    ADMIN_ROUTE: '/admin',
+    ABOUT_ROUTE: '/about',
+    ADMIN_DASHBOARD_ROUTE: 'dashboard',
+    ADMIN_INVENTORY_ROUTE: 'vehicles',
+    ADMIN_CUSTOMERS_ROUTE: 'customers',
+    ADMIN_VISITS_ROUTE: 'visits',
+    VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
+    ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId',
+    ADMIN_USERS_ROUTE: 'users',
+    ADMIN_MY_ACCOUNT_ROUTE: 'my-account'
+
 }
 
 export const AppNumberConst = {
