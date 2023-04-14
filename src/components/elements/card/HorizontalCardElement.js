@@ -58,13 +58,13 @@ const retrieveClick = () => {
   };
 
   return (
-    <Card sx={{ display: 'flex',border:1, borderColor: '#e3e3e3'}} elevation={0}>
+    <Card sx={{ display: 'flex',border:1, marginX:2, marginY: 0, borderColor: '#e3e3e3'}} elevation={0}>
     <CardMedia
         component="img"
         sx={{ maxWidth: 200, height: 165 }}
         image={data.imageUrl}
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: 370}}>
+      <Box sx={{ display: 'flex'}}>
         <CardContent sx={{flex:'1 1 auto', cursor:'pointer'}}>
           <div className="flex">
               <div>

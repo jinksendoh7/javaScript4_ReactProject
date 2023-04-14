@@ -17,6 +17,8 @@ import { RoutesConst } from '../../../constants/AppConstants';
 import SnackbarElement from '../../elements/snack-bar/SnackbarElement';
 import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
+import { FireStoreConst } from '../../../constants/AppConstants';
+import * as database from '../../../database'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -41,15 +43,23 @@ const LoginForm = () => {
       setIsNotValid(false);
       const userAuth = await auth.login(email, password)
       if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL,
-          })
-        );
-        navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_INVENTORY_ROUTE));
+        //check isActive
+        const isActive = await database.loadByParamId(FireStoreConst.USER_DOC, userAuth.uid);
+        if(isActive){
+          dispatch(
+            login({
+              email: userAuth.email,
+              uid: userAuth.uid,
+              displayName: userAuth.displayName,
+              photoUrl: userAuth.photoURL,
+            })
+          );
+          navigate(RoutesConst.ADMIN_ROUTE.concat('/', RoutesConst.ADMIN_INVENTORY_ROUTE));
+        }
+      else{
+        setIsNotValid(true);
+      }
+      
       }
       else{
         setIsNotValid(true);

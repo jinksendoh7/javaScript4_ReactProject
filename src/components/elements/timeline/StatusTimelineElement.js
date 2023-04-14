@@ -25,7 +25,8 @@ const StatusTimelineElement = ({id}) =>{
   useEffect(() => {
     setLoading(true);
     (async() =>{ 
-      const data = await database.loadByParamId(FireStoreConst.LOGS_CUSTOMER_DEALS, id);
+      let data = await database.loadByParamId(FireStoreConst.LOGS_CUSTOMER_DEALS, id);
+      console.log(Object.entries(data).sort((a,b)=>b[1]-a[1]));
       setData(data);
       setLoading(false);
         })() 

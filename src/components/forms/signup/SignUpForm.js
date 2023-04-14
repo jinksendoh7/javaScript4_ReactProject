@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Button, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import { serverTimestamp } from "firebase/firestore";
 import ErrorMessage from "../../error/ErrorMessage";
 import SuccessMessage from "../../success/SuccessMessage";
 
+import * as database from '../../../database';
 
 const SignUpForm = () => {
 
@@ -29,7 +30,7 @@ const SignUpForm = () => {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
-
+    
     const navigate = useNavigate();
 
     const clearForm = () => {
@@ -57,27 +58,38 @@ const SignUpForm = () => {
         }
 
         else {
-           await SignUpWithFirebaseAuth(email, password);
-            try {
-                const docRef = await StorageService.createDoc(FireStoreConst.USER_DOC, {
+           const result = await SignUpWithFirebaseAuth(email, password);
+            if(result){
+                const docRef = database.save(FireStoreConst.USER_DOC, {
+                    id: result.uid,
                     timestamp: serverTimestamp(),
                     firstname: firstName,
                     lastname: lastName,
                     email: email,
-                    recieve: recieve,
+                    subscribe: recieve,
+                    isActive: false,
                 });
-                console.log(SuccessMessageConst.CONSOLE_LOG_ADD_USER, docRef.id);
-                clearForm();
-                setIsSuccess(true);
-                setIsError(false);
-                setSuccessMessage(SuccessMessageConst.WELCOME_MESSAGE);
-            } catch (e) {
-                console.error(ErrorMessageConst.ERROR_USER_ADD, e);
+                if(docRef){
+                    clearForm();
+                    setIsSuccess(true);
+                    setIsError(false);
+                    setSuccessMessage(SuccessMessageConst.WELCOME_MESSAGE);
+                }
+                else{
+                    setIsError(true);
+                    setErrMessage('Theres an error on signing up. Please contact the administrator.');
+                    setIsSuccess(false);
+                }
+              
+            } 
+            else{
                 setIsError(true);
-                setErrMessage(e.message);
+                setErrMessage('Your email address was already exist in the system. Please try a diffent email and password.');
                 setIsSuccess(false);
+            }   
+            
             }
-        }
+        
     }
 
     return (

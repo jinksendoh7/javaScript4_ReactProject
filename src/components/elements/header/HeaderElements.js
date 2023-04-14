@@ -36,6 +36,7 @@ import { useDispatch} from 'react-redux';
 import * as auth from '../../../auth';
 import {useNavigate} from 'react-router-dom';
 import {logout} from '../../../redux/slices/usersSlice';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 
 const drawerWidth = 300;
 
@@ -117,8 +118,8 @@ export default function MiniDrawer(props) {
     navigate(RoutesConst.HOME_ROUTE);
   }
 
-  const MenuIcons = [<GroupsOutlinedIcon/>, <DirectionsCarFilledOutlinedIcon/>]
-  const OtherIcons = [<AccountCircleOutlinedIcon/>,<SettingsOutlinedIcon/>,<ExitToAppOutlinedIcon/>];
+  const MenuIcons = [<GroupsOutlinedIcon/>, <DirectionsCarFilledOutlinedIcon/>, <PeopleOutlinedIcon/>]
+  const OtherIcons = [<AccountCircleOutlinedIcon/>,<ExitToAppOutlinedIcon/>];
   return (
     <>
       <CssBaseline />
@@ -154,7 +155,7 @@ export default function MiniDrawer(props) {
         </DrawerHeader>
         <Divider />
         <List sx={{mt:5}}>
-          {[ 'Customers', 'Vehicles' ].map((text, index) => (
+          {[ 'Customers', 'Vehicles', 'Users' ].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block'}}>
               <ListItemButton
                 sx={{
@@ -181,7 +182,7 @@ export default function MiniDrawer(props) {
         </List>
         <Divider />
         <List>
-          {['My Account', 'Settings', 'Signout'].map((text, index) => (
+          {['My Account','Signout'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{

@@ -9,7 +9,8 @@ export const RoutesConst = {
     ADMIN_CUSTOMERS_ROUTE: 'customers',
     ADMIN_VISITS_ROUTE: 'visits',
     VIEW_DETAIL_PAGE_ROUTE: 'view/:id',
-    ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId'
+    ADMIN_VIEW_DEALS_ROUTE: 'customers/:vehicleId',
+    ADMIN_USERS_ROUTE: 'users'
 }
 
 export const AppNumberConst = {
@@ -55,7 +56,7 @@ export const FireStoreConst = {
     CUSTOMER_DEALS: 'CustomerDeals',
 
     LOGS_CUSTOMER_DEALS: 'LogsCustomerDeals',
-    USER_DOC: 'users'
+    USER_DOC: 'AppUsers'
 }
 
 export const ErrorMessageConst = {
@@ -69,7 +70,7 @@ export const ErrorMessageConst = {
 }
 
 export const SuccessMessageConst = {
-    WELCOME_MESSAGE: 'Welcome to Advanatage Auto Sales',
+    WELCOME_MESSAGE: 'Thank You. Your user account will be reviewed and approved by Sales Department first before using the application.',
     CONSOLE_LOG_ADD_USER: 'User added to the database with ID: ',
 
 }

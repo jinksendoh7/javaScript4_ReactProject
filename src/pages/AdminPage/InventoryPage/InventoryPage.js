@@ -112,28 +112,28 @@ const InventoryPage = () =>{
       }, [dispatch]);
     return(
         <> 
+        
+        <Container maxWidth={"xl"}>
         <Grid container spacing={3} 
-            sx={{pb:1,
-                ml:5,
-                mr:3,
-                mb:3,
+            sx={{
                  display:'flex',
                 flexDirection:'row',
                 justifyContent:'space-between',
-                borderBottom:1, borderColor:'#e3e3e3'
                 }} >
-            <Grid item xs={6} sm={8} md={9} lg={10}>
-                <div style={{paddingLeft:25, fontWeight:700, verticalAlign:'top'}}>
+            <Grid item xs>
+                <div style={{ fontWeight:700, verticalAlign:'top'}}>
                 <span>Vehicle Inventory</span>
                 </div>
              </Grid>
-            <Grid item xs={6} sm={4} md={3} lg={2}>
+             <div style={{flex: 5}}></div>
+            <Grid item xs>
             <Button variant="contained" disableElevation color="warning" onClick={handleModalOpen}>
                  <AddBoxOutlinedIcon/>&nbsp;{'Add Inventory'}
             </Button>
             </Grid>
         </Grid>
       
+        </Container>
         <Container maxWidth="xl"  sx={{mt:3}}>
         <Grid container spacing={{ xs: 1, md: 1 }} sx={{mb:3, p:1, borderRadius:1, backgroundColor: '#f5f4f4', border:1, borderColor: '#e3e3e3'}}>
           <FilterBarElement
@@ -156,7 +156,7 @@ const InventoryPage = () =>{
         !loading  && <>
        <Grid container spacing={{ xs: 1, md: 1 }}>
             {deals && Array.from(deals).map((deal, index) => (
-                <Grid item sm={12} md={6} key={index} sx={{p:3}}>
+                <Grid item xs={12} sm={12} md={12} lg={6} xl={6} key={index} sx={{ml:0}}>
                     <HorizontalCardElement
                     financeMode={financeMode}
                     terms={terms}

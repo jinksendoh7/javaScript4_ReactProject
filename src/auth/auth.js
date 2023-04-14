@@ -3,6 +3,8 @@ import {
   updateProfile,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  updateEmail,
+  updatePassword,
   signOut,
 } from 'firebase/auth';
 import { auth } from '../configs/firebase'
@@ -61,6 +63,10 @@ export const guardAuth = async () => {
 
 }
 
-export const loginWithGoogle = async () => {
-  console.log('Logging in...')
+async function updateEmailForCurrentUser(currentUser, email) {
+  return await updateEmail(currentUser, email);
+}
+
+async function updatePasswordForCurrentUser(currentUser,password) {
+  return await updatePassword(currentUser, password);
 }

@@ -14,6 +14,7 @@ import ShopPage  from './pages/PublicPage/ShopPage/ShopPage'
 import ViewDetailPage from './pages/PublicPage/ShopPage/ViewDetailPage';
 import CustomerPage from './pages/AdminPage/CustomersPage/CustomersPage'
 import ViewDealsPage from './pages/AdminPage/DealsPage/ViewDealsPage';
+import UsersPage from './pages/AdminPage/UsersPage/UsersPage';
 /*Constants */
 import { RoutesConst } from "./constants/AppConstants";
 
@@ -37,6 +38,7 @@ export default function App () {
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
               <Route path={RoutesConst.ADMIN_CUSTOMERS_ROUTE} element={<CustomerPage />}/>
               <Route exact path={RoutesConst.ADMIN_VIEW_DEALS_ROUTE} element={<ViewDealsPage />}/>
+              <Route path={RoutesConst.ADMIN_USERS_ROUTE} element={<UsersPage />}/>
           </Route>
          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
