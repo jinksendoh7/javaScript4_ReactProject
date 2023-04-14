@@ -6,11 +6,9 @@ import Logo from '../../logo/logo';
 import MainLogo from '../../../assets/images/AdvanatageAutoSales_Logo.png';
 import CopyrightComponet from "../../copyright/CopyrightComponent";
 import ErrorMessage from "../../error/ErrorMessage";
-import SuccessMessage from "../../success/SuccessMessage";
 import SnackbarElement from "../../elements/snack-bar/SnackbarElement";
 
 import { reset } from "../../../database/write";
-import { RoutesConst } from "../../../constants/AppConstants";
 
 import { ErrorMessageConst, SuccessMessageConst } from "../../../constants/AppConstants";
 
@@ -28,19 +26,22 @@ const ResetForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            if (email.length > 0) {
+       setIsError(false);
+       setIsSuccess(false);
+        try {   
                const emailTrue = await reset(email);
+                console.log(emailTrue);
                 if (emailTrue) {
                     setIsSuccess(true);
                     setSuccessMessage(SuccessMessageConst.RESET_EMAIL_MESSAGE);
                     setIsError(false);
                 }
-            } else {
-                setIsError(true);
-                setErrorMessage(ErrorMessageConst.EMAIL_DOES_NOT_EXISTS);
-                setIsSuccess(false);
-            }
+                else{
+                    setIsError(true);
+                    setErrorMessage(ErrorMessageConst.EMAIL_DOES_NOT_EXISTS);
+                    setIsSuccess(false);
+                }
+          
         } catch (error) {
             console.log(error);
         }

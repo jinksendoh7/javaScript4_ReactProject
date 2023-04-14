@@ -1,13 +1,19 @@
 
-import { Grid, Container, Avatar, Button, Badge } from '@mui/material';
+import { Grid, Container, Avatar, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import * as database from '../../../database';
 import { FireStoreConst } from '../../../constants/AppConstants';
 import './UserPage.scss';
 import { lightBlue } from '@mui/material/colors';
-import { generate } from "get-initials"
+
 import SnackbarElement from '../../../components/elements/snack-bar/SnackbarElement';
 
+function stringAvatar(name) {
+    return {
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    };
+  }
+  
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]);
@@ -49,14 +55,14 @@ const UsersPage = () => {
                     </div>
                 </Grid>
             </Grid>
-            <Grid container spacing={{ xs: 1, md: 1 }} sx={{ mt: 3 }}>
+            <Grid container spacing={{ xs: 1, md: 1 }} sx={{ mt: 3 }} columns={12}>
                 {users && Array.from(users).map((user, index) => (
-                    <Grid key={index} item xs
+                    <Grid key={index} item xs={2}
                         sx={{ border: 1, borderColor: '#e3e3e3', m: 1, borderRadius: 1, p: 3 }}>
                         <div className="user-avatar">
 
                             <Avatar sx={{ bgcolor: lightBlue[800], width: 64, mt: 2, height: 64, textAlign: 'center' }} alt={user.firstname + ' ' + user.lastname}>
-                                {generate(user.firstname, user.lastname)}
+                                {stringAvatar(user.firstname +' '+ user.lastname)}
                             </Avatar>
                         </div>
                         <div className="user-title">

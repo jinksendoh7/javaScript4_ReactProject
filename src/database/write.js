@@ -49,10 +49,12 @@ export const remove = async (collectionName, id) => {
 
 export const reset = async (email) => {
     try{
-        await sendPasswordResetEmail(auth, email);
-        console.log('Password has been reset');
+         await sendPasswordResetEmail(auth, email);
+         console.log('Password has been reset');
+         return true;
     } catch(error) {
         console.error(error);
+        return false;
         //alert('Please verify you have the correct email.');
     }
 }

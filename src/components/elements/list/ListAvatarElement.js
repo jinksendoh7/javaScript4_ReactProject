@@ -19,7 +19,7 @@ import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlin
 import TimelineIcon from '@mui/icons-material/Timeline';
 
 import { NumericFormat } from 'react-number-format';
-import { generate } from "get-initials"
+
 import SnackbarElement from '../snack-bar/SnackbarElement';
 
 import * as database from '../../../database'
@@ -32,8 +32,14 @@ const ListAvatarElement = ({ data, handleModalOpen }) => {
 
     const [statusChange, setStatusChange] = useState(data.status);
     const [isUpdated, setIsUpdated] = useState(false);
-    const [open, setOpen] = useState(false)   //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< open is never used 
-
+   
+    function stringAvatar(name) {
+        return {
+          children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        };
+      }
+  
+      
     const handleStatusChange = async (status) => {
         const id = data.id;
         setIsUpdated(false);
@@ -83,7 +89,8 @@ const ListAvatarElement = ({ data, handleModalOpen }) => {
                     <List sx={{ width: 'auto', bgcolor: 'background.paper' }}>
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
-                                <Avatar sx={{ bgcolor: lightBlue[800], mt: 1, width: 48, height: 48, mr: 1 }} alt={data.firstname + ' ' + data.lastname}>{generate(data.firstname, data.lastname)}</Avatar>
+                                <Avatar sx={{ bgcolor: lightBlue[800], mt: 1, width: 48, height: 48, mr: 1 }} alt={data.firstname + ' ' + data.lastname}>
+                                {stringAvatar(data.firstname +' '+ data.lastname)}</Avatar>
                             </ListItemAvatar>
                             <div>
                                 <div className="data-title-alt">{data.firstname + ' ' + data.lastname}</div>
@@ -165,7 +172,7 @@ const ListAvatarElement = ({ data, handleModalOpen }) => {
                                         <b>Last Update: </b> {data.createdAt.toDate().toDateString()} {data.createdAt.toDate().toLocaleTimeString('en-US')}
                                     </div>
                                     <Button color="primary"
-                                        disableElevation size="small" variant="outlined" sx={{ mt: 1, width: 160 }} onClick={() => { setOpen(false); handleModalOpen(data.id) }}>
+                                        disableElevation size="small" variant="outlined" sx={{ mt: 1, width: 160 }} onClick={() => {  handleModalOpen(data.id) }}>
                                         <TimelineIcon /> View Timeline
                                     </Button>
                                 </div>

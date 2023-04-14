@@ -123,6 +123,7 @@ export default function MiniDrawer(props) {
 
   const onLogout = () => {
     auth.logout();
+    setIsLogout(true);
     dispatch(logout());
     navigate(RoutesConst.HOME_ROUTE);
   }

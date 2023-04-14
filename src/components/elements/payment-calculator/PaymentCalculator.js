@@ -113,7 +113,6 @@ const PaymentCalculator = ({ price, vehicleName, vin, vehicleId, stockNumber }) 
         console.log('update logs...')
         setIsSaved(true);
         return update;
-        handleModalClose();
       }
     })();
   }
@@ -145,8 +144,7 @@ const PaymentCalculator = ({ price, vehicleName, vin, vehicleId, stockNumber }) 
 
   useEffect(() => {
     updateFinancing();
-  }, [isTaxIncluded, terms, frequency]); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  }, []); 
   return (
     <>
       <Box sx={{ width: '100%' }}>

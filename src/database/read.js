@@ -41,7 +41,7 @@ export const load = async(collectionName, sort) =>{
     try{
       const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('timestamp')));
       querySnapshot.forEach((doc) => {
-        if(uid == doc.data().id)
+        if(uid === doc.data().id)
             data.push({
               ...doc.data(),
               id: doc.id
@@ -59,7 +59,7 @@ export const chkIfUserActive = async(collectionName, id) =>{
   try{
     const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('timestamp')));
     querySnapshot.forEach((doc) => {
-      if(id == doc.data().id && doc.data().isActive){
+      if(id === doc.data().id && doc.data().isActive){
         return true;
       }
    
@@ -78,7 +78,7 @@ export const loadByParamId = async(collectionName, paramId)=>{
   
     const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('createdAt')));
     querySnapshot.forEach((doc) => {
-      if(paramId == doc.data().id){
+      if(paramId === doc.data().id){
         data.push({
           ...doc.data(),
           id: doc.id

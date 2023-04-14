@@ -4,8 +4,6 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  updateEmail,
-  updatePassword,
 } from 'firebase/auth';
 
 export const SignUpWithFirebaseAuth = async (email, password) => {
@@ -59,16 +57,3 @@ export const guardAuth = async () => {
   }
 }
 
-async function updatePasswordForCurrentUser(currentUser,password) {
-  try {
-    const isUpdate = await updatePassword(currentUser, password);
-    if(isUpdate){
-      return true;
-    }
-    return false;
-  }
-  catch (error) {
-    console.log(error);
-  }
-
-}
