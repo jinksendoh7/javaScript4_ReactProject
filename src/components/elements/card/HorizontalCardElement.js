@@ -38,7 +38,6 @@ export default function HorizontalCardElement({ data, handleModalOpen, financeMo
   useEffect(() => {
     (async () => {
       const total = await database.countTotalById(FireStoreConst.CUSTOMER_DEALS, data.id);
-      console.log(total, 'total')
       setTotal(total)
     })()
 

@@ -45,7 +45,6 @@ const MyAccountPage = ()=>{
           (async()=>{
             const timer = setTimeout(() => {
                onAuthStateChanged(auth, (userAuth) => {
-                console.log(userAuth)
                 if (userAuth.uid) {
                     (async () => {
                     const user = await database.loadByUid(FireStoreConst.USER_DOC, userAuth.uid);

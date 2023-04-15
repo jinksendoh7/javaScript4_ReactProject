@@ -10,8 +10,8 @@ export const SignUpWithFirebaseAuth = async (email, password) => {
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
     return (result.user)
-  } catch (e) {
-    console.log(e)
+  } catch (error) {
+    new Error(error)
   }
 }
 
@@ -21,7 +21,7 @@ export const login = async (email, password) => {
     return userAuth.user;
   }
   catch (error) {
-    console.log(error);
+    new Error(error)
   }
 }
 
@@ -31,7 +31,7 @@ export const logout = async () => {
     return true;
   }
   catch (error) {
-    console.log(error);
+    new Error(error)
   }
 }
 
@@ -53,7 +53,7 @@ export const guardAuth = async () => {
     });
   }
   catch (error) {
-    console.log(error);
+    new Error(error)
   }
 }
 

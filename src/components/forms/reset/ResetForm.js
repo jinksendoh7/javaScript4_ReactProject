@@ -30,7 +30,6 @@ const ResetForm = () => {
        setIsSuccess(false);
         try {   
                const emailTrue = await reset(email);
-                console.log(emailTrue);
                 if (emailTrue) {
                     setIsSuccess(true);
                     setSuccessMessage(SuccessMessageConst.RESET_EMAIL_MESSAGE);
@@ -38,12 +37,14 @@ const ResetForm = () => {
                 }
                 else{
                     setIsError(true);
-                    setErrorMessage(ErrorMessageConst.EMAIL_DOES_NOT_EXISTS);
+                    setErrorMessage(ErrorMessageConst.EMAIL_DOES_NOT_EXIST);
                     setIsSuccess(false);
                 }
           
         } catch (error) {
-            console.log(error);
+            setIsError(true);
+            setErrorMessage(ErrorMessageConst.EMAIL_DOES_NOT_EXISTS);
+            setIsSuccess(false);
         }
     }
 
@@ -87,7 +88,7 @@ const ResetForm = () => {
                         columns={16}
                         justifyContent="space-around"
                         alignItems="center"
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, mb:3 }}
                     >
                         <TextField
                             margin="normal"
@@ -97,6 +98,7 @@ const ResetForm = () => {
                             label="Email Address"
                             autoComplete="email"
                             autoFocus
+                            fullWidth
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -119,7 +121,7 @@ const ResetForm = () => {
                         </Button>
                     </Grid>
 
-                    {isError && <ErrorMessage message={errorMessage} />} 
+                   
 
                     <Grid item container justifyContent="center" sx={{ mb: 1 }}>
                         <Link
@@ -130,13 +132,14 @@ const ResetForm = () => {
                             variant="body2"
                             underline="hover"
                         >
-                            Remember your password?
+                            Take me to Sign-in
                         </Link>
                     </Grid>
                     <CopyrightComponet />
                 </Box>
             </Box>
             {isSuccess && <SnackbarElement isOpen={isSuccess} message={successMessage} />}
+            {isError && <SnackbarElement isOpen={isError} message={errorMessage} />}
         </Container>
     )
 }

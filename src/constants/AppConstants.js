@@ -72,7 +72,7 @@ export const ErrorMessageConst = {
   INVALID_EMAIL_PASSWORD: 'Please enter a valid email and password',
   NAME_NOT_ENTERED: 'Please fill in the required name fields',
   ERROR_USER_ADD: 'Error adding user: ',
-
+  EMAIL_DOES_NOT_EXIST: 'Email address does not exist.'
 }
 
 export const SuccessMessageConst = {

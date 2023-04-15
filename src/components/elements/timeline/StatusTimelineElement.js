@@ -29,12 +29,10 @@ const StatusTimelineElement = ({ id }) => {
     setLoading(true);
     (async () => {
       let data = await database.loadByParamId(FireStoreConst.LOGS_CUSTOMER_DEALS, id);
-      console.log(Object.entries(data).sort((a, b) => b[1] - a[1]));
       setData(data);
       setLoading(false);
     })()
-  }, []);  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  }, []);  
   return (
     <div style={{ minHeight: 380, width: '100%', minWidth: 340 }}>
       {!loading &&

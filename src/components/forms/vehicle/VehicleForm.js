@@ -100,14 +100,13 @@ const VehicleForm = ({ handleCloseModal, modalType, forEditData }) => {
     try {
       if (modalType === AppTextConst.ADDMODALTITLE) {
         await database.save(FireStoreConst.INVENTORY_VEHICLES, data);
-        console.log("Added!");
       } else {
         await database.update(
           FireStoreConst.INVENTORY_VEHICLES,
           data,
           forEditData.id
         );
-        console.log("Edit!");
+  
       }
 
       handleCloseModal();

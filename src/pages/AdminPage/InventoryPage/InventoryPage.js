@@ -92,7 +92,7 @@ const InventoryPage = () => {
         if (data.id === id) {
           setForEditData(data);
         }
-        return console.log(forEditData);
+        return null;
       });
     } catch (e) {
       console.log(e);
@@ -115,7 +115,7 @@ const InventoryPage = () => {
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ mt: 3 }}>
+      <Container maxWidth="xl" sx={{ mt: 3, mb:3 }}>
         <Grid
           container
           spacing={3}

@@ -97,7 +97,7 @@ const PaymentCalculator = ({ price, vehicleName, vin, vehicleId, stockNumber }) 
         
         const updateLog = updateLogs(log);
         if (save && updateLog) {
-          console.log('saved...')
+          
           setIsSaved(true);
         }
         handleModalClose();
@@ -119,7 +119,6 @@ const PaymentCalculator = ({ price, vehicleName, vin, vehicleId, stockNumber }) 
 
   const handleIncludeTax = () => {
     setIsTaxIncluded(!isTaxIncluded);
-    console.log(isTaxIncluded, '40')
     updateFinancing();
   };
 

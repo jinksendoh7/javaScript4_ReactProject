@@ -27,11 +27,11 @@ export const update = async (collectionName, data, id) => {
     try {
         const docRef = doc(db, collectionName, id);
         await updateDoc(docRef, data);
-        console.log('Success updating: ', docRef.id)
+       // console.log('Success updating: ', docRef.id)
         return true;
     }
     catch (error) {
-        console.error(error);
+       // console.log(error);
         return false;
     }
 }
@@ -53,7 +53,7 @@ export const reset = async (email) => {
          console.log('Password has been reset');
          return true;
     } catch(error) {
-        console.error(error);
+       // console.error(error);
         return false;
         //alert('Please verify you have the correct email.');
     }

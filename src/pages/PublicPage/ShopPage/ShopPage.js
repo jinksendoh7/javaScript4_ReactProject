@@ -102,7 +102,7 @@ const ShopPage = () => {
             </Grid>
             {
                 !loading && <>
-                    <Grid container spacing={{ xs: 2, md: 2 }} sx={{ overflow: 'hidden' }}>
+                    <Grid container spacing={{ xs: 2, md: 2 }} sx={{ mb:12, overflow: 'hidden' }}>
                         {deals && Array.from(deals).map((deal, index) => (
                             <Grid item xs key={index}>
                                 <CardElement

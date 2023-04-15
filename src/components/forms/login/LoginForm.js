@@ -37,9 +37,11 @@ const LoginForm = () => {
     try {
       setIsNotValid(false);
       const userAuth = await auth.login(email, password)
-      if (userAuth) {
+      if (userAuth.email) {
         //check isActive
+     
         const isActive = await database.chkIfUserActive(FireStoreConst.USER_DOC, userAuth.uid);
+   
         if (isActive) {
           dispatch(
             login({
@@ -60,7 +62,7 @@ const LoginForm = () => {
       }
     }
     catch (e) {
-      console.log(e);
+      setIsNotValid(true);
     }
   };
 

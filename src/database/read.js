@@ -36,7 +36,7 @@ export const load = async(collectionName, sort) =>{
     }
   }
   export const loadByUid = async(collectionName, uid) =>{
-    console.log(uid,'UID')
+
     let data = [];
     try{
       const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('timestamp')));
@@ -58,13 +58,14 @@ export const load = async(collectionName, sort) =>{
 export const chkIfUserActive = async(collectionName, id) =>{
   try{
     const querySnapshot = await getDocs(query(collection(db, collectionName), orderBy('timestamp')));
+    let response = false;
     querySnapshot.forEach((doc) => {
-      if(id === doc.data().id && doc.data().isActive){
-        return true;
+      if(id === doc.data().id && doc.data().isActive === true){
+        response = true;
       }
    
     });
-        return false;
+        return response;
   }
   catch(error){
       throw new Error('Failed to load the data in the database' + error);

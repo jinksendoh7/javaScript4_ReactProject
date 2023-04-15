@@ -5,7 +5,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import PublicPage from './pages/PublicPage/PublicPage';
-import AboutPage from "./pages/PublicPage/AboutPage/AboutPage";
 import ResetPage from './pages/ResetPage/ResetPage';
 
 /* Admin Pages */
@@ -34,7 +33,6 @@ export default function App() {
           </Route>
           <Route path={RoutesConst.SIGNUP_ROUTE} element={<SignUpPage />} />
           <Route path={RoutesConst.LOGIN_ROUTE} element={<LoginPage />} />
-          <Route path={RoutesConst.ABOUT_ROUTE} element={<AboutPage/>}></Route>
           <Route path={RoutesConst.ADMIN_ROUTE} element={<AdminPage />}>
               <Route path={''} element={<InventoryPage />}/>
               <Route path={RoutesConst.ADMIN_INVENTORY_ROUTE} element={<InventoryPage />}/>
