@@ -9,22 +9,6 @@ import LoginButton from './buttons/LoginButton';
 
 function HeaderPublic() {
 
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);           DOUBLE CHECK IF NEEDED THIS PAGE
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
-
-
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
-
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
-
   return (
     <AppBar position="fixed" elevation={0} className='header-alt'>
       <Container maxWidth="xl">

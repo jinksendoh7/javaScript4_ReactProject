@@ -14,6 +14,7 @@ import {
 } from "../../../constants/AppConstants";
 import SpinnerLoader from "../../../components/spinner-loader/SpinnerLoaderComponent";
 import FilterBarElement from "../../../components/elements/filter-bar/FilterBarElement";
+import './InventoryPage.scss';
 
 const InventoryPage = () => {
   const [open, setOpen] = useState(false);
@@ -115,25 +116,16 @@ const InventoryPage = () => {
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ mt: 3, mb:3 }}>
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Grid item xs={6} sm={8} md={9} lg={10}>
+      <Container maxWidth={false} sx={{ my:3}}>
+        <div className="flex-root">
+    
             <div
               style={{ fontWeight: 700, verticalAlign: "top" }}
             >
               <span>Vehicle Inventory</span>
             </div>
-          </Grid>
           <div style={{ flex: 1 }}></div>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
+          
             <Button
               variant="contained"
               disableElevation
@@ -146,22 +138,13 @@ const InventoryPage = () => {
               <AddBoxOutlinedIcon />
               &nbsp;{"Add Inventory"}
             </Button>
-          </Grid>
-        </Grid>
+    
+        </div>
+      
       </Container>
-      <Container maxWidth="xl" sx={{ mt: 3 }}>
-        <Grid
-          container
-          spacing={{ xs: 1, md: 1 }}
-          sx={{
-            mb: 3,
-            p: 1,
-            borderRadius: 1,
-            backgroundColor: "#f5f4f4",
-            border: 1,
-            borderColor: "#e3e3e3",
-          }}
-        >
+      <Container maxWidth="xl">
+      <Grid container spacing={{ xs: 1, md: 1 }} sx={{ mb: 3, p: 1, borderRadius: 1, backgroundColor: '#f5f4f4', border: 1, borderColor: '#e3e3e3' }}>
+           
           <FilterBarElement
             deals={deals}
             filters={filters}
@@ -180,10 +163,10 @@ const InventoryPage = () => {
         </Grid>
         {!loading && (
           <>
-            <Grid container spacing={{ xs: 1, md: 1 }}>
+            <Grid container spacing={{ xs: 1, md: 1 }} >
               {deals &&
                 Array.from(deals).map((deal, index) => (
-                  <Grid item sm={12} md={6} key={index} sx={{ p: 3 }}>
+                  <Grid item sm={12} md={6} key={index}>
                     <HorizontalCardElement
                       financeMode={financeMode}
                       terms={terms}

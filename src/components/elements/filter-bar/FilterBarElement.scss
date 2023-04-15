@@ -1,0 +1,18 @@
+@import "../../../styles//variables.scss";
+.flex-root{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+
+    @include breakpoint {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 1400px;
+        margin: 0 auto;
+    
+    }   
+}

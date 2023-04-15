@@ -5,7 +5,7 @@ import {
     MenuItem,
     Switch
 } from '@mui/material';
-
+import './FilterBarElement.scss'
 const FilterBarElement = ({
     deals,
     filters,
@@ -23,8 +23,8 @@ const FilterBarElement = ({
 
     return (
         <>
-            <Grid item sm={isAdmin ? 7 : 8}>
-
+        <div className="flex-root">
+            <Grid item xs>
                 {filters &&
                     <>
                         <Chip label="All" onClick={() => { handleFilter('All') }} color="primary" variant={make === 'All' ? '' : 'outlined'} sx={{ mr: .5 }} />
@@ -34,7 +34,7 @@ const FilterBarElement = ({
                     </>
                 }
             </Grid>
-            <Grid item sm={isAdmin ? 5 : 4}>
+            <Grid item xs="auto">
                 {financeMode &&
                     <>  <Select
                         size="small"
@@ -71,6 +71,7 @@ const FilterBarElement = ({
                     onChange={() => { handleChangeFinanceMode(); handlePaymentChange() }}
                 /> <span style={{ textAlign: 'end', fontSize: 14, fontWeight: 700 }}> View in Finance Mode</span>
             </Grid>
+            </div>
         </>
     );
 }

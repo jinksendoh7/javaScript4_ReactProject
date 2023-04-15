@@ -8,12 +8,7 @@ import { lightBlue } from '@mui/material/colors';
 
 import SnackbarElement from '../../../components/elements/snack-bar/SnackbarElement';
 
-function stringAvatar(name) {
-    return {
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-    };
-  }
-  
+
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]);
@@ -62,7 +57,7 @@ const UsersPage = () => {
                         <div className="user-avatar">
 
                             <Avatar sx={{ bgcolor: lightBlue[800], width: 64, mt: 2, height: 64, textAlign: 'center' }} alt={user.firstname + ' ' + user.lastname}>
-                                {stringAvatar(user.firstname +' '+ user.lastname)}
+                             
                             </Avatar>
                         </div>
                         <div className="user-title">

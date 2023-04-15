@@ -33,12 +33,6 @@ const ListAvatarElement = ({ data, handleModalOpen }) => {
     const [statusChange, setStatusChange] = useState(data.status);
     const [isUpdated, setIsUpdated] = useState(false);
    
-    function stringAvatar(name) {
-        return {
-          children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-        };
-      }
-  
       
     const handleStatusChange = async (status) => {
         const id = data.id;
@@ -90,7 +84,7 @@ const ListAvatarElement = ({ data, handleModalOpen }) => {
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
                                 <Avatar sx={{ bgcolor: lightBlue[800], mt: 1, width: 48, height: 48, mr: 1 }} alt={data.firstname + ' ' + data.lastname}>
-                                {stringAvatar(data.firstname +' '+ data.lastname)}</Avatar>
+                                </Avatar>
                             </ListItemAvatar>
                             <div>
                                 <div className="data-title-alt">{data.firstname + ' ' + data.lastname}</div>

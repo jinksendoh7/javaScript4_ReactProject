@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import './Header.scss';
@@ -149,10 +149,12 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
+          <Link to={RoutesConst.ADMIN_ROUTE}>
             <Logo
               url={MainLogo}
               altDisplay="mainLogo"
             />
+          </Link>
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Button variant="contained" onClick={onLogout} disableElevation>Logout</Button>

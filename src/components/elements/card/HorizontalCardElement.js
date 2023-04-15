@@ -57,9 +57,10 @@ export default function HorizontalCardElement({ data, handleModalOpen, financeMo
 
   return (
     <Card sx={{ display: 'flex', border: 1, marginX: 2, marginY: 0, borderColor: '#e3e3e3' }} elevation={0}>
+      <div className="flex-root">
       <CardMedia
         component="img"
-        sx={{ maxWidth: 200, height: 165 }}
+        sx={{ maxWidth: 250, height: 195 }}
         image={data.imageUrl}
       />
       <Box sx={{ display: 'flex' }}>
@@ -100,6 +101,8 @@ export default function HorizontalCardElement({ data, handleModalOpen, financeMo
             DELETE</Button>
         </CardContent>
       </Box>
+      </div>
     </Card>
+
   );
 }

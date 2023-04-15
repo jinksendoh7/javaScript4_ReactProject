@@ -7,7 +7,7 @@ const LoginButton = () => {
         navigate('/login');
     }
     return (
-        <Button variant="contained" onClick={handleLogin} disableElevation>Login</Button>
+        <Button variant="contained" onClick={handleLogin} disableElevation>Dealer Login</Button>
     )
 }
 export default LoginButton;

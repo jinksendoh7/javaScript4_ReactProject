@@ -49,12 +49,12 @@ const CustomersPage = () => {
 
                 </Grid>
             </Container>
-            <Container maxWidth="xl" sx={{ mt: 3 }}>
+            <Container maxWidth="xl" sx={{ mt: 3, px:10}}>
                 <Grid container spacing={{ xs: 1, md: 1 }}>
                     <Grid item xs>
                         {!loading &&
                             customers && Array.from(customers).map((offer, index) => (
-                                <Grid item xs key={index} sx={{ border: 1, borderColor: '#e3e3e3', borderRadius: 3, p: 1, ml: 5, mb: 1 }}>
+                                <Grid item xs="auto" key={index} sx={{ border: 1, borderColor: '#e3e3e3', borderRadius: 3, p: 1, ml: 8, mb: 1 }}>
                                     <ListAvatarElement
                                         data={offer}
                                         handleModalOpen={handleModalOpen}
