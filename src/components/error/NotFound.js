@@ -34,7 +34,7 @@ const NotFound = () => {
         </Typography>
         <Button
           component={Link}
-          to={RoutesConst.HOME_ROUTE} //change to mainpage or dashboard
+          to={RoutesConst.ADMIN_ROUTE} 
           variant="contained"
           size="large"
           className="btn"
