@@ -12,7 +12,6 @@ import DrawerHeader from '../../components/elements/header/DrawerHeader';
 import SpinnerLoader from '../../components/spinner-loader/SpinnerLoaderComponent';
 
 /* MUI */
-import Box from '@mui/material/Box';
 import Container from "@mui/material/Container";
 
 import { RoutesConst, AppNumberConst } from '../../constants/AppConstants';
@@ -57,7 +56,7 @@ const AdminPage = () =>{
         console.log(e);
       }
   
-    }, [dispatch, setUser]);
+    }, [dispatch, navigate]);
 
 
     return(

@@ -131,7 +131,6 @@ const PaymentCalculator = ({ price, vehicleName, vin, vehicleId, stockNumber }) 
     setIsUpdating(true);
     const timer = setTimeout(() => {
       let taxTotal = isTaxIncluded ? ((price + FinanceConst.finance_fee) * (FinanceConst.tax / 100)) : 0;
-      console.log(taxTotal)
       let pv = price + ((taxTotal) - (downpayment));
       let pricing = paymentHelper.computeFinancing(pv, terms, frequency);
       setTaxAmount(taxTotal)
