@@ -14,7 +14,7 @@ const MyAccountPage = ()=>{
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
-    const [received, setReceived] = useState('');
+    const [received, setReceived] = useState(false);
     const [user, setUser] = useState();
 
     const [isUpdated, setIsUpdated] = useState(false);
@@ -40,6 +40,7 @@ const MyAccountPage = ()=>{
       
         
     }
+
     useEffect(() => {
         try {
           (async()=>{
