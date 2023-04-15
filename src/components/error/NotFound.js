@@ -2,6 +2,7 @@ import { Typography, Container, Button } from "@mui/material";
 import { IMAGE } from "../../assets/images/Images";
 import { Link } from "react-router-dom";
 import './NotFound.scss'
+import { RoutesConst } from "../../constants/AppConstants";
 
 const NotFound = () => {
   return (
@@ -33,7 +34,7 @@ const NotFound = () => {
         </Typography>
         <Button
           component={Link}
-          to={"/admin"} //change to mainpage or dashboard
+          to={RoutesConst.HOME_ROUTE} //change to mainpage or dashboard
           variant="contained"
           size="large"
           className="btn"
